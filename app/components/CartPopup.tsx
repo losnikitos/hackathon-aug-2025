@@ -27,7 +27,7 @@ export default function CartPopup({ isOpen, onClose }: CartPopupProps) {
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
           <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
-            Shopping Cart ({items.length} items, {uniqueItems} unique)
+            Shopping Cart
           </h2>
           <button
             onClick={onClose}

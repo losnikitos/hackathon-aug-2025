@@ -5,14 +5,14 @@ import { useCart } from '../contexts/CartContext';
 import CartItemControls from './CartItemControls';
 
 export default function CartSidebar() {
-  const { items, uniqueItems, totalPrice, clearCart, getItemDetails } = useCart();
+  const { items, totalPrice, clearCart, getItemDetails } = useCart();
 
   return (
     <div className="w-80 bg-white dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700 flex flex-col h-full">
       {/* Header */}
       <div className="p-4 border-b border-gray-200 dark:border-gray-700">
         <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
-          Shopping Cart ({items.length} items, {uniqueItems} unique)
+          Shopping Cart
         </h2>
       </div>
 
