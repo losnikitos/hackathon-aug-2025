@@ -17,7 +17,7 @@ export default function CartPopup({ isOpen, onClose }: CartPopupProps) {
     <>
       {/* Backdrop */}
       <div 
-        className="fixed inset-0 bg-black bg-opacity-50 z-40"
+        className="fixed inset-0 bg-black/20 z-40"
         onClick={onClose}
       />
       
