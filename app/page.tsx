@@ -28,23 +28,16 @@ export default function Home() {
           {/* Logo and slogan */}
           <div className="flex items-center space-x-4">
             <div className="flex items-center">
-              <img src="/logo.svg" alt="shop&cook" className="h-12 w-auto" />
+              <img src="/logo.svg" alt="shop&cook" className="h-20 w-auto" />
             </div>
             <div className="ml-6">
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <p className="text-sm leading-relaxed">
                 Your new way to shop is here ❤️
               </p>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <p className="text-sm leading-relaxed">
                 Be the first to try it and help us turn this early version into something great.
               </p>
             </div>
-          </div>
-          
-          {/* Hamburger menu */}
-          <div className="w-6 h-6 flex flex-col justify-center space-y-1">
-            <div className="w-full h-0.5 bg-gray-400"></div>
-            <div className="w-full h-0.5 bg-gray-400"></div>
-            <div className="w-full h-0.5 bg-gray-400"></div>
           </div>
         </header>
 
@@ -56,22 +49,17 @@ export default function Home() {
               {/* Cook figure */}
               <div className="relative">
                 <img 
-                  src="/cook-1.png" 
+                  src="/cook-2.png" 
                   alt="Chef cooking" 
                   className="w-64 h-auto object-contain"
                 />
-                
-                {/* Call to action text */}
-                <div className="absolute top-1/2 right-0 transform -translate-y-1/2 translate-x-8">
-                  <p className="text-gray-400 text-lg font-light">Choose an option to start shopping</p>
-                </div>
               </div>
             </div>
 
             {/* Right side - Shopping options */}
             <div className="space-y-8">
-              <div className="space-y-6">
-                <h2 className="text-3xl font-light text-gray-600">Choose Your Shopping Experience</h2>
+              <div className="space-y-2">
+                <h2 className="text-3xl font-light text-gray-900">Choose Your Shopping Experience</h2>
                 <p className="text-gray-400 text-lg leading-relaxed">
                   Discover products your way - browse traditionally or chat with AI
                 </p>
@@ -82,9 +70,11 @@ export default function Home() {
                 {/* Traditional Shop Button */}
                 <Link 
                   href="/shop"
-                  className="block w-full bg-white hover:border-blue-300 rounded-2xl p-6 transition-all duration-300 shadow-lg group"
+                  className="block w-full bg-white hover:border-blue-300 rounded-2xl p-6 transition-all duration-300 shadow-lg group relative overflow-hidden"
                 >
-                  <div className="flex items-center space-x-4">
+                  {/* Blue shine animation */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:animate-shine-blue"></div>
+                  <div className="flex items-center space-x-4 relative z-10">
                     <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-blue-200 transition-colors">
                       <ShoppingCart className="w-6 h-6 text-blue-600" />
                     </div>
@@ -101,9 +91,9 @@ export default function Home() {
                 {/* AI Chat Button */}
                 <Link 
                   href="/chat"
-                  className="block w-full bg-white hover:border-orange-300 rounded-2xl p-6 transition-all duration-300 shadow-lg group"
+                  className="block w-full bg-white hover:border-orange-300 rounded-2xl p-6 transition-all duration-300 shadow-lg group relative overflow-hidden"
                 >
-                  <div className="flex items-center space-x-4">
+                  <div className="flex items-center space-x-4 relative z-10">
                     <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center group-hover:bg-orange-200 transition-colors">
                       <MessageCircle className="w-6 h-6 text-orange-600" />
                     </div>
