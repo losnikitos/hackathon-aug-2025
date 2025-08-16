@@ -12,7 +12,7 @@ export default function CartOperationResult({ operation, output }: CartOperation
   // The output format is typically something like "Added 2 Fresh Eggs (12 pcs) to cart"
   const parseOutput = (output: string) => {
     const addMatch = output.match(/Added (\d+) (.+) to your cart/);
-    const removeMatch = output.match(/Removed (\d+) (.+) from cart/);
+    const removeMatch = output.match(/Removed (\d+) (.+) from your cart/);
     const updateMatch = output.match(/Updated (.+) quantity to (\d+)/);
     
     if (addMatch) {
@@ -61,7 +61,7 @@ export default function CartOperationResult({ operation, output }: CartOperation
     <CartItemDisplay 
       item={cartItem} 
       action={getAction()}
-      showQuantity={true}
+      showControls={false}
     />
   );
 }

@@ -1,6 +1,6 @@
 import { CartSummary } from '../types/tools';
 import catalogData from '../data/catalog.json';
-import CartItemDisplay from './CartItemDisplay';
+import CartItemsGrid from './CartItemsGrid';
 
 interface CartInfoDisplayProps {
   cartInfo: string;
@@ -51,18 +51,12 @@ export default function CartInfoDisplay({ cartInfo }: CartInfoDisplayProps) {
         </div>
       </div>
       
-      {/* Items List */}
-      <div className="space-y-1">
-        {parsedCart.items.map((item) => (
-          <CartItemDisplay 
-            key={item.id}
-            item={item} 
-            action="current"
-            showQuantity={true}
-            compact={true}
-          />
-        ))}
-      </div>
+      {/* Items Grid */}
+      <CartItemsGrid 
+        items={parsedCart.items}
+        action="current"
+        showControls={false}
+      />
     </div>
   );
 }

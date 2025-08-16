@@ -1,18 +1,21 @@
 import { CartItemInfo } from '../types/tools';
 import catalogData from '../data/catalog.json';
+import { Minus, Plus, Trash2, Check, X } from 'lucide-react';
 
 interface CartItemDisplayProps {
   item: CartItemInfo;
   action?: 'added' | 'removed' | 'updated' | 'current';
-  showQuantity?: boolean;
-  compact?: boolean;
+  showControls?: boolean;
+  onQuantityChange?: (itemId: number, newQuantity: number) => void;
+  onRemove?: (itemId: number) => void;
 }
 
 export default function CartItemDisplay({ 
   item, 
   action = 'current', 
-  showQuantity = true,
-  compact = false
+  showControls = false,
+  onQuantityChange,
+  onRemove
 }: CartItemDisplayProps) {
   // Find the item in catalog by ID or name
   const catalogItem = catalogData.find(catItem => 
@@ -21,126 +24,88 @@ export default function CartItemDisplay({
     item.name.toLowerCase().includes(catItem.name.toLowerCase())
   );
 
-  const getActionColor = () => {
-    switch (action) {
-      case 'added':
-        return 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 text-green-800 dark:text-green-200';
-      case 'removed':
-        return 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 text-red-800 dark:text-red-200';
-      case 'updated':
-        return 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 text-blue-800 dark:text-blue-200';
-      default:
-        return 'bg-gray-50 dark:bg-gray-900/20 border-gray-200 dark:border-gray-800 text-gray-800 dark:text-gray-200';
-    }
-  };
+  if (!catalogItem) {
+    return <div>Item not found</div>;
+  }
 
   const getActionIcon = () => {
     switch (action) {
       case 'added':
-        return '✅';
+        return <Check className="w-4 h-4 text-green-600" />;
       case 'removed':
-        return '❌';
+        return <X className="w-4 h-4 text-red-600" />;
       case 'updated':
-        return '🔄';
+        return null;
       default:
-        return '🛒';
+        return null;
     }
   };
 
-  const getActionText = () => {
-    switch (action) {
-      case 'added':
-        return 'Added to cart';
-      case 'removed':
-        return 'Removed from cart';
-      case 'updated':
-        return 'Updated quantity';
-      default:
-        return 'In cart';
-    }
-  };
-
-  if (compact) {
-    return (
-      <div className={`text-xs border rounded p-2 ${getActionColor()}`}>
-        <div className="flex items-center space-x-2">
-          {/* Action Icon */}
-          <div className="text-sm flex-shrink-0">
-            {getActionIcon()}
-          </div>
-          
-          {/* Item Image */}
-          <div className="w-8 h-8 rounded overflow-hidden bg-white dark:bg-gray-800 flex-shrink-0">
-            {catalogItem?.image ? (
-              <img 
-                src={catalogItem.image} 
-                alt={catalogItem.name}
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center">
-                <div className="text-gray-400 text-xs">📦</div>
-              </div>
-            )}
-          </div>
-          
-          {/* Item Details */}
-          <div className="flex-1 min-w-0">
-            <div className="font-medium truncate text-xs">
-              {catalogItem?.name || item.name}
+  return (
+    <div className={`relative w-36 p-2 bg-white rounded-2xl`}>
+      {/* Status Icon Overlay */}
+      
+      <img src={catalogItem.image} alt={catalogItem.name} className="square object-cover w-32 h-32 rounded-lg"/>
+        
+             {getActionIcon() && (
+         <div className="absolute -top-2 -right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm">
+           {getActionIcon()}
+         </div>
+       )}
+      
+      {/* Item Details */}
+      <div className="p-3">
+        <div className="font-medium text-sm text-gray-900 dark:text-white truncate mb-1">
+          {catalogItem?.name || item.name}
+        </div>
+        
+        {showControls ? (
+          /* Interactive Controls */
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-xs text-gray-500 dark:text-gray-400">Quantity:</span>
+              <span className="text-sm font-medium text-gray-900 dark:text-white">{item.quantity}</span>
             </div>
-            <div className="text-xs opacity-80">
-              {showQuantity && (
-                <span>Qty: {item.quantity} • </span>
-              )}
+            
+            <div className="flex items-center space-x-1">
+              <button
+                onClick={() => onQuantityChange?.(item.id, item.quantity - 1)}
+                className="w-6 h-6 rounded bg-gray-200 dark:bg-gray-600 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-500"
+              >
+                <Minus className="w-3 h-3" />
+              </button>
+              
+              <button
+                onClick={() => onQuantityChange?.(item.id, item.quantity + 1)}
+                className="w-6 h-6 rounded bg-gray-200 dark:bg-gray-600 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-500"
+              >
+                <Plus className="w-3 h-3" />
+              </button>
+              
+              <button
+                onClick={() => onRemove?.(item.id)}
+                className="w-6 h-6 rounded bg-red-100 dark:bg-red-900 flex items-center justify-center text-red-600 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-800"
+              >
+                <Trash2 className="w-3 h-3" />
+              </button>
+            </div>
+            
+            <div className="text-sm font-medium text-gray-900 dark:text-white">
               €{item.total.toFixed(2)}
             </div>
           </div>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className={`text-sm border rounded-lg p-3 ${getActionColor()}`}>
-      <div className="flex items-center space-x-3">
-        {/* Action Icon */}
-        <div className="text-lg flex-shrink-0">
-          {getActionIcon()}
-        </div>
-        
-        {/* Item Image */}
-        <div className="w-12 h-12 rounded overflow-hidden bg-white dark:bg-gray-800 flex-shrink-0">
-          {catalogItem?.image ? (
-            <img 
-              src={catalogItem.image} 
-              alt={catalogItem.name}
-              className="w-full h-full object-cover"
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center">
-              <div className="text-gray-400 text-sm">📦</div>
+        ) : (
+          /* Read-only Display */
+          <div className="space-y-1">
+            <div className="flex items-center justify-between">
+              <span className="text-xs text-gray-500 dark:text-gray-400">Qty:</span>
+              <span className="text-sm font-medium text-gray-900 dark:text-white">{item.quantity}</span>
             </div>
-          )}
-        </div>
-        
-        {/* Item Details */}
-        <div className="flex-1 min-w-0">
-          <div className="font-medium truncate">
-            {catalogItem?.name || item.name}
+            <div className="text-sm font-medium text-gray-900 dark:text-white">
+              €{item.total.toFixed(2)}
+            </div>
           </div>
-          <div className="text-sm opacity-80">
-            {showQuantity && (
-              <span>Qty: {item.quantity} • </span>
-            )}
-            €{item.total.toFixed(2)}
-          </div>
-        </div>
-        
-        {/* Action Label */}
-        <div className="text-xs opacity-70 flex-shrink-0">
-          {getActionText()}
-        </div>
+        )}
       </div>
     </div>
   );
