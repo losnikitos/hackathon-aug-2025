@@ -39,11 +39,21 @@ export interface CartSummary {
   items: CartItemInfo[];
 }
 
-// Tool output types
-export type AddToCartOutput = string;
-export type RemoveFromCartOutput = string;
-export type UpdateCartQuantityOutput = string;
-export type GetCartInfoOutput = string; // JSON stringified CartSummary
+// Structured output types for cart operations
+export interface CartOperationResult {
+  itemId: number;
+  itemName: string;
+  quantity: number;
+  action: 'added' | 'removed' | 'updated';
+  success: boolean;
+  message?: string;
+}
+
+// Tool output types - now using structured data
+export type AddToCartOutput = CartOperationResult;
+export type RemoveFromCartOutput = CartOperationResult;
+export type UpdateCartQuantityOutput = CartOperationResult;
+export type GetCartInfoOutput = CartSummary; // No longer stringified
 
 // Tool definitions for the AI SDK
 export const cartTools = {

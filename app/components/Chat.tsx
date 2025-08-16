@@ -49,7 +49,14 @@ export default function Chat() {
           addToolResult({
             tool: 'addToCart',
             toolCallId: toolCall.toolCallId,
-            output: `Added ${quantity} ${quantity === 1 ? 'item' : 'items'} of "${itemDetails?.name || `Product ${itemId}`}" to your cart.`,
+            output: {
+              itemId,
+              itemName: itemDetails?.name || `Product ${itemId}`,
+              quantity,
+              action: 'added',
+              success: true,
+              message: `Added ${quantity} ${quantity === 1 ? 'item' : 'items'} of "${itemDetails?.name || `Product ${itemId}`}" to your cart.`
+            },
           });
           break;
         }
@@ -63,7 +70,14 @@ export default function Chat() {
           addToolResult({
             tool: 'removeFromCart',
             toolCallId: toolCall.toolCallId,
-            output: `Removed "${itemDetails?.name || `Product ${itemId}`}" from your cart.`,
+            output: {
+              itemId,
+              itemName: itemDetails?.name || `Product ${itemId}`,
+              quantity: 0,
+              action: 'removed',
+              success: true,
+              message: `Removed "${itemDetails?.name || `Product ${itemId}`}" from your cart.`
+            },
           });
           break;
         }
@@ -78,14 +92,28 @@ export default function Chat() {
             addToolResult({
               tool: 'updateCartQuantity',
               toolCallId: toolCall.toolCallId,
-              output: `Removed "${itemDetails?.name || `Product ${itemId}`}" from your cart.`,
+              output: {
+                itemId,
+                itemName: itemDetails?.name || `Product ${itemId}`,
+                quantity: 0,
+                action: 'removed',
+                success: true,
+                message: `Removed "${itemDetails?.name || `Product ${itemId}`}" from your cart.`
+              },
             });
           } else {
             updateQuantity(itemId, quantity);
             addToolResult({
               tool: 'updateCartQuantity',
               toolCallId: toolCall.toolCallId,
-              output: `Updated quantity of "${itemDetails?.name || `Product ${itemId}`}" to ${quantity} in your cart.`,
+              output: {
+                itemId,
+                itemName: itemDetails?.name || `Product ${itemId}`,
+                quantity,
+                action: 'updated',
+                success: true,
+                message: `Updated quantity of "${itemDetails?.name || `Product ${itemId}`}" to ${quantity} in your cart.`
+              },
             });
           }
           break;
@@ -112,7 +140,7 @@ export default function Chat() {
           addToolResult({
             tool: 'getCartInfo',
             toolCallId: toolCall.toolCallId,
-            output: JSON.stringify(cartSummary, null, 2),
+            output: cartSummary,
           });
           break;
         }
