@@ -5,7 +5,7 @@
     "description": "Free-range medium-size eggs, perfect for cooking and baking.",
     "price_eur": 3.2,
     "weight_or_count": "12 pcs",
-    "image": "https://picsum.photos/id/1011/300/200"
+    "image": "/images/Fresh_Eggs_(12_pcs).jpg"
   },
   {
     "id": 2,
@@ -13,7 +13,7 @@
     "description": "Fine wheat flour suitable for bread, cakes, and sauces.",
     "price_eur": 1.8,
     "weight_or_count": "1 kg",
-    "image": "https://picsum.photos/id/1012/300/200"
+    "image": "/images/All-Purpose_Flour.jpg"
   },
   {
     "id": 3,
@@ -21,7 +21,7 @@
     "description": "Granulated sugar for everyday use.",
     "price_eur": 1.5,
     "weight_or_count": "1 kg",
-    "image": "https://picsum.photos/id/1013/300/200"
+    "image": "/images/White_Sugar.jpg"
   },
   {
     "id": 4,
@@ -29,7 +29,7 @@
     "description": "Sweet and crunchy Gala apples.",
     "price_eur": 2.9,
     "weight_or_count": "1 kg",
-    "image": "https://picsum.photos/id/1014/300/200"
+    "image": "/images/Apples_Gala.jpg"
   },
   {
     "id": 5,
@@ -37,7 +37,7 @@
     "description": "Warm and aromatic ground cinnamon spice.",
     "price_eur": 2.4,
     "weight_or_count": "50 g",
-    "image": "https://picsum.photos/id/1015/300/200"
+    "image": "/images/Cinnamon_Powder.jpg"
   },
   {
     "id": 6,
@@ -45,7 +45,7 @@
     "description": "Natural coarse sea salt for seasoning.",
     "price_eur": 1.2,
     "weight_or_count": "500 g",
-    "image": "https://picsum.photos/id/1016/300/200"
+    "image": "/images/Sea_Salt.jpg"
   },
   {
     "id": 7,
@@ -53,7 +53,7 @@
     "description": "Creamy dairy butter, unsalted for cooking and baking.",
     "price_eur": 2.5,
     "weight_or_count": "250 g",
-    "image": "https://picsum.photos/id/1017/300/200"
+    "image": "/images/Unsalted_Butter.jpg"
   },
   {
     "id": 8,
@@ -61,7 +61,7 @@
     "description": "Leavening agent for fluffy cakes and pastries.",
     "price_eur": 0.9,
     "weight_or_count": "100 g",
-    "image": "https://picsum.photos/id/1018/300/200"
+    "image": "/images/Baking_Powder.jpg"
   },
   {
     "id": 9,
@@ -69,7 +69,7 @@
     "description": "Gluten-free flour blend suitable for breads and cakes.",
     "price_eur": 3.6,
     "weight_or_count": "1 kg",
-    "image": "https://picsum.photos/id/1019/300/200"
+    "image": "/images/Gluten-Free_Flour.jpg"
   },
   {
     "id": 10,
@@ -77,7 +77,7 @@
     "description": "Natural sugar replacement from stevia leaves.",
     "price_eur": 4.2,
     "weight_or_count": "200 g",
-    "image": "https://picsum.photos/id/1020/300/200"
+    "image": "/images/Stevia_Sweetener.jpg"
   },
   {
     "id": 11,
@@ -85,7 +85,7 @@
     "description": "Fresh yellow bananas, ripe and sweet.",
     "price_eur": 1.8,
     "weight_or_count": "1 kg",
-    "image": "https://picsum.photos/id/1021/300/200"
+    "image": "/images/Bananas.jpg"
   },
   {
     "id": 12,
@@ -93,7 +93,7 @@
     "description": "Juicy seedless oranges, rich in vitamin C.",
     "price_eur": 3.1,
     "weight_or_count": "1 kg",
-    "image": "https://picsum.photos/id/1022/300/200"
+    "image": "/images/Oranges.jpg"
   },
   {
     "id": 13,
@@ -101,7 +101,7 @@
     "description": "Red ripe tomatoes, perfect for salads and sauces.",
     "price_eur": 2.2,
     "weight_or_count": "1 kg",
-    "image": "https://picsum.photos/id/1023/300/200"
+    "image": "/images/Tomatoes.jpg"
   },
   {
     "id": 14,
@@ -109,7 +109,7 @@
     "description": "Starchy golden potatoes for cooking and baking.",
     "price_eur": 1.9,
     "weight_or_count": "2 kg",
-    "image": "https://picsum.photos/id/1024/300/200"
+    "image": "/images/Potatoes.jpg"
   },
   {
     "id": 15,
@@ -117,7 +117,7 @@
     "description": "Fresh crunchy carrots, ideal for soups and snacks.",
     "price_eur": 1.6,
     "weight_or_count": "1 kg",
-    "image": "https://picsum.photos/id/1025/300/200"
+    "image": "/images/Carrots.jpg"
   },
   {
     "id": 16,
@@ -125,7 +125,7 @@
     "description": "Yellow onions with a strong, savory flavor.",
     "price_eur": 1.3,
     "weight_or_count": "1 kg",
-    "image": "https://picsum.photos/id/1026/300/200"
+    "image": "/images/Onions.jpg"
   },
   {
     "id": 17,
@@ -133,15 +133,15 @@
     "description": "Aromatic garlic bulbs, great for seasoning.",
     "price_eur": 1.1,
     "weight_or_count": "200 g",
-    "image": "https://picsum.photos/id/1027/300/200"
+    "image": "/images/Garlic.jpg"
   },
   {
     "id": 18,
     "name": "Milk 3.5%",
-    "description": "Whole cow\u2019s milk, pasteurized, 3.5% fat.",
+    "description": "Whole cow’s milk, pasteurized, 3.5% fat.",
     "price_eur": 1.4,
     "weight_or_count": "1 L",
-    "image": "https://picsum.photos/id/1028/300/200"
+    "image": "/images/Milk_3.5%.jpg"
   },
   {
     "id": 19,
@@ -149,7 +149,7 @@
     "description": "Thick and creamy natural Greek yogurt.",
     "price_eur": 2.0,
     "weight_or_count": "500 g",
-    "image": "https://picsum.photos/id/1029/300/200"
+    "image": "/images/Greek_Yogurt.jpg"
   },
   {
     "id": 20,
@@ -157,7 +157,7 @@
     "description": "Mature cheddar cheese block, rich in flavor.",
     "price_eur": 4.5,
     "weight_or_count": "300 g",
-    "image": "https://picsum.photos/id/1030/300/200"
+    "image": "/images/Cheddar_Cheese.jpg"
   },
   {
     "id": 21,
@@ -165,7 +165,7 @@
     "description": "Cold-pressed extra virgin olive oil from Spain.",
     "price_eur": 6.9,
     "weight_or_count": "750 ml",
-    "image": "https://picsum.photos/id/1031/300/200"
+    "image": "/images/Olive_Oil_Extra_Virgin.jpg"
   },
   {
     "id": 22,
@@ -173,7 +173,7 @@
     "description": "Refined sunflower oil for frying and cooking.",
     "price_eur": 3.4,
     "weight_or_count": "1 L",
-    "image": "https://picsum.photos/id/1032/300/200"
+    "image": "/images/Sunflower_Oil.jpg"
   },
   {
     "id": 23,
@@ -181,7 +181,7 @@
     "description": "Italian-style spaghetti made from durum wheat.",
     "price_eur": 1.6,
     "weight_or_count": "500 g",
-    "image": "https://picsum.photos/id/1033/300/200"
+    "image": "/images/Spaghetti_Pasta.jpg"
   },
   {
     "id": 24,
@@ -189,7 +189,7 @@
     "description": "Wholegrain brown rice, rich in fiber.",
     "price_eur": 3.2,
     "weight_or_count": "1 kg",
-    "image": "https://picsum.photos/id/1034/300/200"
+    "image": "/images/Brown_Rice.jpg"
   },
   {
     "id": 25,
@@ -197,7 +197,7 @@
     "description": "Polished long-grain rice, cooks fluffy and light.",
     "price_eur": 2.1,
     "weight_or_count": "1 kg",
-    "image": "https://picsum.photos/id/1035/300/200"
+    "image": "/images/White_Rice.jpg"
   },
   {
     "id": 26,
@@ -205,7 +205,7 @@
     "description": "Healthy whole wheat bread loaf.",
     "price_eur": 2.6,
     "weight_or_count": "500 g",
-    "image": "https://picsum.photos/id/1036/300/200"
+    "image": "/images/Bread_Whole_Wheat.jpg"
   },
   {
     "id": 27,
@@ -213,7 +213,7 @@
     "description": "Flaky French-style butter croissants.",
     "price_eur": 3.5,
     "weight_or_count": "4 pcs",
-    "image": "https://picsum.photos/id/1037/300/200"
+    "image": "/images/Croissants.jpg"
   },
   {
     "id": 28,
@@ -221,7 +221,7 @@
     "description": "Smooth milk chocolate with 30% cocoa.",
     "price_eur": 1.2,
     "weight_or_count": "100 g",
-    "image": "https://picsum.photos/id/1038/300/200"
+    "image": "/images/Chocolate_Bar.jpg"
   },
   {
     "id": 29,
@@ -229,7 +229,7 @@
     "description": "Pure natural bee honey.",
     "price_eur": 5.5,
     "weight_or_count": "400 g",
-    "image": "https://picsum.photos/id/1039/300/200"
+    "image": "/images/Honey_Natural.jpg"
   },
   {
     "id": 30,
@@ -237,7 +237,7 @@
     "description": "Sweet strawberry jam with fruit chunks.",
     "price_eur": 2.7,
     "weight_or_count": "350 g",
-    "image": "https://picsum.photos/id/1040/300/200"
+    "image": "/images/Jam_Strawberry.jpg"
   },
   {
     "id": 31,
@@ -245,7 +245,7 @@
     "description": "Smooth peanut butter, no added sugar.",
     "price_eur": 3.9,
     "weight_or_count": "350 g",
-    "image": "https://picsum.photos/id/1041/300/200"
+    "image": "/images/Peanut_Butter.jpg"
   },
   {
     "id": 32,
@@ -253,7 +253,7 @@
     "description": "Raw whole almonds, rich in protein.",
     "price_eur": 6.8,
     "weight_or_count": "250 g",
-    "image": "https://picsum.photos/id/1042/300/200"
+    "image": "/images/Almonds.jpg"
   },
   {
     "id": 33,
@@ -261,7 +261,7 @@
     "description": "Shelled walnuts with a crunchy texture.",
     "price_eur": 7.1,
     "weight_or_count": "250 g",
-    "image": "https://picsum.photos/id/1043/300/200"
+    "image": "/images/Walnuts.jpg"
   },
   {
     "id": 34,
@@ -269,7 +269,7 @@
     "description": "100% pure squeezed orange juice.",
     "price_eur": 2.8,
     "weight_or_count": "1 L",
-    "image": "https://picsum.photos/id/1044/300/200"
+    "image": "/images/Orange_Juice.jpg"
   },
   {
     "id": 35,
@@ -277,7 +277,7 @@
     "description": "Natural sparkling mineral water.",
     "price_eur": 0.9,
     "weight_or_count": "1.5 L",
-    "image": "https://picsum.photos/id/1045/300/200"
+    "image": "/images/Mineral_Water_Sparkling.jpg"
   },
   {
     "id": 36,
@@ -285,7 +285,7 @@
     "description": "Natural still mineral water.",
     "price_eur": 0.8,
     "weight_or_count": "1.5 L",
-    "image": "https://picsum.photos/id/1046/300/200"
+    "image": "/images/Mineral_Water_Still.jpg"
   },
   {
     "id": 37,
@@ -293,7 +293,7 @@
     "description": "Arabica coffee beans, medium roast.",
     "price_eur": 8.5,
     "weight_or_count": "500 g",
-    "image": "https://picsum.photos/id/1047/300/200"
+    "image": "/images/Coffee_Beans.jpg"
   },
   {
     "id": 38,
@@ -301,7 +301,7 @@
     "description": "Strong black tea bags, 100 pcs pack.",
     "price_eur": 4.2,
     "weight_or_count": "200 g",
-    "image": "https://picsum.photos/id/1048/300/200"
+    "image": "/images/Black_Tea.jpg"
   },
   {
     "id": 39,
@@ -309,7 +309,7 @@
     "description": "Refreshing green tea bags, 50 pcs pack.",
     "price_eur": 3.8,
     "weight_or_count": "100 g",
-    "image": "https://picsum.photos/id/1049/300/200"
+    "image": "/images/Green_Tea.jpg"
   },
   {
     "id": 40,
@@ -317,7 +317,7 @@
     "description": "Rich cocoa powder for baking and drinks.",
     "price_eur": 2.9,
     "weight_or_count": "250 g",
-    "image": "https://picsum.photos/id/1050/300/200"
+    "image": "/images/Cocoa_Powder.jpg"
   },
   {
     "id": 41,
@@ -325,7 +325,7 @@
     "description": "Rolled oats for porridge and baking.",
     "price_eur": 2.2,
     "weight_or_count": "1 kg",
-    "image": "https://picsum.photos/id/1051/300/200"
+    "image": "/images/Oats.jpg"
   },
   {
     "id": 42,
@@ -333,7 +333,7 @@
     "description": "Crispy corn flakes breakfast cereal.",
     "price_eur": 3.0,
     "weight_or_count": "500 g",
-    "image": "https://picsum.photos/id/1052/300/200"
+    "image": "/images/Corn_Flakes.jpg"
   },
   {
     "id": 43,
@@ -341,7 +341,7 @@
     "description": "Mixed frozen berries: blueberries, raspberries, blackberries.",
     "price_eur": 4.9,
     "weight_or_count": "500 g",
-    "image": "https://picsum.photos/id/1053/300/200"
+    "image": "/images/Frozen_Berries.jpg"
   },
   {
     "id": 44,
@@ -349,7 +349,7 @@
     "description": "Classic Margherita pizza with mozzarella and tomato.",
     "price_eur": 3.6,
     "weight_or_count": "350 g",
-    "image": "https://picsum.photos/id/1054/300/200"
+    "image": "/images/Frozen_Pizza_Margherita.jpg"
   },
   {
     "id": 45,
@@ -357,7 +357,7 @@
     "description": "Crispy frozen potato fries, oven-ready.",
     "price_eur": 2.7,
     "weight_or_count": "1 kg",
-    "image": "https://picsum.photos/id/1055/300/200"
+    "image": "/images/Frozen_French_Fries.jpg"
   },
   {
     "id": 46,
@@ -365,7 +365,7 @@
     "description": "Skinless boneless chicken breast fillets.",
     "price_eur": 7.2,
     "weight_or_count": "1 kg",
-    "image": "https://picsum.photos/id/1056/300/200"
+    "image": "/images/Chicken_Breast_Fillets.jpg"
   },
   {
     "id": 47,
@@ -373,7 +373,7 @@
     "description": "Fresh Atlantic salmon fillet, skin-on.",
     "price_eur": 12.9,
     "weight_or_count": "500 g",
-    "image": "https://picsum.photos/id/1057/300/200"
+    "image": "/images/Salmon_Fillet.jpg"
   },
   {
     "id": 48,
@@ -381,7 +381,7 @@
     "description": "Lean ground beef 10% fat.",
     "price_eur": 6.5,
     "weight_or_count": "500 g",
-    "image": "https://picsum.photos/id/1058/300/200"
+    "image": "/images/Ground_Beef.jpg"
   },
   {
     "id": 49,
@@ -389,7 +389,7 @@
     "description": "Organic firm tofu, high in protein.",
     "price_eur": 3.3,
     "weight_or_count": "400 g",
-    "image": "https://picsum.photos/id/1059/300/200"
+    "image": "/images/Tofu.jpg"
   },
   {
     "id": 50,
@@ -397,6 +397,6 @@
     "description": "Dried red lentils, cook quickly and rich in protein.",
     "price_eur": 2.5,
     "weight_or_count": "1 kg",
-    "image": "https://picsum.photos/id/1060/300/200"
+    "image": "/images/Lentils.jpg"
   }
 ]
