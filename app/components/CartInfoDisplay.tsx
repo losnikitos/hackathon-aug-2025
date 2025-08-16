@@ -1,5 +1,6 @@
 import { CartSummary } from '../types/tools';
 import catalogData from '../data/catalog.json';
+import CartItemDisplay from './CartItemDisplay';
 
 interface CartInfoDisplayProps {
   cartInfo: string;
@@ -50,44 +51,17 @@ export default function CartInfoDisplay({ cartInfo }: CartInfoDisplayProps) {
         </div>
       </div>
       
-      {/* Items Grid */}
-      <div className="grid grid-cols-2 gap-2">
-        {parsedCart.items.map((item) => {
-          // Find the item in catalog by name
-          const catalogItem = catalogData.find(catItem => 
-            catItem.name.toLowerCase().includes(item.name.toLowerCase()) ||
-            item.name.toLowerCase().includes(catItem.name.toLowerCase())
-          );
-
-          return (
-            <div key={item.id} className="flex items-center space-x-2 p-2 bg-white dark:bg-gray-800 rounded border border-gray-200 dark:border-gray-600">
-              {/* Item Image */}
-              <div className="w-10 h-10 rounded overflow-hidden bg-gray-100 dark:bg-gray-700 flex-shrink-0">
-                {catalogItem?.image ? (
-                  <img 
-                    src={catalogItem.image} 
-                    alt={catalogItem.name}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center">
-                    <div className="text-gray-400 text-xs">📦</div>
-                  </div>
-                )}
-              </div>
-              
-              {/* Item Details */}
-              <div className="flex-1 min-w-0">
-                <div className="font-medium text-green-800 dark:text-green-200 text-xs truncate">
-                  {catalogItem?.name || item.name}
-                </div>
-                <div className="text-green-700 dark:text-green-300 text-xs">
-                  Qty: {item.quantity} • €{item.total.toFixed(2)}
-                </div>
-              </div>
-            </div>
-          );
-        })}
+      {/* Items List */}
+      <div className="space-y-1">
+        {parsedCart.items.map((item) => (
+          <CartItemDisplay 
+            key={item.id}
+            item={item} 
+            action="current"
+            showQuantity={true}
+            compact={true}
+          />
+        ))}
       </div>
     </div>
   );
