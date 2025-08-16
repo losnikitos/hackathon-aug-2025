@@ -4,17 +4,10 @@ import CartItemDisplay from './CartItemDisplay';
 interface CartItemsGridProps {
   items: CartItemInfo[];
   action?: 'added' | 'removed' | 'updated' | 'current';
-  showControls?: boolean;
-  onQuantityChange?: (itemId: number, newQuantity: number) => void;
-  onRemove?: (itemId: number) => void;
 }
 
 export default function CartItemsGrid({ 
   items, 
-  action = 'current',
-  showControls = false,
-  onQuantityChange,
-  onRemove
 }: CartItemsGridProps) {
   if (items.length === 0) {
     return (
@@ -30,10 +23,6 @@ export default function CartItemsGrid({
         <CartItemDisplay 
           key={item.id}
           item={item} 
-          action={action}
-          showControls={showControls}
-          onQuantityChange={onQuantityChange}
-          onRemove={onRemove}
         />
       ))}
     </div>

@@ -1,12 +1,12 @@
 import { CartOperationResult as CartOperationResultType, CartItemInfo } from '../types/tools';
 import catalogData from '../data/catalog.json';
 import CartItemDisplay from './CartItemDisplay';
-
 interface CartOperationResultProps {
   result: CartOperationResultType;
 }
 
 export default function CartOperationResult({ result }: CartOperationResultProps) {
+  
   // Find the item in catalog by ID
   const catalogItem = catalogData.find(item => item.id === result.itemId);
 
@@ -23,7 +23,6 @@ export default function CartOperationResult({ result }: CartOperationResultProps
     <CartItemDisplay 
       item={cartItem} 
       action={result.action}
-      showControls={false}
     />
   );
 }
