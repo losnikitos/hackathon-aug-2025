@@ -1,10 +1,11 @@
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Components } from 'react-markdown';
-import { CartToolName, CartOperationResult } from '../types/tools';
+import { CartToolName, CartOperationResult, ShowProductsResult } from '../types/tools';
 import { UIMessage } from 'ai';
 import CartOperationResultComponent from './CartOperationResult';
 import CartInfoDisplay from './CartInfoDisplay';
+import ProductOptionsDisplay from './ProductOptionsDisplay';
 
 interface ChatMessageProps {
   message: UIMessage;
@@ -34,7 +35,8 @@ export default function ChatMessage({ message }: ChatMessageProps) {
       case 'tool-addToCart':
       case 'tool-removeFromCart':
       case 'tool-updateCartQuantity':
-      case 'tool-getCartInfo': {
+      case 'tool-getCartInfo':
+      case 'tool-showProducts': {
         const toolName = part.type.replace('tool-', '') as CartToolName;
         const callId = part.toolCallId;
         
@@ -58,6 +60,8 @@ export default function ChatMessage({ message }: ChatMessageProps) {
               <div key={index}>
                 {toolName === 'getCartInfo' ? (
                   <CartInfoDisplay />
+                ) : toolName === 'showProducts' ? (
+                  <ProductOptionsDisplay result={part.output as ShowProductsResult} />
                 ) : (
                   <CartOperationResultComponent 
                     result={part.output as CartOperationResult}

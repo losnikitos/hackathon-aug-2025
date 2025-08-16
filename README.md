@@ -36,6 +36,14 @@ The AI assistant can perform the following cart operations:
 - **Parameters**: None
 - **Returns**: JSON with cart summary including items, quantities, unique items count, and total price
 
+### 5. Show Products (`showProducts`)
+- **Description**: Show product options without adding them to cart. Use when user asks about options, alternatives, or wants to browse products without committing to purchase.
+- **Parameters**:
+  - `category` (optional, string): Product category to show (e.g., "fruits", "dairy", "baking")
+  - `searchTerm` (optional, string): Search term to filter products
+  - `limit` (optional, number): Maximum number of products to show (defaults to 10)
+- **Returns**: JSON with filtered products, total count, and search criteria
+
 ## Example Conversations
 
 Users can interact with the chatbot using natural language:
@@ -46,6 +54,10 @@ Users can interact with the chatbot using natural language:
 - "Change the quantity of flour to 3"
 - "What's the total price of my cart?"
 - "I want to buy some bread and milk"
+- "Show me some fruit options"
+- "What dairy products do you have?"
+- "I'm looking for baking ingredients"
+- "Show me alternatives to white sugar"
 
 ## Technical Implementation
 

@@ -1,4 +1,4 @@
-import CartItemsGrid from './CartItemsGrid';
+import ProductsGrid from './ProductsGrid';
 import { useCart } from '../contexts/CartContext';
 
 export default function CartInfoDisplay() {
@@ -43,9 +43,9 @@ export default function CartInfoDisplay() {
       </div>
       
       {/* Items Grid */}
-      <CartItemsGrid 
-        items={liveCartItems}
-        action="current"
+      <ProductsGrid 
+        products={liveCartItems}
+        emptyMessage="Your cart is empty"
       />
     </div>
   );

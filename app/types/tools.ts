@@ -17,11 +17,18 @@ export const updateCartQuantitySchema = z.object({
 
 export const getCartInfoSchema = z.object({});
 
+export const showProductsSchema = z.object({
+  category: z.string().optional().describe('Product category to show (e.g., "fruits", "dairy", "baking")'),
+  searchTerm: z.string().optional().describe('Search term to filter products'),
+  limit: z.number().optional().describe('Maximum number of products to show (defaults to 10)')
+});
+
 // Tool input types
 export type AddToCartInput = z.infer<typeof addToCartSchema>;
 export type RemoveFromCartInput = z.infer<typeof removeFromCartSchema>;
 export type UpdateCartQuantityInput = z.infer<typeof updateCartQuantitySchema>;
 export type GetCartInfoInput = z.infer<typeof getCartInfoSchema>;
+export type ShowProductsInput = z.infer<typeof showProductsSchema>;
 
 // Cart item type for getCartInfo output
 export interface CartItemInfo {
@@ -39,6 +46,23 @@ export interface CartSummary {
   items: CartItemInfo[];
 }
 
+// Product display type for showProducts output
+export interface ProductDisplay {
+  id: number;
+  name: string;
+  description: string;
+  price_eur: number;
+  weight_or_count: string;
+  image: string;
+}
+
+export interface ShowProductsResult {
+  products: ProductDisplay[];
+  totalFound: number;
+  category?: string;
+  searchTerm?: string;
+}
+
 // Structured output types for cart operations
 export interface CartOperationResult {
   itemId: number;
@@ -54,6 +78,7 @@ export type AddToCartOutput = CartOperationResult;
 export type RemoveFromCartOutput = CartOperationResult;
 export type UpdateCartQuantityOutput = CartOperationResult;
 export type GetCartInfoOutput = CartSummary; // No longer stringified
+export type ShowProductsOutput = ShowProductsResult;
 
 // Tool definitions for the AI SDK
 export const cartTools = {
@@ -75,6 +100,11 @@ export const cartTools = {
   getCartInfo: {
     description: 'Get information about the current shopping cart including items, quantities, and total price',
     inputSchema: getCartInfoSchema
+  },
+
+  showProducts: {
+    description: 'Show product options without adding them to cart. Use when user asks about options, alternatives, or wants to browse products without committing to purchase.',
+    inputSchema: showProductsSchema
   }
 } as const;
 

@@ -11,10 +11,13 @@ import CartSidebar from './CartSidebar';
 import { useChat } from '@ai-sdk/react';
 import { lastAssistantMessageIsCompleteWithToolCalls } from 'ai';
 import { useCart } from '../contexts/CartContext';
+import catalogData from '../data/catalog.json';
 import { 
   AddToCartInput, 
   RemoveFromCartInput, 
   UpdateCartQuantityInput, 
+  ShowProductsInput,
+  ShowProductsResult,
   CartSummary,
   CartItemInfo
 } from '../types/tools';
@@ -141,6 +144,50 @@ export default function Chat() {
             tool: 'getCartInfo',
             toolCallId: toolCall.toolCallId,
             output: cartSummary,
+          });
+          break;
+        }
+        
+        case 'showProducts': {
+          const input = toolCall.input as ShowProductsInput;
+          const { category, searchTerm, limit = 10 } = input;
+          
+          let filteredProducts = [...catalogData];
+          
+          // Filter by category if specified
+          if (category) {
+            const categoryLower = category.toLowerCase();
+            filteredProducts = filteredProducts.filter(product => {
+              const productName = product.name.toLowerCase();
+              const productDesc = product.description.toLowerCase();
+              return productName.includes(categoryLower) || productDesc.includes(categoryLower);
+            });
+          }
+          
+          // Filter by search term if specified
+          if (searchTerm) {
+            const searchLower = searchTerm.toLowerCase();
+            filteredProducts = filteredProducts.filter(product => {
+              const productName = product.name.toLowerCase();
+              const productDesc = product.description.toLowerCase();
+              return productName.includes(searchLower) || productDesc.includes(searchLower);
+            });
+          }
+          
+          // Limit results
+          const limitedProducts = filteredProducts.slice(0, limit);
+          
+          const result: ShowProductsResult = {
+            products: limitedProducts,
+            totalFound: filteredProducts.length,
+            category,
+            searchTerm
+          };
+          
+          addToolResult({
+            tool: 'showProducts',
+            toolCallId: toolCall.toolCallId,
+            output: result,
           });
           break;
         }
