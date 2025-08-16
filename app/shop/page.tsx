@@ -1,75 +1,206 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { ShoppingCart, Search, Filter } from 'lucide-react';
+import CartIcon from '../components/CartIcon';
+import CartPopup from '../components/CartPopup';
+import CartSidebar from '../components/CartSidebar';
+import ProductDisplay from '../components/ProductDisplay';
+import Timer from '../components/Timer';
+import { useCart } from '../contexts/CartContext';
+import catalogData from '../data/catalog.json';
+
+// Extract unique categories from catalog data
+const categories = Array.from(new Set(catalogData.map(item => item.category))).sort();
 
 export default function ShopPage() {
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const { items, uniqueItems, addToCart } = useCart();
+
+  // Set session start time when user opens /shop page (same as chat page)
+  useEffect(() => {
+    const stored = localStorage.getItem('chatSessionStartTime');
+    console.log(stored ? 'Was set' : 'Was not set, setting now');
+    if(!stored) {
+      localStorage.setItem('chatSessionStartTime', Date.now().toString());
+    } 
+  }, []);
+
+  // Filter products based on category and search term
+  const filteredProducts = catalogData.filter(product => {
+    const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory;
+    const matchesSearch = !searchTerm || 
+      product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.description.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    return matchesCategory && matchesSearch;
+  });
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-100">
-      {/* Header */}
-      <div className="bg-white/80 backdrop-blur-sm border-b border-emerald-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <Link 
-              href="/"
-              className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent"
-            >
-              AI Shopping
-            </Link>
-            <Link 
-              href="/chat"
-              className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-200"
-            >
-              Try Chat Mode
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center space-y-8">
-          <div className="space-y-4">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
-              Traditional Shop
-            </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Browse our catalog with a familiar e-commerce interface. 
-              This is where the traditional shopping experience will be implemented.
-            </p>
-          </div>
-
-          {/* Placeholder Content */}
-          <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-12 border border-emerald-200">
-            <div className="space-y-6">
-              <div className="w-24 h-24 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center mx-auto">
-                <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+    <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
+      {/* Main Shop Area */}
+      <div className="flex flex-col flex-1 min-w-0">
+        {/* Header */}
+        <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <Link 
+                href="/"
+                className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors duration-200"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
+              </Link>
+              <div>
+                <h1 className="text-lg font-semibold text-gray-900 dark:text-white">
+                  Shop
+                </h1>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Browse our products
+                </p>
               </div>
-              <h2 className="text-2xl font-semibold text-gray-800">
-                Shop Interface Coming Soon
-              </h2>
-              <p className="text-gray-600 max-w-md mx-auto">
-                This will be where users can browse products, filter by categories, 
-                search, and add items to their cart using a traditional e-commerce interface.
-              </p>
-              
-              <div className="flex justify-center space-x-4 pt-4">
-                <Link 
-                  href="/"
-                  className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-6 py-3 rounded-lg hover:from-emerald-600 hover:to-teal-600 transition-all duration-200"
-                >
-                  Back to Home
-                </Link>
-                <Link 
-                  href="/chat"
-                  className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-200"
-                >
-                  Try Chat Mode
-                </Link>
+            </div>
+            <div className="flex items-center space-x-4">
+              <Link 
+                href="/chat"
+                className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors duration-200"
+              >
+                <span className="text-sm font-medium">Chat Mode</span>
+              </Link>
+              {/* Timer - visible on all screen sizes */}
+              <Timer />
+              {/* Show cart icon only on small screens */}
+              <div className="md:hidden">
+                <CartIcon onClick={() => setIsCartOpen(true)} />
               </div>
             </div>
           </div>
         </div>
+
+        {/* Search and Filter Bar */}
+        <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-3">
+          <div className="flex flex-col sm:flex-row gap-3">
+            {/* Search Input */}
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            
+            {/* Category Filter */}
+            <div className="relative">
+              <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="pl-10 pr-8 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none cursor-pointer"
+              >
+                <option value="All">All Categories</option>
+                {categories.map(category => (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
+                ))}
+              </select>
+              <svg className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        {/* Category Navigation */}
+        <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-2 overflow-x-auto">
+          <div className="flex space-x-2 min-w-max">
+            <button
+              onClick={() => setSelectedCategory('All')}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 whitespace-nowrap ${
+                selectedCategory === 'All'
+                  ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300'
+                  : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+              }`}
+            >
+              All
+            </button>
+            {categories.map(category => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 whitespace-nowrap ${
+                  selectedCategory === category
+                    ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300'
+                    : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Products Grid */}
+        <div className="flex-1 overflow-y-auto p-4">
+          <div className="max-w-7xl mx-auto">
+            <div className="mb-4">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+                {selectedCategory === 'All' ? 'All Products' : selectedCategory}
+              </h2>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''} found
+                {searchTerm && ` for "${searchTerm}"`}
+              </p>
+            </div>
+            
+            {filteredProducts.length === 0 ? (
+              <div className="text-center text-gray-500 dark:text-gray-400 py-12">
+                <div className="w-16 h-16 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Search className="w-8 h-8 text-gray-400" />
+                </div>
+                <p className="text-lg font-medium mb-2">No products found</p>
+                <p className="text-sm">
+                  Try adjusting your search terms or category filter
+                </p>
+              </div>
+                         ) : (
+               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+                 {filteredProducts.map(product => (
+                   <ProductDisplay
+                     key={product.id}
+                     product={{
+                       id: product.id,
+                       name: product.name,
+                       description: product.description,
+                       price_eur: product.price_eur,
+                       weight_or_count: product.weight_or_count,
+                       image: product.image
+                     }}
+                   />
+                 ))}
+               </div>
+             )}
+          </div>
+        </div>
       </div>
+
+      {/* Cart Sidebar - Hidden on small screens, shown on medium and larger */}
+      <div className="hidden md:block">
+        <CartSidebar />
+      </div>
+      
+      {/* Cart Popup - Only shown on small screens */}
+      <CartPopup 
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+      />
     </div>
   );
 }

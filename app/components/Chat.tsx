@@ -242,6 +242,12 @@ export default function Chat() {
               </div>
             </div>
             <div className="flex items-center space-x-4">
+              <Link 
+                href="/shop"
+                className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors duration-200"
+              >
+                <span className="text-sm font-medium">Shop Mode</span>
+              </Link>
               {/* Timer - visible on all screen sizes */}
               <Timer />
               {/* Show cart icon only on small screens */}
