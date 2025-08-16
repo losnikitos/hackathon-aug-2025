@@ -117,7 +117,7 @@ export default function CheckoutPage() {
         <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
           <button
             onClick={handleStartOver}
-            className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
+            className="flex-1 flex justify-center bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
           >
             <ArrowLeft className="w-5 h-5 mr-2" />
             Start Over
