@@ -10,8 +10,21 @@ interface CartItemControlsProps {
 export default function CartItemControls({
   itemId,
 }: CartItemControlsProps) {
-  const { updateQuantity, removeFromCart, getQuantity } = useCart();
+  const { updateQuantity, removeFromCart, getQuantity, addToCart } = useCart();
   const quantity = getQuantity(itemId);
+  const isInCart = quantity > 0;
+
+  if (!isInCart) {
+    return (
+      <button
+        onClick={() => addToCart(itemId, 1)}
+        className="w-full flex items-center justify-center gap-1 bg-blue-500 hover:bg-blue-600 text-white text-xs font-medium py-1.5 px-2 rounded-md transition-colors"
+      >
+        <Plus className="w-3 h-3" />
+        Add to Cart
+      </button>
+    );
+  }
 
   return (
     <div className="flex items-center space-x-2">
@@ -22,7 +35,7 @@ export default function CartItemControls({
         <Minus className="w-3 h-3" />
       </button>
       
-      <span className="text-sm font-medium text-gray-900 dark:text-white  text-center">
+      <span className="text-sm font-medium text-gray-900 dark:text-white text-center min-w-[1.5rem]">
         {quantity}
       </span>
       

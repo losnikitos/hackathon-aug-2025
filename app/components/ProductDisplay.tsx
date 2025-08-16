@@ -1,5 +1,5 @@
 import { ProductDisplay as ProductDisplayType } from "../types/tools";
-import { Check, X, Plus } from "lucide-react";
+import { Check, X } from "lucide-react";
 import CartItemControls from "./CartItemControls";
 import { useCart } from "../contexts/CartContext";
 
@@ -12,7 +12,7 @@ export default function ProductDisplay({
   product,
   action
 }: ProductDisplayProps) {
-  const { addToCart, getQuantity } = useCart();
+  const { getQuantity } = useCart();
   const quantity = getQuantity(product.id);
   const isInCart = quantity > 0;
 
@@ -25,10 +25,6 @@ export default function ProductDisplay({
       default:
         return null;
     }
-  };
-
-  const handleAddToCart = () => {
-    addToCart(product.id, 1);
   };
 
   return (
@@ -61,17 +57,7 @@ export default function ProductDisplay({
         </div>
 
         <div className="space-y-2">
-          {isInCart ? (
-            <CartItemControls itemId={product.id} />
-          ) : (
-            <button
-              onClick={handleAddToCart}
-              className="w-full flex items-center justify-center gap-1 bg-blue-500 hover:bg-blue-600 text-white text-xs font-medium py-1.5 px-2 rounded-md transition-colors"
-            >
-              <Plus className="w-3 h-3" />
-              Add to Cart
-            </button>
-          )}
+          <CartItemControls itemId={product.id} />
 
           <div className="text-sm font-medium text-gray-900 dark:text-white">
             €{product.price_eur.toFixed(2)}
