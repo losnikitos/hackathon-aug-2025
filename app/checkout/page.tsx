@@ -6,47 +6,15 @@ import { useCart } from '../contexts/CartContext';
 import { CheckCircle, Clock, ShoppingBag, ArrowLeft, Star, Trophy } from 'lucide-react';
 
 // Perfect cart items (apples, sugar, salt, butter, flour, cinnamon)
-const PERFECT_CART_IDS = [4, 3, 6, 7, 2, 5];
+const PERFECT_CART_IDS = [1, 4, 3, 6, 7, 2, 5];
 
-// Calculate edit distance between two arrays
-function calculateEditDistance(arr1: number[], arr2: number[]): number {
-  const m = arr1.length;
-  const n = arr2.length;
-  
-  // Create a 2D array for dynamic programming
-  const dp: number[][] = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0));
-  
-  // Initialize first row and column
-  for (let i = 0; i <= m; i++) {
-    dp[i][0] = i;
-  }
-  for (let j = 0; j <= n; j++) {
-    dp[0][j] = j;
-  }
-  
-  // Fill the dp table
-  for (let i = 1; i <= m; i++) {
-    for (let j = 1; j <= n; j++) {
-      if (arr1[i - 1] === arr2[j - 1]) {
-        dp[i][j] = dp[i - 1][j - 1];
-      } else {
-        dp[i][j] = 1 + Math.min(
-          dp[i - 1][j],     // deletion
-          dp[i][j - 1],     // insertion
-          dp[i - 1][j - 1]  // substitution
-        );
-      }
-    }
-  }
-  
-  return dp[m][n];
-}
-
-// Calculate cart score based on edit distance
+// Calculate cart score based on matching items
 function calculateCartScore(cartItemIds: number[]): { score: number; maxScore: number; percentage: number; grade: string } {
   const maxScore = PERFECT_CART_IDS.length;
-  const editDistance = calculateEditDistance(cartItemIds, PERFECT_CART_IDS);
-  const score = Math.max(0, maxScore - editDistance);
+  
+  // Count how many items in the cart match the perfect cart
+  const matchingItems = cartItemIds.filter(id => PERFECT_CART_IDS.includes(id));
+  const score = matchingItems.length;
   const percentage = Math.round((score / maxScore) * 100);
   
   let grade = 'F';
@@ -172,55 +140,118 @@ export default function CheckoutPage() {
           </div>
         </div>
 
-        {/* Cart Summary */}
+        {/* Cart Comparison */}
         <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 mb-8">
-          <div className="flex items-center space-x-2 mb-4">
+          <div className="flex items-center space-x-2 mb-6">
             <ShoppingBag className="w-6 h-6 text-blue-600" />
-            <h2 className="text-2xl font-semibold text-gray-800">Cart Summary</h2>
+            <h2 className="text-2xl font-semibold text-gray-800">Cart Comparison</h2>
           </div>
           
-          <div className="space-y-3 mb-6">
-            {items.map((item) => {
-              const itemDetails = getItemDetails(item.itemId);
-              if (!itemDetails) return null;
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Assembled Cart */}
+            <div className="bg-white rounded-xl p-4 shadow-sm">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                <span className="w-3 h-3 bg-blue-500 rounded-full mr-2"></span>
+                Your Assembled Cart
+              </h3>
               
-              const isPerfectItem = PERFECT_CART_IDS.includes(item.itemId);
-              
-              return (
-                <div key={item.itemId} className={`flex items-center justify-between p-3 rounded-lg shadow-sm ${
-                  isPerfectItem ? 'bg-green-50 border border-green-200' : 'bg-white'
-                }`}>
-                  <div className="flex items-center space-x-3">
-                    <img
-                      src={itemDetails.image}
-                      alt={itemDetails.name}
-                      className="w-12 h-12 object-cover rounded-lg"
-                    />
-                    <div>
-                      <div className="flex items-center space-x-2">
-                        <h3 className="font-medium text-gray-900">{itemDetails.name}</h3>
-                        {isPerfectItem && <Star className="w-4 h-4 text-green-500 fill-current" />}
+              <div className="space-y-3 mb-4">
+                {items.map((item) => {
+                  const itemDetails = getItemDetails(item.itemId);
+                  if (!itemDetails) return null;
+                  
+                  const isPerfectItem = PERFECT_CART_IDS.includes(item.itemId);
+                  
+                  return (
+                    <div key={item.itemId} className={`flex items-center justify-between p-3 rounded-lg ${
+                      isPerfectItem ? 'bg-green-50 border border-green-200' : 'bg-gray-50 border border-gray-200'
+                    }`}>
+                      <div className="flex items-center space-x-3">
+                        <img
+                          src={itemDetails.image}
+                          alt={itemDetails.name}
+                          className="w-10 h-10 object-cover rounded-lg"
+                        />
+                        <div>
+                          <div className="flex items-center space-x-2">
+                            <h4 className="font-medium text-gray-900 text-sm">{itemDetails.name}</h4>
+                            {isPerfectItem && <Star className="w-3 h-3 text-green-500 fill-current" />}
+                          </div>
+                          <p className="text-xs text-gray-500">{itemDetails.weight_or_count}</p>
+                        </div>
                       </div>
-                      <p className="text-sm text-gray-500">{itemDetails.weight_or_count}</p>
+                      <div className="text-right">
+                        <p className="font-medium text-gray-900 text-sm">€{itemDetails.price_eur.toFixed(2)}</p>
+                        <p className="text-xs text-gray-500">Qty: {item.quantity}</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="text-right">
-                    <p className="font-medium text-gray-900">€{itemDetails.price_eur.toFixed(2)}</p>
-                    <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
-                  </div>
+                  );
+                })}
+              </div>
+              
+              <div className="border-t border-gray-200 pt-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm font-semibold text-gray-800">Total Items:</span>
+                  <span className="text-sm font-bold text-blue-600">{items.length}</span>
                 </div>
-              );
-            })}
-          </div>
-          
-          <div className="border-t border-gray-200 pt-4">
-            <div className="flex justify-between items-center">
-              <span className="text-lg font-semibold text-gray-800">Total Items:</span>
-              <span className="text-lg font-bold text-blue-600">{items.length}</span>
+                <div className="flex justify-between items-center mt-1">
+                  <span className="text-sm font-bold text-gray-800">Total Price:</span>
+                  <span className="text-sm font-bold text-green-600">€{totalPrice.toFixed(2)}</span>
+                </div>
+              </div>
             </div>
-            <div className="flex justify-between items-center mt-2">
-              <span className="text-xl font-bold text-gray-800">Total Price:</span>
-              <span className="text-2xl font-bold text-green-600">€{totalPrice.toFixed(2)}</span>
+
+            {/* Perfect Cart */}
+            <div className="bg-white rounded-xl p-4 shadow-sm">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                <span className="w-3 h-3 bg-green-500 rounded-full mr-2"></span>
+                Perfect Cart
+              </h3>
+              
+              <div className="space-y-3 mb-4">
+                {PERFECT_CART_IDS.map((itemId) => {
+                  const itemDetails = getItemDetails(itemId);
+                  if (!itemDetails) return null;
+                  
+                  const isInCart = items.some(item => item.itemId === itemId);
+                  
+                  return (
+                    <div key={itemId} className={`flex items-center justify-between p-3 rounded-lg ${
+                      isInCart ? 'bg-green-50 border border-green-200' : 'bg-yellow-50 border border-yellow-200'
+                    }`}>
+                      <div className="flex items-center space-x-3">
+                        <img
+                          src={itemDetails.image}
+                          alt={itemDetails.name}
+                          className="w-10 h-10 object-cover rounded-lg"
+                        />
+                        <div>
+                          <div className="flex items-center space-x-2">
+                            <h4 className="font-medium text-gray-900 text-sm">{itemDetails.name}</h4>
+                            {isInCart ? (
+                              <Star className="w-3 h-3 text-green-500 fill-current" />
+                            ) : (
+                              <span className="text-xs text-yellow-600 font-medium">Missing</span>
+                            )}
+                          </div>
+                          <p className="text-xs text-gray-500">{itemDetails.weight_or_count}</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <p className="font-medium text-gray-900 text-sm">€{itemDetails.price_eur.toFixed(2)}</p>
+                        <p className="text-xs text-gray-500">Required</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              
+              <div className="border-t border-gray-200 pt-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm font-semibold text-gray-800">Required Items:</span>
+                  <span className="text-sm font-bold text-green-600">{PERFECT_CART_IDS.length}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
