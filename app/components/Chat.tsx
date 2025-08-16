@@ -1,19 +1,40 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
 import CartIcon from './CartIcon';
 import CartPopup from './CartPopup';
-import { useChat } from '../hooks/useChat';
+import { useChat } from '@ai-sdk/react';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
 
 export default function Chat() {
-  const { messages, isGenerating, messagesEndRef, sendMessage } = useChat();
+  const messagesEndRef = useRef<HTMLDivElement>(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const { messages, sendMessage, status } = useChat({
+    onError: (error) => {
+      console.error('Chat error:', error);
+    },
+  });
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const sendUserMessage = async (message: string) => {
+    await sendMessage({
+      role: 'user',
+      parts: [{ type: 'text', text: message }],
+    });
+  };
 
   return (
     <div className="flex flex-col h-screen bg-gray-50 dark:bg-gray-900">
@@ -58,8 +79,8 @@ export default function Chat() {
 
       {/* Input */}
       <ChatInput 
-        onSendMessage={sendMessage}
-        isLoading={isGenerating}
+        onSendMessage={sendUserMessage}
+        isLoading={status === 'streaming'}
       />
       
       {/* Cart Popup */}

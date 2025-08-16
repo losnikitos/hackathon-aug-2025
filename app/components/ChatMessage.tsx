@@ -1,14 +1,23 @@
-import { ChatMessage as ChatMessageType } from '../types/chat';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Components } from 'react-markdown';
 
 interface ChatMessageProps {
-  message: ChatMessageType;
+  message: {
+    id: string;
+    role: 'user' | 'assistant' | 'system';
+    parts: any[];
+  };
 }
 
 export default function ChatMessage({ message }: ChatMessageProps) {
   const isUser = message.role === 'user';
+  
+  // Extract text content from parts
+  const content = message.parts
+    .filter(part => part.type === 'text')
+    .map(part => part.text)
+    .join('');
   
   const markdownComponents: Components = {
     // Customize code blocks
@@ -88,21 +97,16 @@ export default function ChatMessage({ message }: ChatMessageProps) {
       >
         <div className="text-sm prose prose-sm max-w-none">
           {isUser ? (
-            <p className="whitespace-pre-wrap">{message.content}</p>
+            <p className="whitespace-pre-wrap">{content}</p>
           ) : (
             <ReactMarkdown 
               remarkPlugins={[remarkGfm]}
               components={markdownComponents}
             >
-              {message.content}
+              {content}
             </ReactMarkdown>
           )}
         </div>
-        <p className={`text-xs mt-2 ${
-          isUser ? 'text-blue-100' : 'text-gray-500 dark:text-gray-400'
-        }`}>
-          {new Date(message.timestamp).toLocaleTimeString()}
-        </p>
       </div>
     </div>
   );
