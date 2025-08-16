@@ -34,14 +34,20 @@ export default function Chat() {
       
       return response.json() as Promise<ChatResponse>;
     },
-    onSuccess: (data, sentMessage) => {
+    onMutate: async (message) => {
+      // Add user message immediately
       const userMessage: ChatMessageType = {
         id: Date.now().toString(),
-        content: sentMessage,
+        content: message,
         role: 'user',
         timestamp: new Date().toISOString(),
       };
-
+      
+      setMessages(prev => [...prev, userMessage]);
+      
+      return { userMessage };
+    },
+    onSuccess: (data, sentMessage, context) => {
       const assistantMessage: ChatMessageType = {
         id: (Date.now() + 1).toString(),
         content: data.response,
@@ -49,11 +55,20 @@ export default function Chat() {
         timestamp: data.timestamp,
       };
 
-      setMessages(prev => [...prev, userMessage, assistantMessage]);
+      setMessages(prev => [...prev, assistantMessage]);
     },
-    onError: (error) => {
+    onError: (error, sentMessage) => {
       console.error('Failed to send message:', error);
-      // You could add error handling here, like showing a toast notification
+      
+      // Add error message to chat
+      const errorMessage: ChatMessageType = {
+        id: (Date.now() + 1).toString(),
+        content: 'Sorry, I encountered an error. Please try again.',
+        role: 'assistant',
+        timestamp: new Date().toISOString(),
+      };
+      
+      setMessages(prev => [...prev, errorMessage]);
     },
   });
 

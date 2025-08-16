@@ -1,8 +1,24 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a [Next.js](https://nextjs.org) project with an AI-powered chatbot interface built using OpenAI's GPT-4o-mini model.
 
 ## Getting Started
 
-First, run the development server:
+### 1. Environment Setup
+
+Create a `.env.local` file in the root directory and add your OpenAI API key:
+
+```bash
+OPENAI_API_KEY=your_openai_api_key_here
+```
+
+You can get your API key from [OpenAI Platform](https://platform.openai.com/api-keys).
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Run the Development Server
 
 ```bash
 npm run dev
@@ -14,11 +30,16 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the chatbot interface.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 🤖 AI-powered responses using OpenAI GPT-4o-mini
+- 💬 Real-time chat interface with instant message display
+- 🎨 Modern UI with dark mode support
+- ⚡ React Query for efficient data fetching
+- 📱 Responsive design for mobile and desktop
+- 🔄 Ready for streaming responses (future enhancement)
 
 ## Learn More
 
