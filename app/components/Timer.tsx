@@ -7,18 +7,9 @@ export default function Timer() {
   const [elapsedTime, setElapsedTime] = useState(0);
 
   useEffect(() => {
-    // Check if we already have a start time in localStorage
+    // Get start time from localStorage (should already be set by Chat component)
     const storedStartTime = localStorage.getItem('chatSessionStartTime');
-    let startTime: number;
-
-    if (storedStartTime) {
-      // Use existing start time
-      startTime = parseInt(storedStartTime);
-    } else {
-      // Create new start time and store it
-      startTime = Date.now();
-      localStorage.setItem('chatSessionStartTime', startTime.toString());
-    }
+    const startTime = storedStartTime ? parseInt(storedStartTime) : Date.now();
     
     const interval = setInterval(() => {
       const currentTime = Date.now();

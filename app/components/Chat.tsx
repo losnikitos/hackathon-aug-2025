@@ -31,6 +31,15 @@ export default function Chat() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { addToCart, removeFromCart, updateQuantity, items, uniqueItems, totalPrice, getItemDetails } = useCart();
 
+  // Set session start time when user opens /chat page
+  useEffect(() => {
+    const stored = localStorage.getItem('chatSessionStartTime');
+    console.log(stored ? 'Was set' : 'Was not set, setting now');
+    if(!stored) {
+      localStorage.setItem('chatSessionStartTime', Date.now().toString());
+    } 
+  }, []);
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
