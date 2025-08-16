@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ArrowRight, MessageCircle, ShoppingCart } from 'lucide-react';
+import Cook from './components/Cook';
 
 export default function Home() {
   return (
@@ -28,7 +29,7 @@ export default function Home() {
           {/* Logo and slogan */}
           <div className="flex items-center space-x-4">
             <div className="flex items-center">
-              <img src="/logo.svg" alt="shop&cook" className="h-20 w-auto" />
+              <img src="/logo.svg" alt="shop&cook" className="h-30 w-30 flex-shrink-0" />
             </div>
             <div className="ml-6">
               <p className="text-sm leading-relaxed">
@@ -46,14 +47,7 @@ export default function Home() {
           <div className="max-w-6xl w-full grid lg:grid-cols-2 gap-16 items-center">
             {/* Left side - Orange figure and call to action */}
             <div className="relative">
-              {/* Cook figure */}
-              <div className="relative">
-                <img 
-                  src="/cook-2.png" 
-                  alt="Chef cooking" 
-                  className="w-64 h-auto object-contain"
-                />
-              </div>
+              <Cook />
             </div>
 
             {/* Right side - Shopping options */}
@@ -66,7 +60,7 @@ export default function Home() {
               </div>
               
               {/* Shopping options */}
-              <div className="space-y-6">
+              <div className="space-y-6 relative z-2 mb-10">
                 {/* Traditional Shop Button */}
                 <Link 
                   href="/shop"
@@ -79,7 +73,7 @@ export default function Home() {
                       <ShoppingCart className="w-6 h-6 text-blue-600" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-medium text-gray-700">Traditional Shop</h3>
+                      <h3 className="text-xl font-medium text-gray-900">Traditional Shop</h3>
                       <p className="text-gray-400 text-sm">Browse our catalog with familiar e-commerce interface</p>
                     </div>
                     <div className="text-blue-500 group-hover:translate-x-1 transition-transform">
@@ -98,7 +92,7 @@ export default function Home() {
                       <MessageCircle className="w-6 h-6 text-orange-600" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-medium text-gray-700">AI Chat Assistant</h3>
+                      <h3 className="text-xl font-medium text-gray-900">AI Chat Assistant</h3>
                       <p className="text-gray-400 text-sm">Chat with AI to discover products and get recommendations</p>
                     </div>
                     <div className="text-orange-500 group-hover:translate-x-1 transition-transform">
