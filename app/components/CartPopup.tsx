@@ -1,7 +1,8 @@
 'use client';
 
-import { Minus, Plus, Trash2, X, ShoppingCart } from 'lucide-react';
+import { X, ShoppingCart } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
+import CartItemControls from './CartItemControls';
 
 interface CartPopupProps {
   isOpen: boolean;
@@ -68,32 +69,12 @@ export default function CartPopup({ isOpen, onClose }: CartPopupProps) {
                       </p>
                     </div>
                     
-                    <div className="flex items-center space-x-2">
-                      <button
-                        onClick={() => updateQuantity(item.itemId, item.quantity - 1)}
-                        className="w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-600 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-500"
-                      >
-                        <Minus className="w-3 h-3" />
-                      </button>
-                      
-                      <span className="text-sm font-medium text-gray-900 dark:text-white min-w-[2rem] text-center">
-                        {item.quantity}
-                      </span>
-                      
-                      <button
-                        onClick={() => updateQuantity(item.itemId, item.quantity + 1)}
-                        className="w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-600 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-500"
-                      >
-                        <Plus className="w-3 h-3" />
-                      </button>
-                      
-                      <button
-                        onClick={() => removeFromCart(item.itemId)}
-                        className="w-6 h-6 rounded-full bg-red-100 dark:bg-red-900 flex items-center justify-center text-red-600 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-800"
-                      >
-                        <Trash2 className="w-3 h-3" />
-                      </button>
-                    </div>
+                    <CartItemControls
+                      itemId={item.itemId}
+                      quantity={item.quantity}
+                      onUpdateQuantity={updateQuantity}
+                      onRemoveFromCart={removeFromCart}
+                    />
                   </div>
                 );
               })}
