@@ -5,7 +5,8 @@
     "description": "Free-range medium-size eggs, perfect for cooking and baking.",
     "price_eur": 3.2,
     "weight_or_count": "12 pcs",
-    "image": "/images/Fresh_Eggs_(12_pcs).jpg"
+    "image": "/images/Fresh_Eggs_(12_pcs).jpg",
+    "category": "Dairy & Eggs"
   },
   {
     "id": 2,
@@ -13,7 +14,8 @@
     "description": "Fine wheat flour suitable for bread, cakes, and sauces.",
     "price_eur": 1.8,
     "weight_or_count": "1 kg",
-    "image": "/images/All-Purpose_Flour.jpg"
+    "image": "/images/All-Purpose_Flour.jpg",
+    "category": "Baking & Pantry"
   },
   {
     "id": 3,
@@ -21,7 +23,8 @@
     "description": "Granulated sugar for everyday use.",
     "price_eur": 1.5,
     "weight_or_count": "1 kg",
-    "image": "/images/White_Sugar.jpg"
+    "image": "/images/White_Sugar.jpg",
+    "category": "Baking & Pantry"
   },
   {
     "id": 4,
@@ -29,7 +32,8 @@
     "description": "Sweet and crunchy Gala apples.",
     "price_eur": 2.9,
     "weight_or_count": "1 kg",
-    "image": "/images/Apples_Gala.jpg"
+    "image": "/images/Apples_Gala.jpg",
+    "category": "Fresh Fruits"
   },
   {
     "id": 5,
@@ -37,7 +41,8 @@
     "description": "Warm and aromatic ground cinnamon spice.",
     "price_eur": 2.4,
     "weight_or_count": "50 g",
-    "image": "/images/Cinnamon_Powder.jpg"
+    "image": "/images/Cinnamon_Powder.jpg",
+    "category": "Spices & Seasonings"
   },
   {
     "id": 6,
@@ -45,7 +50,8 @@
     "description": "Natural coarse sea salt for seasoning.",
     "price_eur": 1.2,
     "weight_or_count": "500 g",
-    "image": "/images/Sea_Salt.jpg"
+    "image": "/images/Sea_Salt.jpg",
+    "category": "Spices & Seasonings"
   },
   {
     "id": 7,
@@ -53,7 +59,8 @@
     "description": "Creamy dairy butter, unsalted for cooking and baking.",
     "price_eur": 2.5,
     "weight_or_count": "250 g",
-    "image": "/images/Unsalted_Butter.jpg"
+    "image": "/images/Unsalted_Butter.jpg",
+    "category": "Dairy & Eggs"
   },
   {
     "id": 8,
@@ -61,7 +68,8 @@
     "description": "Leavening agent for fluffy cakes and pastries.",
     "price_eur": 0.9,
     "weight_or_count": "100 g",
-    "image": "/images/Baking_Powder.jpg"
+    "image": "/images/Baking_Powder.jpg",
+    "category": "Baking & Pantry"
   },
   {
     "id": 9,
@@ -69,7 +77,8 @@
     "description": "Gluten-free flour blend suitable for breads and cakes.",
     "price_eur": 3.6,
     "weight_or_count": "1 kg",
-    "image": "/images/Gluten-Free_Flour.jpg"
+    "image": "/images/Gluten-Free_Flour.jpg",
+    "category": "Baking & Pantry"
   },
   {
     "id": 10,
@@ -77,7 +86,8 @@
     "description": "Natural sugar replacement from stevia leaves.",
     "price_eur": 4.2,
     "weight_or_count": "200 g",
-    "image": "/images/Stevia_Sweetener.jpg"
+    "image": "/images/Stevia_Sweetener.jpg",
+    "category": "Baking & Pantry"
   },
   {
     "id": 11,
@@ -85,7 +95,8 @@
     "description": "Fresh yellow bananas, ripe and sweet.",
     "price_eur": 1.8,
     "weight_or_count": "1 kg",
-    "image": "/images/Bananas.jpg"
+    "image": "/images/Bananas.jpg",
+    "category": "Fresh Fruits"
   },
   {
     "id": 12,
@@ -93,7 +104,8 @@
     "description": "Juicy seedless oranges, rich in vitamin C.",
     "price_eur": 3.1,
     "weight_or_count": "1 kg",
-    "image": "/images/Oranges.jpg"
+    "image": "/images/Oranges.jpg",
+    "category": "Fresh Fruits"
   },
   {
     "id": 13,
@@ -101,7 +113,8 @@
     "description": "Red ripe tomatoes, perfect for salads and sauces.",
     "price_eur": 2.2,
     "weight_or_count": "1 kg",
-    "image": "/images/Tomatoes.jpg"
+    "image": "/images/Tomatoes.jpg",
+    "category": "Fresh Vegetables"
   },
   {
     "id": 14,
@@ -109,7 +122,8 @@
     "description": "Starchy golden potatoes for cooking and baking.",
     "price_eur": 1.9,
     "weight_or_count": "2 kg",
-    "image": "/images/Potatoes.jpg"
+    "image": "/images/Potatoes.jpg",
+    "category": "Fresh Vegetables"
   },
   {
     "id": 15,
@@ -117,7 +131,8 @@
     "description": "Fresh crunchy carrots, ideal for soups and snacks.",
     "price_eur": 1.6,
     "weight_or_count": "1 kg",
-    "image": "/images/Carrots.jpg"
+    "image": "/images/Carrots.jpg",
+    "category": "Fresh Vegetables"
   },
   {
     "id": 16,
@@ -125,7 +140,8 @@
     "description": "Yellow onions with a strong, savory flavor.",
     "price_eur": 1.3,
     "weight_or_count": "1 kg",
-    "image": "/images/Onions.jpg"
+    "image": "/images/Onions.jpg",
+    "category": "Fresh Vegetables"
   },
   {
     "id": 17,
@@ -133,15 +149,17 @@
     "description": "Aromatic garlic bulbs, great for seasoning.",
     "price_eur": 1.1,
     "weight_or_count": "200 g",
-    "image": "/images/Garlic.jpg"
+    "image": "/images/Garlic.jpg",
+    "category": "Fresh Vegetables"
   },
   {
     "id": 18,
     "name": "Milk 3.5%",
-    "description": "Whole cow’s milk, pasteurized, 3.5% fat.",
+    "description": "Whole cow's milk, pasteurized, 3.5% fat.",
     "price_eur": 1.4,
     "weight_or_count": "1 L",
-    "image": "/images/Milk_3.5%.jpg"
+    "image": "/images/Milk_3.5%.jpg",
+    "category": "Dairy & Eggs"
   },
   {
     "id": 19,
@@ -149,7 +167,8 @@
     "description": "Thick and creamy natural Greek yogurt.",
     "price_eur": 2.0,
     "weight_or_count": "500 g",
-    "image": "/images/Greek_Yogurt.jpg"
+    "image": "/images/Greek_Yogurt.jpg",
+    "category": "Dairy & Eggs"
   },
   {
     "id": 20,
@@ -157,7 +176,8 @@
     "description": "Mature cheddar cheese block, rich in flavor.",
     "price_eur": 4.5,
     "weight_or_count": "300 g",
-    "image": "/images/Cheddar_Cheese.jpg"
+    "image": "/images/Cheddar_Cheese.jpg",
+    "category": "Dairy & Eggs"
   },
   {
     "id": 21,
@@ -165,7 +185,8 @@
     "description": "Cold-pressed extra virgin olive oil from Spain.",
     "price_eur": 6.9,
     "weight_or_count": "750 ml",
-    "image": "/images/Olive_Oil_Extra_Virgin.jpg"
+    "image": "/images/Olive_Oil_Extra_Virgin.jpg",
+    "category": "Oils & Condiments"
   },
   {
     "id": 22,
@@ -173,7 +194,8 @@
     "description": "Refined sunflower oil for frying and cooking.",
     "price_eur": 3.4,
     "weight_or_count": "1 L",
-    "image": "/images/Sunflower_Oil.jpg"
+    "image": "/images/Sunflower_Oil.jpg",
+    "category": "Oils & Condiments"
   },
   {
     "id": 23,
@@ -181,7 +203,8 @@
     "description": "Italian-style spaghetti made from durum wheat.",
     "price_eur": 1.6,
     "weight_or_count": "500 g",
-    "image": "/images/Spaghetti_Pasta.jpg"
+    "image": "/images/Spaghetti_Pasta.jpg",
+    "category": "Grains & Pasta"
   },
   {
     "id": 24,
@@ -189,7 +212,8 @@
     "description": "Wholegrain brown rice, rich in fiber.",
     "price_eur": 3.2,
     "weight_or_count": "1 kg",
-    "image": "/images/Brown_Rice.jpg"
+    "image": "/images/Brown_Rice.jpg",
+    "category": "Grains & Pasta"
   },
   {
     "id": 25,
@@ -197,7 +221,8 @@
     "description": "Polished long-grain rice, cooks fluffy and light.",
     "price_eur": 2.1,
     "weight_or_count": "1 kg",
-    "image": "/images/White_Rice.jpg"
+    "image": "/images/White_Rice.jpg",
+    "category": "Grains & Pasta"
   },
   {
     "id": 26,
@@ -205,7 +230,8 @@
     "description": "Healthy whole wheat bread loaf.",
     "price_eur": 2.6,
     "weight_or_count": "500 g",
-    "image": "/images/Bread_Whole_Wheat.jpg"
+    "image": "/images/Bread_Whole_Wheat.jpg",
+    "category": "Bakery"
   },
   {
     "id": 27,
@@ -213,7 +239,8 @@
     "description": "Flaky French-style butter croissants.",
     "price_eur": 3.5,
     "weight_or_count": "4 pcs",
-    "image": "/images/Croissants.jpg"
+    "image": "/images/Croissants.jpg",
+    "category": "Bakery"
   },
   {
     "id": 28,
@@ -221,7 +248,8 @@
     "description": "Smooth milk chocolate with 30% cocoa.",
     "price_eur": 1.2,
     "weight_or_count": "100 g",
-    "image": "/images/Chocolate_Bar.jpg"
+    "image": "/images/Chocolate_Bar.jpg",
+    "category": "Snacks & Sweets"
   },
   {
     "id": 29,
@@ -229,7 +257,8 @@
     "description": "Pure natural bee honey.",
     "price_eur": 5.5,
     "weight_or_count": "400 g",
-    "image": "/images/Honey_Natural.jpg"
+    "image": "/images/Honey_Natural.jpg",
+    "category": "Oils & Condiments"
   },
   {
     "id": 30,
@@ -237,7 +266,8 @@
     "description": "Sweet strawberry jam with fruit chunks.",
     "price_eur": 2.7,
     "weight_or_count": "350 g",
-    "image": "/images/Jam_Strawberry.jpg"
+    "image": "/images/Jam_Strawberry.jpg",
+    "category": "Oils & Condiments"
   },
   {
     "id": 31,
@@ -245,7 +275,8 @@
     "description": "Smooth peanut butter, no added sugar.",
     "price_eur": 3.9,
     "weight_or_count": "350 g",
-    "image": "/images/Peanut_Butter.jpg"
+    "image": "/images/Peanut_Butter.jpg",
+    "category": "Oils & Condiments"
   },
   {
     "id": 32,
@@ -253,7 +284,8 @@
     "description": "Raw whole almonds, rich in protein.",
     "price_eur": 6.8,
     "weight_or_count": "250 g",
-    "image": "/images/Almonds.jpg"
+    "image": "/images/Almonds.jpg",
+    "category": "Nuts & Seeds"
   },
   {
     "id": 33,
@@ -261,7 +293,8 @@
     "description": "Shelled walnuts with a crunchy texture.",
     "price_eur": 7.1,
     "weight_or_count": "250 g",
-    "image": "/images/Walnuts.jpg"
+    "image": "/images/Walnuts.jpg",
+    "category": "Nuts & Seeds"
   },
   {
     "id": 34,
@@ -269,7 +302,8 @@
     "description": "100% pure squeezed orange juice.",
     "price_eur": 2.8,
     "weight_or_count": "1 L",
-    "image": "/images/Orange_Juice.jpg"
+    "image": "/images/Orange_Juice.jpg",
+    "category": "Beverages"
   },
   {
     "id": 35,
@@ -277,7 +311,8 @@
     "description": "Natural sparkling mineral water.",
     "price_eur": 0.9,
     "weight_or_count": "1.5 L",
-    "image": "/images/Mineral_Water_Sparkling.jpg"
+    "image": "/images/Mineral_Water_Sparkling.jpg",
+    "category": "Beverages"
   },
   {
     "id": 36,
@@ -285,7 +320,8 @@
     "description": "Natural still mineral water.",
     "price_eur": 0.8,
     "weight_or_count": "1.5 L",
-    "image": "/images/Mineral_Water_Still.jpg"
+    "image": "/images/Mineral_Water_Still.jpg",
+    "category": "Beverages"
   },
   {
     "id": 37,
@@ -293,7 +329,8 @@
     "description": "Arabica coffee beans, medium roast.",
     "price_eur": 8.5,
     "weight_or_count": "500 g",
-    "image": "/images/Coffee_Beans.jpg"
+    "image": "/images/Coffee_Beans.jpg",
+    "category": "Beverages"
   },
   {
     "id": 38,
@@ -301,7 +338,8 @@
     "description": "Strong black tea bags, 100 pcs pack.",
     "price_eur": 4.2,
     "weight_or_count": "200 g",
-    "image": "/images/Black_Tea.jpg"
+    "image": "/images/Black_Tea.jpg",
+    "category": "Beverages"
   },
   {
     "id": 39,
@@ -309,7 +347,8 @@
     "description": "Refreshing green tea bags, 50 pcs pack.",
     "price_eur": 3.8,
     "weight_or_count": "100 g",
-    "image": "/images/Green_Tea.jpg"
+    "image": "/images/Green_Tea.jpg",
+    "category": "Beverages"
   },
   {
     "id": 40,
@@ -317,7 +356,8 @@
     "description": "Rich cocoa powder for baking and drinks.",
     "price_eur": 2.9,
     "weight_or_count": "250 g",
-    "image": "/images/Cocoa_Powder.jpg"
+    "image": "/images/Cocoa_Powder.jpg",
+    "category": "Baking & Pantry"
   },
   {
     "id": 41,
@@ -325,7 +365,8 @@
     "description": "Rolled oats for porridge and baking.",
     "price_eur": 2.2,
     "weight_or_count": "1 kg",
-    "image": "/images/Oats.jpg"
+    "image": "/images/Oats.jpg",
+    "category": "Grains & Pasta"
   },
   {
     "id": 42,
@@ -333,7 +374,8 @@
     "description": "Crispy corn flakes breakfast cereal.",
     "price_eur": 3.0,
     "weight_or_count": "500 g",
-    "image": "/images/Corn_Flakes.jpg"
+    "image": "/images/Corn_Flakes.jpg",
+    "category": "Breakfast Cereals"
   },
   {
     "id": 43,
@@ -341,7 +383,8 @@
     "description": "Mixed frozen berries: blueberries, raspberries, blackberries.",
     "price_eur": 4.9,
     "weight_or_count": "500 g",
-    "image": "/images/Frozen_Berries.jpg"
+    "image": "/images/Frozen_Berries.jpg",
+    "category": "Frozen Foods"
   },
   {
     "id": 44,
@@ -349,7 +392,8 @@
     "description": "Classic Margherita pizza with mozzarella and tomato.",
     "price_eur": 3.6,
     "weight_or_count": "350 g",
-    "image": "/images/Frozen_Pizza_Margherita.jpg"
+    "image": "/images/Frozen_Pizza_Margherita.jpg",
+    "category": "Frozen Foods"
   },
   {
     "id": 45,
@@ -357,7 +401,8 @@
     "description": "Crispy frozen potato fries, oven-ready.",
     "price_eur": 2.7,
     "weight_or_count": "1 kg",
-    "image": "/images/Frozen_French_Fries.jpg"
+    "image": "/images/Frozen_French_Fries.jpg",
+    "category": "Frozen Foods"
   },
   {
     "id": 46,
@@ -365,7 +410,8 @@
     "description": "Skinless boneless chicken breast fillets.",
     "price_eur": 7.2,
     "weight_or_count": "1 kg",
-    "image": "/images/Chicken_Breast_Fillets.jpg"
+    "image": "/images/Chicken_Breast_Fillets.jpg",
+    "category": "Meat & Poultry"
   },
   {
     "id": 47,
@@ -373,7 +419,8 @@
     "description": "Fresh Atlantic salmon fillet, skin-on.",
     "price_eur": 12.9,
     "weight_or_count": "500 g",
-    "image": "/images/Salmon_Fillet.jpg"
+    "image": "/images/Salmon_Fillet.jpg",
+    "category": "Fish & Seafood"
   },
   {
     "id": 48,
@@ -381,7 +428,8 @@
     "description": "Lean ground beef 10% fat.",
     "price_eur": 6.5,
     "weight_or_count": "500 g",
-    "image": "/images/Ground_Beef.jpg"
+    "image": "/images/Ground_Beef.jpg",
+    "category": "Meat & Poultry"
   },
   {
     "id": 49,
@@ -389,7 +437,8 @@
     "description": "Organic firm tofu, high in protein.",
     "price_eur": 3.3,
     "weight_or_count": "400 g",
-    "image": "/images/Tofu.jpg"
+    "image": "/images/Tofu.jpg",
+    "category": "Plant-Based & Vegan"
   },
   {
     "id": 50,
@@ -397,6 +446,7 @@
     "description": "Dried red lentils, cook quickly and rich in protein.",
     "price_eur": 2.5,
     "weight_or_count": "1 kg",
-    "image": "/images/Lentils.jpg"
+    "image": "/images/Lentils.jpg",
+    "category": "Grains & Pasta"
   }
 ]
