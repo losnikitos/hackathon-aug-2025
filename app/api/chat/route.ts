@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import OpenAI from 'openai';
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+import { generateText } from 'ai';
+import catalogData from '../../data/catalog.json';
 
 export async function POST(request: NextRequest) {
   try {
@@ -16,23 +13,30 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const completion = await openai.chat.completions.create({
+    const result = await generateText({
       model: 'gpt-4o-mini',
+      system: `You are a helpful AI assistant for an online grocery store. You have access to the following product catalog:
+
+${JSON.stringify(catalogData, null, 2)}
+
+You can help customers with:
+- Product information and descriptions
+- Pricing information
+- Product availability
+- Recommendations based on their needs
+- Answering questions about specific products
+
+When asked about prices, always provide the price in EUR. When asked about products, provide relevant details like weight/count, description, and price. Be helpful and friendly in your responses.`,
       messages: [
-        {
-          role: 'system',
-          content: 'You are a helpful AI assistant. Provide clear, concise, and helpful responses.'
-        },
         {
           role: 'user',
           content: message
         }
       ],
-      max_tokens: 500,
       temperature: 0.7,
     });
 
-    const response = completion.choices[0]?.message?.content || 'Sorry, I could not generate a response.';
+    const response = await result.text;
     
     return NextResponse.json({ 
       response,
@@ -40,7 +44,7 @@ export async function POST(request: NextRequest) {
     });
     
   } catch (error) {
-    console.error('OpenAI API error:', error);
+    console.error('AI SDK error:', error);
     return NextResponse.json(
       { error: 'Failed to process message' },
       { status: 500 }

@@ -1,17 +1,22 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { useMutation } from '@tanstack/react-query';
 import Link from 'next/link';
 import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
 import CartIcon from './CartIcon';
 import CartPopup from './CartPopup';
-import { ChatMessage as ChatMessageType, ChatResponse } from '../types/chat';
+import { ChatMessage as ChatMessageType } from '../types/chat';
+import { generateStream } from '../actions';
+import { readStreamableValue } from '@ai-sdk/rsc';
+
+// Allow streaming responses up to 30 seconds
+export const maxDuration = 30;
 
 export default function Chat() {
   const [messages, setMessages] = useState<ChatMessageType[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -22,62 +27,59 @@ export default function Chat() {
     scrollToBottom();
   }, [messages]);
 
-  const sendMessageMutation = useMutation({
-    mutationFn: async (message: string) => {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message }),
-      });
+  const handleSendMessage = async (message: string) => {
+    // Add user message immediately
+    const userMessage: ChatMessageType = {
+      id: Date.now().toString(),
+      content: message,
+      role: 'user',
+      timestamp: new Date().toISOString(),
+    };
+    
+    setMessages(prev => [...prev, userMessage]);
+
+    // Add assistant message placeholder
+    const assistantMessageId = (Date.now() + 1).toString();
+    const assistantMessage: ChatMessageType = {
+      id: assistantMessageId,
+      content: '',
+      role: 'assistant',
+      timestamp: new Date().toISOString(),
+    };
+
+    setMessages(prev => [...prev, assistantMessage]);
+    setIsGenerating(true);
+
+    try {
+      const { output } = await generateStream(message);
       
-      if (!response.ok) {
-        throw new Error('Failed to send message');
+      let fullResponse = '';
+      for await (const delta of readStreamableValue(output)) {
+        fullResponse += delta;
+        
+        // Update the assistant message with the streamed content
+        setMessages(prev => 
+          prev.map(msg => 
+            msg.id === assistantMessageId 
+              ? { ...msg, content: fullResponse }
+              : msg
+          )
+        );
       }
+    } catch (error) {
+      console.error('Failed to generate response:', error);
       
-      return response.json() as Promise<ChatResponse>;
-    },
-    onMutate: async (message) => {
-      // Add user message immediately
-      const userMessage: ChatMessageType = {
-        id: Date.now().toString(),
-        content: message,
-        role: 'user',
-        timestamp: new Date().toISOString(),
-      };
-      
-      setMessages(prev => [...prev, userMessage]);
-      
-      return { userMessage };
-    },
-    onSuccess: (data, sentMessage, context) => {
-      const assistantMessage: ChatMessageType = {
-        id: (Date.now() + 1).toString(),
-        content: data.response,
-        role: 'assistant',
-        timestamp: data.timestamp,
-      };
-
-      setMessages(prev => [...prev, assistantMessage]);
-    },
-    onError: (error, sentMessage) => {
-      console.error('Failed to send message:', error);
-      
-      // Add error message to chat
-      const errorMessage: ChatMessageType = {
-        id: (Date.now() + 1).toString(),
-        content: 'Sorry, I encountered an error. Please try again.',
-        role: 'assistant',
-        timestamp: new Date().toISOString(),
-      };
-      
-      setMessages(prev => [...prev, errorMessage]);
-    },
-  });
-
-  const handleSendMessage = (message: string) => {
-    sendMessageMutation.mutate(message);
+      // Update the assistant message with error
+      setMessages(prev => 
+        prev.map(msg => 
+          msg.id === assistantMessageId 
+            ? { ...msg, content: 'Sorry, I encountered an error. Please try again.' }
+            : msg
+        )
+      );
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   return (
@@ -124,7 +126,7 @@ export default function Chat() {
       {/* Input */}
       <ChatInput 
         onSendMessage={handleSendMessage}
-        isLoading={sendMessageMutation.isPending}
+        isLoading={isGenerating}
       />
       
       {/* Cart Popup */}
