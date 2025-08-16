@@ -23,6 +23,7 @@ import {
   CartSummary,
   CartItemInfo
 } from '../types/tools';
+import Image from 'next/image';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -230,6 +231,40 @@ export default function Chat() {
     });
   };
 
+  // Intro messages component
+  const IntroMessages = () => (
+    <div className="space-y-4">
+      {/* Cook icon above messages */}
+      <div className="flex justify-center mb-6">
+        <Image 
+          src="/cook-2.png" 
+          alt="Chef" 
+          width={240} 
+          height={240} 
+          className="rounded-full"
+        />
+      </div>
+      
+      {/* First intro message */}
+      <div className="flex justify-start mb-4">
+        <div className="max-w-[70%] px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-bl-none">
+          <p className="text-sm">
+            Tell me what you want and I&apos;ll make it for you! I can add and remove items in cart, suggest items from catalog, and help you find the perfect ingredients for any recipe.
+          </p>
+        </div>
+      </div>
+      
+      {/* Second intro message */}
+      <div className="flex justify-start mb-4">
+        <div className="max-w-[70%] px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-bl-none">
+          <p className="text-sm">
+            How about we start with an apple pie? You&apos;ll need apples, flour, sugar, butter, cinnamon, and eggs. I can help you add these ingredients to your cart!
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
       {/* Main Chat Area */}
@@ -275,9 +310,7 @@ export default function Chat() {
         {/* Messages */}
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
           {messages.length === 0 ? (
-            <div className="text-center text-gray-500 dark:text-gray-400 mt-8">
-              <p>Start a conversation by typing a message below.</p>
-            </div>
+            <IntroMessages />
           ) : (
             messages.map((message) => (
               <ChatMessage key={message.id} message={message} />
