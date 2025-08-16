@@ -1,0 +1,402 @@
+[
+  {
+    "id": 1,
+    "name": "Fresh Eggs (12 pcs)",
+    "description": "Free-range medium-size eggs, perfect for cooking and baking.",
+    "price_eur": 3.2,
+    "weight_or_count": "12 pcs",
+    "image": "https://picsum.photos/id/1011/300/200"
+  },
+  {
+    "id": 2,
+    "name": "All-Purpose Flour",
+    "description": "Fine wheat flour suitable for bread, cakes, and sauces.",
+    "price_eur": 1.8,
+    "weight_or_count": "1 kg",
+    "image": "https://picsum.photos/id/1012/300/200"
+  },
+  {
+    "id": 3,
+    "name": "White Sugar",
+    "description": "Granulated sugar for everyday use.",
+    "price_eur": 1.5,
+    "weight_or_count": "1 kg",
+    "image": "https://picsum.photos/id/1013/300/200"
+  },
+  {
+    "id": 4,
+    "name": "Apples Gala",
+    "description": "Sweet and crunchy Gala apples.",
+    "price_eur": 2.9,
+    "weight_or_count": "1 kg",
+    "image": "https://picsum.photos/id/1014/300/200"
+  },
+  {
+    "id": 5,
+    "name": "Cinnamon Powder",
+    "description": "Warm and aromatic ground cinnamon spice.",
+    "price_eur": 2.4,
+    "weight_or_count": "50 g",
+    "image": "https://picsum.photos/id/1015/300/200"
+  },
+  {
+    "id": 6,
+    "name": "Sea Salt",
+    "description": "Natural coarse sea salt for seasoning.",
+    "price_eur": 1.2,
+    "weight_or_count": "500 g",
+    "image": "https://picsum.photos/id/1016/300/200"
+  },
+  {
+    "id": 7,
+    "name": "Unsalted Butter",
+    "description": "Creamy dairy butter, unsalted for cooking and baking.",
+    "price_eur": 2.5,
+    "weight_or_count": "250 g",
+    "image": "https://picsum.photos/id/1017/300/200"
+  },
+  {
+    "id": 8,
+    "name": "Baking Powder",
+    "description": "Leavening agent for fluffy cakes and pastries.",
+    "price_eur": 0.9,
+    "weight_or_count": "100 g",
+    "image": "https://picsum.photos/id/1018/300/200"
+  },
+  {
+    "id": 9,
+    "name": "Gluten-Free Flour",
+    "description": "Gluten-free flour blend suitable for breads and cakes.",
+    "price_eur": 3.6,
+    "weight_or_count": "1 kg",
+    "image": "https://picsum.photos/id/1019/300/200"
+  },
+  {
+    "id": 10,
+    "name": "Stevia Sweetener",
+    "description": "Natural sugar replacement from stevia leaves.",
+    "price_eur": 4.2,
+    "weight_or_count": "200 g",
+    "image": "https://picsum.photos/id/1020/300/200"
+  },
+  {
+    "id": 11,
+    "name": "Bananas",
+    "description": "Fresh yellow bananas, ripe and sweet.",
+    "price_eur": 1.8,
+    "weight_or_count": "1 kg",
+    "image": "https://picsum.photos/id/1021/300/200"
+  },
+  {
+    "id": 12,
+    "name": "Oranges",
+    "description": "Juicy seedless oranges, rich in vitamin C.",
+    "price_eur": 3.1,
+    "weight_or_count": "1 kg",
+    "image": "https://picsum.photos/id/1022/300/200"
+  },
+  {
+    "id": 13,
+    "name": "Tomatoes",
+    "description": "Red ripe tomatoes, perfect for salads and sauces.",
+    "price_eur": 2.2,
+    "weight_or_count": "1 kg",
+    "image": "https://picsum.photos/id/1023/300/200"
+  },
+  {
+    "id": 14,
+    "name": "Potatoes",
+    "description": "Starchy golden potatoes for cooking and baking.",
+    "price_eur": 1.9,
+    "weight_or_count": "2 kg",
+    "image": "https://picsum.photos/id/1024/300/200"
+  },
+  {
+    "id": 15,
+    "name": "Carrots",
+    "description": "Fresh crunchy carrots, ideal for soups and snacks.",
+    "price_eur": 1.6,
+    "weight_or_count": "1 kg",
+    "image": "https://picsum.photos/id/1025/300/200"
+  },
+  {
+    "id": 16,
+    "name": "Onions",
+    "description": "Yellow onions with a strong, savory flavor.",
+    "price_eur": 1.3,
+    "weight_or_count": "1 kg",
+    "image": "https://picsum.photos/id/1026/300/200"
+  },
+  {
+    "id": 17,
+    "name": "Garlic",
+    "description": "Aromatic garlic bulbs, great for seasoning.",
+    "price_eur": 1.1,
+    "weight_or_count": "200 g",
+    "image": "https://picsum.photos/id/1027/300/200"
+  },
+  {
+    "id": 18,
+    "name": "Milk 3.5%",
+    "description": "Whole cow\u2019s milk, pasteurized, 3.5% fat.",
+    "price_eur": 1.4,
+    "weight_or_count": "1 L",
+    "image": "https://picsum.photos/id/1028/300/200"
+  },
+  {
+    "id": 19,
+    "name": "Greek Yogurt",
+    "description": "Thick and creamy natural Greek yogurt.",
+    "price_eur": 2.0,
+    "weight_or_count": "500 g",
+    "image": "https://picsum.photos/id/1029/300/200"
+  },
+  {
+    "id": 20,
+    "name": "Cheddar Cheese",
+    "description": "Mature cheddar cheese block, rich in flavor.",
+    "price_eur": 4.5,
+    "weight_or_count": "300 g",
+    "image": "https://picsum.photos/id/1030/300/200"
+  },
+  {
+    "id": 21,
+    "name": "Olive Oil Extra Virgin",
+    "description": "Cold-pressed extra virgin olive oil from Spain.",
+    "price_eur": 6.9,
+    "weight_or_count": "750 ml",
+    "image": "https://picsum.photos/id/1031/300/200"
+  },
+  {
+    "id": 22,
+    "name": "Sunflower Oil",
+    "description": "Refined sunflower oil for frying and cooking.",
+    "price_eur": 3.4,
+    "weight_or_count": "1 L",
+    "image": "https://picsum.photos/id/1032/300/200"
+  },
+  {
+    "id": 23,
+    "name": "Spaghetti Pasta",
+    "description": "Italian-style spaghetti made from durum wheat.",
+    "price_eur": 1.6,
+    "weight_or_count": "500 g",
+    "image": "https://picsum.photos/id/1033/300/200"
+  },
+  {
+    "id": 24,
+    "name": "Brown Rice",
+    "description": "Wholegrain brown rice, rich in fiber.",
+    "price_eur": 3.2,
+    "weight_or_count": "1 kg",
+    "image": "https://picsum.photos/id/1034/300/200"
+  },
+  {
+    "id": 25,
+    "name": "White Rice",
+    "description": "Polished long-grain rice, cooks fluffy and light.",
+    "price_eur": 2.1,
+    "weight_or_count": "1 kg",
+    "image": "https://picsum.photos/id/1035/300/200"
+  },
+  {
+    "id": 26,
+    "name": "Bread Whole Wheat",
+    "description": "Healthy whole wheat bread loaf.",
+    "price_eur": 2.6,
+    "weight_or_count": "500 g",
+    "image": "https://picsum.photos/id/1036/300/200"
+  },
+  {
+    "id": 27,
+    "name": "Croissants",
+    "description": "Flaky French-style butter croissants.",
+    "price_eur": 3.5,
+    "weight_or_count": "4 pcs",
+    "image": "https://picsum.photos/id/1037/300/200"
+  },
+  {
+    "id": 28,
+    "name": "Chocolate Bar",
+    "description": "Smooth milk chocolate with 30% cocoa.",
+    "price_eur": 1.2,
+    "weight_or_count": "100 g",
+    "image": "https://picsum.photos/id/1038/300/200"
+  },
+  {
+    "id": 29,
+    "name": "Honey Natural",
+    "description": "Pure natural bee honey.",
+    "price_eur": 5.5,
+    "weight_or_count": "400 g",
+    "image": "https://picsum.photos/id/1039/300/200"
+  },
+  {
+    "id": 30,
+    "name": "Jam Strawberry",
+    "description": "Sweet strawberry jam with fruit chunks.",
+    "price_eur": 2.7,
+    "weight_or_count": "350 g",
+    "image": "https://picsum.photos/id/1040/300/200"
+  },
+  {
+    "id": 31,
+    "name": "Peanut Butter",
+    "description": "Smooth peanut butter, no added sugar.",
+    "price_eur": 3.9,
+    "weight_or_count": "350 g",
+    "image": "https://picsum.photos/id/1041/300/200"
+  },
+  {
+    "id": 32,
+    "name": "Almonds",
+    "description": "Raw whole almonds, rich in protein.",
+    "price_eur": 6.8,
+    "weight_or_count": "250 g",
+    "image": "https://picsum.photos/id/1042/300/200"
+  },
+  {
+    "id": 33,
+    "name": "Walnuts",
+    "description": "Shelled walnuts with a crunchy texture.",
+    "price_eur": 7.1,
+    "weight_or_count": "250 g",
+    "image": "https://picsum.photos/id/1043/300/200"
+  },
+  {
+    "id": 34,
+    "name": "Orange Juice",
+    "description": "100% pure squeezed orange juice.",
+    "price_eur": 2.8,
+    "weight_or_count": "1 L",
+    "image": "https://picsum.photos/id/1044/300/200"
+  },
+  {
+    "id": 35,
+    "name": "Mineral Water Sparkling",
+    "description": "Natural sparkling mineral water.",
+    "price_eur": 0.9,
+    "weight_or_count": "1.5 L",
+    "image": "https://picsum.photos/id/1045/300/200"
+  },
+  {
+    "id": 36,
+    "name": "Mineral Water Still",
+    "description": "Natural still mineral water.",
+    "price_eur": 0.8,
+    "weight_or_count": "1.5 L",
+    "image": "https://picsum.photos/id/1046/300/200"
+  },
+  {
+    "id": 37,
+    "name": "Coffee Beans",
+    "description": "Arabica coffee beans, medium roast.",
+    "price_eur": 8.5,
+    "weight_or_count": "500 g",
+    "image": "https://picsum.photos/id/1047/300/200"
+  },
+  {
+    "id": 38,
+    "name": "Black Tea",
+    "description": "Strong black tea bags, 100 pcs pack.",
+    "price_eur": 4.2,
+    "weight_or_count": "200 g",
+    "image": "https://picsum.photos/id/1048/300/200"
+  },
+  {
+    "id": 39,
+    "name": "Green Tea",
+    "description": "Refreshing green tea bags, 50 pcs pack.",
+    "price_eur": 3.8,
+    "weight_or_count": "100 g",
+    "image": "https://picsum.photos/id/1049/300/200"
+  },
+  {
+    "id": 40,
+    "name": "Cocoa Powder",
+    "description": "Rich cocoa powder for baking and drinks.",
+    "price_eur": 2.9,
+    "weight_or_count": "250 g",
+    "image": "https://picsum.photos/id/1050/300/200"
+  },
+  {
+    "id": 41,
+    "name": "Oats",
+    "description": "Rolled oats for porridge and baking.",
+    "price_eur": 2.2,
+    "weight_or_count": "1 kg",
+    "image": "https://picsum.photos/id/1051/300/200"
+  },
+  {
+    "id": 42,
+    "name": "Corn Flakes",
+    "description": "Crispy corn flakes breakfast cereal.",
+    "price_eur": 3.0,
+    "weight_or_count": "500 g",
+    "image": "https://picsum.photos/id/1052/300/200"
+  },
+  {
+    "id": 43,
+    "name": "Frozen Berries",
+    "description": "Mixed frozen berries: blueberries, raspberries, blackberries.",
+    "price_eur": 4.9,
+    "weight_or_count": "500 g",
+    "image": "https://picsum.photos/id/1053/300/200"
+  },
+  {
+    "id": 44,
+    "name": "Frozen Pizza Margherita",
+    "description": "Classic Margherita pizza with mozzarella and tomato.",
+    "price_eur": 3.6,
+    "weight_or_count": "350 g",
+    "image": "https://picsum.photos/id/1054/300/200"
+  },
+  {
+    "id": 45,
+    "name": "Frozen French Fries",
+    "description": "Crispy frozen potato fries, oven-ready.",
+    "price_eur": 2.7,
+    "weight_or_count": "1 kg",
+    "image": "https://picsum.photos/id/1055/300/200"
+  },
+  {
+    "id": 46,
+    "name": "Chicken Breast Fillets",
+    "description": "Skinless boneless chicken breast fillets.",
+    "price_eur": 7.2,
+    "weight_or_count": "1 kg",
+    "image": "https://picsum.photos/id/1056/300/200"
+  },
+  {
+    "id": 47,
+    "name": "Salmon Fillet",
+    "description": "Fresh Atlantic salmon fillet, skin-on.",
+    "price_eur": 12.9,
+    "weight_or_count": "500 g",
+    "image": "https://picsum.photos/id/1057/300/200"
+  },
+  {
+    "id": 48,
+    "name": "Ground Beef",
+    "description": "Lean ground beef 10% fat.",
+    "price_eur": 6.5,
+    "weight_or_count": "500 g",
+    "image": "https://picsum.photos/id/1058/300/200"
+  },
+  {
+    "id": 49,
+    "name": "Tofu",
+    "description": "Organic firm tofu, high in protein.",
+    "price_eur": 3.3,
+    "weight_or_count": "400 g",
+    "image": "https://picsum.photos/id/1059/300/200"
+  },
+  {
+    "id": 50,
+    "name": "Lentils",
+    "description": "Dried red lentils, cook quickly and rich in protein.",
+    "price_eur": 2.5,
+    "weight_or_count": "1 kg",
+    "image": "https://picsum.photos/id/1060/300/200"
+  }
+]

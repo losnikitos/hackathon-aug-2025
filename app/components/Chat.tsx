@@ -4,10 +4,13 @@ import { useState, useRef, useEffect } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
+import CartIcon from './CartIcon';
+import CartPopup from './CartPopup';
 import { ChatMessage as ChatMessageType, ChatResponse } from '../types/chat';
 
 export default function Chat() {
   const [messages, setMessages] = useState<ChatMessageType[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -80,12 +83,17 @@ export default function Chat() {
     <div className="flex flex-col h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
       <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-3">
-        <h1 className="text-lg font-semibold text-gray-900 dark:text-white">
-          Chat Assistant
-        </h1>
-        <p className="text-sm text-gray-500 dark:text-gray-400">
-          Ask me anything!
-        </p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-lg font-semibold text-gray-900 dark:text-white">
+              Chat Assistant
+            </h1>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              Ask me anything!
+            </p>
+          </div>
+          <CartIcon onClick={() => setIsCartOpen(true)} />
+        </div>
       </div>
 
       {/* Messages */}
@@ -106,6 +114,12 @@ export default function Chat() {
       <ChatInput 
         onSendMessage={handleSendMessage}
         isLoading={sendMessageMutation.isPending}
+      />
+      
+      {/* Cart Popup */}
+      <CartPopup 
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
       />
     </div>
   );
