@@ -5,7 +5,7 @@ import { useCart } from '../contexts/CartContext';
 import CartItemControls from './CartItemControls';
 
 export default function CartSidebar() {
-  const { items, updateQuantity, removeFromCart, uniqueItems, totalPrice, clearCart, getItemDetails } = useCart();
+  const { items, uniqueItems, totalPrice, clearCart, getItemDetails } = useCart();
 
   return (
     <div className="w-80 bg-white dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700 flex flex-col h-full">
@@ -50,9 +50,6 @@ export default function CartSidebar() {
                   
                   <CartItemControls
                     itemId={item.itemId}
-                    quantity={item.quantity}
-                    onUpdateQuantity={updateQuantity}
-                    onRemoveFromCart={removeFromCart}
                   />
                 </div>
               );

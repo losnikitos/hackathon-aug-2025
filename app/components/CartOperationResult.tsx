@@ -1,14 +1,18 @@
-import { CartOperationResult as CartOperationResultType, CartItemInfo } from '../types/tools';
-import catalogData from '../data/catalog.json';
-import CartItemDisplay from './CartItemDisplay';
+import {
+  CartOperationResult as CartOperationResultType,
+  CartItemInfo,
+} from "../types/tools";
+import catalogData from "../data/catalog.json";
+import CartItemDisplay from "./CartItemDisplay";
 interface CartOperationResultProps {
   result: CartOperationResultType;
 }
 
-export default function CartOperationResult({ result }: CartOperationResultProps) {
-  
+export default function CartOperationResult({
+  result,
+}: CartOperationResultProps) {
   // Find the item in catalog by ID
-  const catalogItem = catalogData.find(item => item.id === result.itemId);
+  const catalogItem = catalogData.find((item) => item.id === result.itemId);
 
   // Create a CartItemInfo object for the CartItemDisplay component
   const cartItem: CartItemInfo = {
@@ -16,13 +20,8 @@ export default function CartOperationResult({ result }: CartOperationResultProps
     name: catalogItem?.name || result.itemName,
     quantity: result.quantity,
     price: catalogItem?.price_eur || 0,
-    total: (catalogItem?.price_eur || 0) * result.quantity
+    total: (catalogItem?.price_eur || 0) * result.quantity,
   };
 
-  return (
-    <CartItemDisplay 
-      item={cartItem} 
-      action={result.action}
-    />
-  );
+  return <CartItemDisplay item={cartItem} />;
 }

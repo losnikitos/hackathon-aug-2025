@@ -1,7 +1,7 @@
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Components } from 'react-markdown';
-import { CartToolName, CartSummary, CartOperationResult } from '../types/tools';
+import { CartToolName, CartOperationResult } from '../types/tools';
 import { UIMessage } from 'ai';
 import CartOperationResultComponent from './CartOperationResult';
 import CartInfoDisplay from './CartInfoDisplay';
@@ -57,7 +57,7 @@ export default function ChatMessage({ message }: ChatMessageProps) {
             return (
               <div key={index}>
                 {toolName === 'getCartInfo' ? (
-                  <CartInfoDisplay cartInfo={part.output as CartSummary} />
+                  <CartInfoDisplay />
                 ) : (
                   <CartOperationResultComponent 
                     result={part.output as CartOperationResult}

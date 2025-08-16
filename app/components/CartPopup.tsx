@@ -71,9 +71,6 @@ export default function CartPopup({ isOpen, onClose }: CartPopupProps) {
                     
                     <CartItemControls
                       itemId={item.itemId}
-                      quantity={item.quantity}
-                      onUpdateQuantity={updateQuantity}
-                      onRemoveFromCart={removeFromCart}
                     />
                   </div>
                 );

@@ -2,7 +2,6 @@ import { CartItemInfo } from "../types/tools";
 import catalogData from "../data/catalog.json";
 import { Check, X } from "lucide-react";
 import CartItemControls from "./CartItemControls";
-import { useCart } from "../contexts/CartContext";
 
 interface CartItemDisplayProps {
   item: CartItemInfo;
@@ -13,7 +12,6 @@ export default function CartItemDisplay({
   item,
   action,
 }: CartItemDisplayProps) {
-
   // Find the item in catalog by ID or name
   const catalogItem = catalogData.find(
     (catItem) =>
@@ -69,10 +67,7 @@ export default function CartItemDisplay({
             </span>
           </div>
 
-          <CartItemControls
-            itemId={item.id}
-            quantity={item.quantity}
-          />
+          <CartItemControls itemId={item.id} />
 
           <div className="text-sm font-medium text-gray-900 dark:text-white">
             €{item.total.toFixed(2)}

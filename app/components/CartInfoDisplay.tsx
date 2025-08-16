@@ -1,13 +1,8 @@
-import { CartSummary } from '../types/tools';
 import CartItemsGrid from './CartItemsGrid';
 import { useCart } from '../contexts/CartContext';
 
-interface CartInfoDisplayProps {
-  cartInfo: CartSummary;
-}
-
-export default function CartInfoDisplay({ cartInfo }: CartInfoDisplayProps) {
-  const { items, updateQuantity, removeFromCart, uniqueItems, totalPrice, getItemDetails } = useCart();
+export default function CartInfoDisplay() {
+  const { items, uniqueItems, totalPrice, getItemDetails } = useCart();
 
   // Convert live cart data to CartItemInfo format for display
   const liveCartItems = items.map(item => {
