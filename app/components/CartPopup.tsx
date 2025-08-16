@@ -3,6 +3,7 @@
 import { X, ShoppingCart } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import CartItemControls from './CartItemControls';
+import Link from 'next/link';
 
 interface CartPopupProps {
   isOpen: boolean;
@@ -10,7 +11,7 @@ interface CartPopupProps {
 }
 
 export default function CartPopup({ isOpen, onClose }: CartPopupProps) {
-  const { items, updateQuantity, removeFromCart, uniqueItems, totalPrice, clearCart, getItemDetails } = useCart();
+  const { items, totalPrice, clearCart, getItemDetails } = useCart();
 
   if (!isOpen) return null;
 
@@ -93,12 +94,12 @@ export default function CartPopup({ isOpen, onClose }: CartPopupProps) {
                 Clear Cart
               </button>
             </div>
-            <button
-              onClick={onClose}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+            <Link
+              href="/checkout"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors text-center block"
             >
               Checkout
-            </button>
+            </Link>
           </div>
         )}
       </div>

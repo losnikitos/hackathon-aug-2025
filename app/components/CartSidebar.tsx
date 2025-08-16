@@ -3,6 +3,7 @@
 import { ShoppingCart } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import CartItemControls from './CartItemControls';
+import Link from 'next/link';
 
 export default function CartSidebar() {
   const { items, totalPrice, clearCart, getItemDetails } = useCart();
@@ -72,9 +73,12 @@ export default function CartSidebar() {
               Clear Cart
             </button>
           </div>
-          <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors">
+          <Link
+            href="/checkout"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors text-center block"
+          >
             Checkout
-          </button>
+          </Link>
         </div>
       )}
     </div>

@@ -8,6 +8,7 @@ import ChatInput from './ChatInput';
 import CartIcon from './CartIcon';
 import CartPopup from './CartPopup';
 import CartSidebar from './CartSidebar';
+import Timer from './Timer';
 import { useChat } from '@ai-sdk/react';
 import { lastAssistantMessageIsCompleteWithToolCalls } from 'ai';
 import { useCart } from '../contexts/CartContext';
@@ -231,9 +232,13 @@ export default function Chat() {
                 </p>
               </div>
             </div>
-            {/* Show cart icon only on small screens */}
-            <div className="md:hidden">
-              <CartIcon onClick={() => setIsCartOpen(true)} />
+            <div className="flex items-center space-x-4">
+              {/* Timer - visible on all screen sizes */}
+              <Timer />
+              {/* Show cart icon only on small screens */}
+              <div className="md:hidden">
+                <CartIcon onClick={() => setIsCartOpen(true)} />
+              </div>
             </div>
           </div>
         </div>
