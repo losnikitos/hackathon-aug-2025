@@ -1,23 +1,89 @@
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Components } from 'react-markdown';
+import { CartToolName } from '../types/tools';
+import { UIMessage } from 'ai';
 
 interface ChatMessageProps {
-  message: {
-    id: string;
-    role: 'user' | 'assistant' | 'system';
-    parts: any[];
-  };
+  message: UIMessage;
 }
 
 export default function ChatMessage({ message }: ChatMessageProps) {
   const isUser = message.role === 'user';
   
-  // Extract text content from parts
-  const content = message.parts
-    .filter(part => part.type === 'text')
-    .map(part => part.text)
-    .join('');
+  const renderPart = (part: UIMessage['parts'][0], index: number) => {
+    switch (part.type) {
+      case 'text':
+        return (
+          <div key={index} className="text-sm prose prose-sm max-w-none">
+            {isUser ? (
+              <p className="whitespace-pre-wrap">{part.text}</p>
+            ) : (
+              <ReactMarkdown 
+                remarkPlugins={[remarkGfm]}
+                components={markdownComponents}
+              >
+                {part.text}
+              </ReactMarkdown>
+            )}
+          </div>
+        );
+      
+      case 'tool-addToCart':
+      case 'tool-removeFromCart':
+      case 'tool-updateCartQuantity':
+      case 'tool-getCartInfo': {
+        const toolName = part.type.replace('tool-', '') as CartToolName;
+        const callId = part.toolCallId;
+        
+        switch (part.state) {
+          case 'input-streaming':
+            return (
+              <div key={index} className="text-sm text-gray-500 dark:text-gray-400 italic">
+                Processing {toolName}...
+              </div>
+            );
+          
+          case 'input-available':
+            return (
+              <div key={index} className="text-sm text-gray-500 dark:text-gray-400 italic">
+                Executing {toolName}...
+              </div>
+            );
+          
+          case 'output-available':
+            return (
+              <div key={index} className="text-sm bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded p-2">
+                <div className="font-medium text-green-800 dark:text-green-200">
+                  {toolName === 'getCartInfo' ? 'Cart Information:' : 'Action completed:'}
+                </div>
+                <div className="text-green-700 dark:text-green-300 mt-1">
+                  {toolName === 'getCartInfo' ? (
+                    <pre className="text-xs overflow-x-auto">{String(part.output)}</pre>
+                  ) : (
+                    String(part.output)
+                  )}
+                </div>
+              </div>
+            );
+          
+          case 'output-error':
+            return (
+              <div key={index} className="text-sm bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded p-2">
+                <div className="font-medium text-red-800 dark:text-red-200">Error:</div>
+                <div className="text-red-700 dark:text-red-300 mt-1">{String(part.errorText)}</div>
+              </div>
+            );
+          
+          default:
+            return null;
+        }
+      }
+      
+      default:
+        return null;
+    }
+  };
   
   const markdownComponents: Components = {
     // Customize code blocks
@@ -95,17 +161,8 @@ export default function ChatMessage({ message }: ChatMessageProps) {
             : 'bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-bl-none'
         }`}
       >
-        <div className="text-sm prose prose-sm max-w-none">
-          {isUser ? (
-            <p className="whitespace-pre-wrap">{content}</p>
-          ) : (
-            <ReactMarkdown 
-              remarkPlugins={[remarkGfm]}
-              components={markdownComponents}
-            >
-              {content}
-            </ReactMarkdown>
-          )}
+        <div className="space-y-2">
+          {message.parts.map((part, index) => renderPart(part, index))}
         </div>
       </div>
     </div>

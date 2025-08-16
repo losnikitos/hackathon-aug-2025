@@ -23,7 +23,7 @@ interface CartContextType {
   removeFromCart: (itemId: number) => void;
   updateQuantity: (itemId: number, quantity: number) => void;
   clearCart: () => void;
-  totalItems: number;
+  uniqueItems: number;
   totalPrice: number;
   getItemDetails: (itemId: number) => CatalogItem | undefined;
 }
@@ -77,7 +77,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     return catalogData.find(item => item.id === itemId);
   };
 
-  const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+  const uniqueItems = items.length;
   const totalPrice = useMemo(() => {
     return items.reduce((sum, item) => {
       const itemDetails = getItemDetails(item.itemId);
@@ -92,7 +92,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       removeFromCart,
       updateQuantity,
       clearCart,
-      totalItems,
+      uniqueItems,
       totalPrice,
       getItemDetails
     }}>

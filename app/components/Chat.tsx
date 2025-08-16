@@ -7,6 +7,15 @@ import ChatInput from './ChatInput';
 import CartIcon from './CartIcon';
 import CartPopup from './CartPopup';
 import { useChat } from '@ai-sdk/react';
+import { lastAssistantMessageIsCompleteWithToolCalls } from 'ai';
+import { useCart } from '../contexts/CartContext';
+import { 
+  AddToCartInput, 
+  RemoveFromCartInput, 
+  UpdateCartQuantityInput, 
+  CartSummary,
+  CartItemInfo
+} from '../types/tools';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -14,14 +23,98 @@ export const maxDuration = 30;
 export default function Chat() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const { addToCart, removeFromCart, updateQuantity, items, uniqueItems, totalPrice, getItemDetails } = useCart();
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const { messages, sendMessage, status } = useChat({
+  const { messages, sendMessage, status, addToolResult } = useChat({
     onError: (error) => {
       console.error('Chat error:', error);
+    },
+    sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithToolCalls,
+    
+    // Handle client-side tool calls
+    async onToolCall({ toolCall }) {
+      switch (toolCall.toolName) {
+        case 'addToCart': {
+          const input = toolCall.input as AddToCartInput;
+          const { itemId, quantity = 1 } = input;
+          addToCart(itemId, quantity);
+          const itemDetails = getItemDetails(itemId);
+          
+          addToolResult({
+            tool: 'addToCart',
+            toolCallId: toolCall.toolCallId,
+            output: `Added ${quantity} ${quantity === 1 ? 'item' : 'items'} of "${itemDetails?.name || `Product ${itemId}`}" to your cart.`,
+          });
+          break;
+        }
+        
+        case 'removeFromCart': {
+          const input = toolCall.input as RemoveFromCartInput;
+          const { itemId } = input;
+          const itemDetails = getItemDetails(itemId);
+          removeFromCart(itemId);
+          
+          addToolResult({
+            tool: 'removeFromCart',
+            toolCallId: toolCall.toolCallId,
+            output: `Removed "${itemDetails?.name || `Product ${itemId}`}" from your cart.`,
+          });
+          break;
+        }
+        
+        case 'updateCartQuantity': {
+          const input = toolCall.input as UpdateCartQuantityInput;
+          const { itemId, quantity } = input;
+          const itemDetails = getItemDetails(itemId);
+          
+          if (quantity <= 0) {
+            removeFromCart(itemId);
+            addToolResult({
+              tool: 'updateCartQuantity',
+              toolCallId: toolCall.toolCallId,
+              output: `Removed "${itemDetails?.name || `Product ${itemId}`}" from your cart.`,
+            });
+          } else {
+            updateQuantity(itemId, quantity);
+            addToolResult({
+              tool: 'updateCartQuantity',
+              toolCallId: toolCall.toolCallId,
+              output: `Updated quantity of "${itemDetails?.name || `Product ${itemId}`}" to ${quantity} in your cart.`,
+            });
+          }
+          break;
+        }
+        
+        case 'getCartInfo': {
+          const cartItems: CartItemInfo[] = items.map(item => {
+            const itemDetails = getItemDetails(item.itemId);
+            return {
+              id: item.itemId,
+              name: itemDetails?.name || `Product ${item.itemId}`,
+              quantity: item.quantity,
+              price: itemDetails?.price_eur || 0,
+              total: (itemDetails?.price_eur || 0) * item.quantity
+            };
+          });
+          
+          const cartSummary: CartSummary = {
+            uniqueItems,
+            totalPrice: totalPrice.toFixed(2),
+            items: cartItems
+          };
+          
+          addToolResult({
+            tool: 'getCartInfo',
+            toolCallId: toolCall.toolCallId,
+            output: JSON.stringify(cartSummary, null, 2),
+          });
+          break;
+        }
+      }
     },
   });
 

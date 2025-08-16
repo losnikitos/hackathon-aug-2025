@@ -1,57 +1,118 @@
-This is a [Next.js](https://nextjs.org) project with an AI-powered chatbot interface built using OpenAI's GPT-4o-mini model.
+# Grocery Store Chatbot with Cart Integration
 
-## Getting Started
-
-### 1. Environment Setup
-
-Create a `.env.local` file in the root directory and add your OpenAI API key:
-
-```bash
-OPENAI_API_KEY=your_openai_api_key_here
-```
-
-You can get your API key from [OpenAI Platform](https://platform.openai.com/api-keys).
-
-### 2. Install Dependencies
-
-```bash
-npm install
-```
-
-### 3. Run the Development Server
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the chatbot interface.
+A Next.js application featuring an AI-powered chatbot that can help customers with grocery shopping and manage their shopping cart.
 
 ## Features
 
-- 🤖 AI-powered responses using OpenAI GPT-4o-mini
-- 💬 Real-time chat interface with instant message display
-- 🎨 Modern UI with dark mode support
-- ⚡ React Query for efficient data fetching
-- 📱 Responsive design for mobile and desktop
-- 🔄 Ready for streaming responses (future enhancement)
+- **AI Chatbot**: Powered by OpenAI GPT-4o-mini with streaming responses
+- **Shopping Cart Management**: Full cart functionality with add, remove, update, and view operations
+- **Product Catalog**: 50+ grocery items with detailed information
+- **Real-time Cart Updates**: Live cart state management with React Context
+- **Tool Integration**: AI assistant can perform cart operations using client-side tools
 
-## Learn More
+## Chatbot Tools
 
-To learn more about Next.js, take a look at the following resources:
+The AI assistant can perform the following cart operations:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 1. Add to Cart (`addToCart`)
+- **Description**: Add a product to the shopping cart
+- **Parameters**: 
+  - `itemId` (number): The ID of the product to add
+  - `quantity` (optional, number): Quantity to add (defaults to 1)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 2. Remove from Cart (`removeFromCart`)
+- **Description**: Remove a product from the shopping cart
+- **Parameters**:
+  - `itemId` (number): The ID of the product to remove
 
-## Deploy on Vercel
+### 3. Update Cart Quantity (`updateCartQuantity`)
+- **Description**: Update the quantity of a product in the cart
+- **Parameters**:
+  - `itemId` (number): The ID of the product to update
+  - `quantity` (number): The new quantity (use 0 to remove the item)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 4. Get Cart Info (`getCartInfo`)
+- **Description**: Get detailed information about the current cart
+- **Parameters**: None
+- **Returns**: JSON with cart summary including items, quantities, unique items count, and total price
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Example Conversations
+
+Users can interact with the chatbot using natural language:
+
+- "Add 2 apples to my cart"
+- "Show me what's in my cart"
+- "Remove the eggs from my cart"
+- "Change the quantity of flour to 3"
+- "What's the total price of my cart?"
+- "I want to buy some bread and milk"
+
+## Technical Implementation
+
+### AI SDK Integration
+- Uses `@ai-sdk/react` for client-side chat functionality
+- Implements `useChat` hook with `onToolCall` for tool execution
+- Automatic tool result submission with `lastAssistantMessageIsCompleteWithToolCalls`
+
+### Type Safety
+- Shared TypeScript types between client and server (`app/types/tools.ts`)
+- Zod schemas for runtime validation of tool inputs
+- Proper typing for all tool call parameters and responses
+- Type-safe cart operations with inferred types
+
+### Cart Context
+- React Context for global cart state management
+- Persistent cart state across chat sessions
+- Real-time updates and calculations
+
+### Tool Execution Flow
+1. User sends message to chatbot
+2. AI model generates tool calls based on user intent
+3. Client-side tools execute using CartContext methods with type-safe inputs
+4. Tool results are added to the chat conversation
+5. AI continues conversation with updated cart information
+
+## Getting Started
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Set up environment variables:
+   ```bash
+   OPENAI_API_KEY=your_openai_api_key_here
+   ```
+
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## Project Structure
+
+```
+app/
+├── api/chat/route.ts          # AI chat API with tool definitions
+├── components/
+│   ├── Chat.tsx              # Main chat component with tool handling
+│   ├── ChatMessage.tsx       # Message rendering with tool part support
+│   └── ...                   # Other UI components
+├── contexts/
+│   └── CartContext.tsx       # Cart state management
+├── types/
+│   └── tools.ts              # Shared tool types and schemas
+└── data/
+    └── catalog.json          # Product catalog data
+```
+
+## Technologies Used
+
+- **Next.js 15** - React framework
+- **AI SDK** - OpenAI integration and tool calling
+- **React Context** - State management
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Styling
+- **Zod** - Schema validation for tool inputs

@@ -9,7 +9,7 @@ interface CartPopupProps {
 }
 
 export default function CartPopup({ isOpen, onClose }: CartPopupProps) {
-  const { items, updateQuantity, removeFromCart, totalPrice, clearCart, getItemDetails } = useCart();
+  const { items, updateQuantity, removeFromCart, totalItems, totalPrice, clearCart, getItemDetails } = useCart();
 
   if (!isOpen) return null;
 
@@ -26,7 +26,7 @@ export default function CartPopup({ isOpen, onClose }: CartPopupProps) {
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
           <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
-            Shopping Cart ({items.length} items)
+            Shopping Cart ({items.length} items, {totalItems} total)
           </h2>
           <button
             onClick={onClose}
