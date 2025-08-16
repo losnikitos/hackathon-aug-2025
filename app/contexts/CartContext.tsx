@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState, ReactNode, useMemo } from 'react';
 import catalogData from '../data/catalog.json';
+import { sendGAEvent } from '@next/third-parties/google';
 
 export interface CatalogItem {
   id: number;
@@ -41,6 +42,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
   ]);
 
   const addToCart = (itemId: number, quantity = 1) => {
+    const itemDetails = getItemDetails(itemId);
+    const itemName = itemDetails?.name || `Product ${itemId}`;
+    const price = itemDetails?.price_eur || 0;
+    
     setItems(prevItems => {
       const existingItem = prevItems.find(i => i.itemId === itemId);
       if (existingItem) {
@@ -52,10 +57,39 @@ export function CartProvider({ children }: { children: ReactNode }) {
       }
       return [...prevItems, { itemId, quantity }];
     });
+    
+    // Track the add to cart event
+    sendGAEvent('event', 'add_to_cart', {
+      item_id: itemId,
+      item_name: itemName,
+      quantity: quantity,
+      price: price,
+      currency: 'EUR',
+      value: price * quantity
+    });
   };
 
   const removeFromCart = (itemId: number) => {
-    setItems(prevItems => prevItems.filter(item => item.itemId !== itemId));
+    const itemDetails = getItemDetails(itemId);
+    const itemName = itemDetails?.name || `Product ${itemId}`;
+    const price = itemDetails?.price_eur || 0;
+    
+    setItems(prevItems => {
+      const itemToRemove = prevItems.find(item => item.itemId === itemId);
+      const quantity = itemToRemove?.quantity || 0;
+      
+      // Track the remove from cart event
+      sendGAEvent('event', 'remove_from_cart', {
+        item_id: itemId,
+        item_name: itemName,
+        quantity: quantity,
+        price: price,
+        currency: 'EUR',
+        value: price * quantity
+      });
+      
+      return prevItems.filter(item => item.itemId !== itemId);
+    });
   };
 
   const updateQuantity = (itemId: number, quantity: number) => {
@@ -63,14 +97,41 @@ export function CartProvider({ children }: { children: ReactNode }) {
       removeFromCart(itemId);
       return;
     }
+    
+    const itemDetails = getItemDetails(itemId);
+    const itemName = itemDetails?.name || `Product ${itemId}`;
+    const price = itemDetails?.price_eur || 0;
+    
     setItems(prevItems => {
       const existingItem = prevItems.find(item => item.itemId === itemId);
       if (existingItem) {
+        const oldQuantity = existingItem.quantity;
+        
+        // Track the update quantity event
+        sendGAEvent('event', 'update_cart_quantity', {
+          item_id: itemId,
+          item_name: itemName,
+          old_quantity: oldQuantity,
+          new_quantity: quantity,
+          quantity_change: quantity - oldQuantity,
+          price: price,
+          currency: 'EUR',
+          value: price * Math.abs(quantity - oldQuantity)
+        });
+        
         return prevItems.map(item => 
           item.itemId === itemId ? { ...item, quantity } : item
         );
       } else {
         // Add the item to cart if it doesn't exist
+        sendGAEvent('event', 'add_to_cart', {
+          item_id: itemId,
+          item_name: itemName,
+          quantity: quantity,
+          price: price,
+          currency: 'EUR',
+          value: price * quantity
+        });
         return [...prevItems, { itemId, quantity }];
       }
     });

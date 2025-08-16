@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useCart } from '../contexts/CartContext';
+import { sendGAEvent } from '@next/third-parties/google';
 import { CheckCircle, Clock, ShoppingBag, ArrowLeft, Star, Trophy } from 'lucide-react';
 
 // Perfect cart items (apples, sugar, salt, butter, flour, cinnamon)
@@ -52,6 +53,20 @@ export default function CheckoutPage() {
       console.log('Checkout: Calculated completion time:', calculatedTime);
       setCompletionTime(calculatedTime);
       
+      // Track checkout event
+      sendGAEvent('event', 'checkout', {
+        time_taken: calculatedTime,
+        cart_score: cartScore.score,
+        cart_max_score: cartScore.maxScore,
+        cart_percentage: cartScore.percentage,
+        cart_grade: cartScore.grade,
+        total_items: items.length,
+        total_price: totalPrice,
+        currency: 'EUR',
+        value: totalPrice,
+        timestamp: Date.now()
+      });
+      
       // Clear the stored start time
       localStorage.removeItem('chatSessionStartTime');
       console.log('Checkout: Cleared chatSessionStartTime');
@@ -59,12 +74,26 @@ export default function CheckoutPage() {
       // Fallback if no start time found
       console.log('Checkout: No start time found, using fallback');
       setCompletionTime('0min 0s');
+      
+      // Track checkout event with fallback time
+      sendGAEvent('event', 'checkout', {
+        time_taken: '0min 0s',
+        cart_score: cartScore.score,
+        cart_max_score: cartScore.maxScore,
+        cart_percentage: cartScore.percentage,
+        cart_grade: cartScore.grade,
+        total_items: items.length,
+        total_price: totalPrice,
+        currency: 'EUR',
+        value: totalPrice,
+        timestamp: Date.now()
+      });
     }
 
     // Add a small delay for animation effect
     const timer = setTimeout(() => setIsVisible(true), 100);
     return () => clearTimeout(timer);
-  }, []);
+  }, [cartScore, items.length, totalPrice]);
 
   const handleStartOver = () => {
     clearCart();
