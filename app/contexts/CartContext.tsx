@@ -26,6 +26,7 @@ interface CartContextType {
   uniqueItems: number;
   totalPrice: number;
   getItemDetails: (itemId: number) => CatalogItem | undefined;
+  getQuantity: (itemId: number) => number;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -62,11 +63,17 @@ export function CartProvider({ children }: { children: ReactNode }) {
       removeFromCart(itemId);
       return;
     }
-    setItems(prevItems => 
-      prevItems.map(item => 
-        item.itemId === itemId ? { ...item, quantity } : item
-      )
-    );
+    setItems(prevItems => {
+      const existingItem = prevItems.find(item => item.itemId === itemId);
+      if (existingItem) {
+        return prevItems.map(item => 
+          item.itemId === itemId ? { ...item, quantity } : item
+        );
+      } else {
+        // Add the item to cart if it doesn't exist
+        return [...prevItems, { itemId, quantity }];
+      }
+    });
   };
 
   const clearCart = () => {
@@ -75,6 +82,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const getItemDetails = (itemId: number): CatalogItem | undefined => {
     return catalogData.find(item => item.id === itemId);
+  };
+
+  const getQuantity = (itemId: number): number => {
+    const item = items.find(i => i.itemId === itemId);
+    return item ? item.quantity : 0;
   };
 
   const uniqueItems = items.length;
@@ -94,7 +106,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
       clearCart,
       uniqueItems,
       totalPrice,
-      getItemDetails
+      getItemDetails,
+      getQuantity
     }}>
       {children}
     </CartContext.Provider>

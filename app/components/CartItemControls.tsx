@@ -5,16 +5,13 @@ import { useCart } from '../contexts/CartContext';
 
 interface CartItemControlsProps {
   itemId: number;
-  quantity: number;
-  onUpdateQuantity: (itemId: number, quantity: number) => void;
-  onRemoveFromCart: (itemId: number) => void;
 }
 
 export default function CartItemControls({
-  quantity,
   itemId,
 }: CartItemControlsProps) {
-  const { updateQuantity, removeFromCart } = useCart();
+  const { updateQuantity, removeFromCart, getQuantity } = useCart();
+  const quantity = getQuantity(itemId);
 
   return (
     <div className="flex items-center space-x-2">
