@@ -3,6 +3,8 @@ import remarkGfm from 'remark-gfm';
 import { Components } from 'react-markdown';
 import { CartToolName } from '../types/tools';
 import { UIMessage } from 'ai';
+import CartOperationResult from './CartOperationResult';
+import CartInfoDisplay from './CartInfoDisplay';
 
 interface ChatMessageProps {
   message: UIMessage;
@@ -53,17 +55,15 @@ export default function ChatMessage({ message }: ChatMessageProps) {
           
           case 'output-available':
             return (
-              <div key={index} className="text-sm bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded p-2">
-                <div className="font-medium text-green-800 dark:text-green-200">
-                  {toolName === 'getCartInfo' ? 'Cart Information:' : 'Action completed:'}
-                </div>
-                <div className="text-green-700 dark:text-green-300 mt-1">
-                  {toolName === 'getCartInfo' ? (
-                    <pre className="text-xs overflow-x-auto">{String(part.output)}</pre>
-                  ) : (
-                    String(part.output)
-                  )}
-                </div>
+              <div key={index}>
+                {toolName === 'getCartInfo' ? (
+                  <CartInfoDisplay cartInfo={String(part.output)} />
+                ) : (
+                  <CartOperationResult 
+                    operation={toolName as 'addToCart' | 'removeFromCart' | 'updateCartQuantity'}
+                    output={String(part.output)}
+                  />
+                )}
               </div>
             );
           
