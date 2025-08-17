@@ -1,8 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { Search, Filter } from 'lucide-react';
 import CartIcon from '../components/CartIcon';
 import CartPopup from '../components/CartPopup';
@@ -19,16 +18,8 @@ export default function ShopPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchTerm, setSearchTerm] = useState('');
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const pathname = usePathname();
 
-  // Set session start time when user opens /shop page (same as chat page)
-  useEffect(() => {
-    const stored = localStorage.getItem('chatSessionStartTime');
-    console.log(stored ? 'Was set' : 'Was not set, setting now');
-    if(!stored) {
-      localStorage.setItem('chatSessionStartTime', Date.now().toString());
-    } 
-  }, []);
+
 
   // Filter products based on category and search term
   const filteredProducts = catalogData.filter(product => {

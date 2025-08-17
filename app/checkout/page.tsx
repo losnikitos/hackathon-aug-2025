@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { useCart } from '../contexts/CartContext';
+import { useSession } from '../contexts/SessionContext';
 import { trackCheckout } from '../utils/analytics';
-import { CheckCircle, Clock, ShoppingBag, ArrowLeft, Star, Trophy, MessageSquare } from 'lucide-react';
+import { Clock, ShoppingBag, ArrowLeft, Star, Trophy, MessageSquare } from 'lucide-react';
 
 // Perfect cart items (apples, sugar, salt, butter, flour, cinnamon)
 const PERFECT_CART_IDS = [1, 4, 3, 8, 7, 2, 5];
@@ -31,47 +32,18 @@ function calculateCartScore(cartItemIds: number[]): { score: number; maxScore: n
 export default function CheckoutPage() {
   const router = useRouter();
   const { items, clearCart, totalPrice, getItemDetails } = useCart();
-  const [completionTime, setCompletionTime] = useState('');
-  const [isVisible, setIsVisible] = useState(false);
+  const { formattedDuration, sessionDuration } = useSession();
+  const hasTracked = useRef(false);
 
   // Calculate cart score
   const cartItemIds = items.map(item => item.itemId);
   const cartScore = calculateCartScore(cartItemIds);
 
-  useEffect(() => {
-    // Read start time from localStorage and calculate completion time
-    const storedStartTime = localStorage.getItem('chatSessionStartTime');
-    console.log('[timer] Checkout: Retrieved chatSessionStartTime:', storedStartTime);
-    
-    if (storedStartTime) {
-      const startTime = parseInt(storedStartTime);
-      const endTime = Date.now();
-      const timeDiff = endTime - startTime;
-      const minutes = Math.floor(timeDiff / 60000);
-      const seconds = Math.floor((timeDiff % 60000) / 1000);
-      const calculatedTime = `${minutes}min ${seconds}s`;
-      console.log('[timer] Checkout: Calculated completion time:', calculatedTime);
-      setCompletionTime(calculatedTime);
-      
-      // Track checkout event with duration in milliseconds
-      trackCheckout(calculatedTime, timeDiff, cartScore.score, cartScore.maxScore, cartScore.percentage, cartScore.grade, items.length, totalPrice);
-      
-      // Clear the stored start time
-      localStorage.removeItem('chatSessionStartTime');
-      console.log('[timer] Checkout: Cleared chatSessionStartTime');
-    } else {
-      // Fallback if no start time found
-      console.log('[timer] Checkout: No start time found, using fallback');
-      setCompletionTime('0min 0s');
-      
-      // Track checkout event with fallback time and 0ms duration
-      trackCheckout('0min 0s', 0, cartScore.score, cartScore.maxScore, cartScore.percentage, cartScore.grade, items.length, totalPrice);
-    }
-
-    // Add a small delay for animation effect
-    const timer = setTimeout(() => setIsVisible(true), 100);
-    return () => clearTimeout(timer);
-  }, [cartScore, items.length, totalPrice]);
+  // Track checkout event with duration in milliseconds - only once
+  if (sessionDuration && !hasTracked.current) {
+    trackCheckout(formattedDuration, sessionDuration, cartScore.score, cartScore.maxScore, cartScore.percentage, cartScore.grade, items.length, totalPrice);
+    hasTracked.current = true;
+  }
 
   const handleStartOver = () => {
     clearCart();
@@ -80,9 +52,7 @@ export default function CheckoutPage() {
 
   return (
     <div className="bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 z-50 flex items-center justify-center p-4">
-      <div className={`max-w-2xl w-full bg-white rounded-2xl shadow-2xl p-8 transform transition-all duration-700 ${
-        isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
-      }`}>
+      <div className="max-w-2xl w-full bg-white rounded-2xl shadow-2xl p-8">
         {/* Success Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent mb-4">
@@ -119,7 +89,7 @@ export default function CheckoutPage() {
         {/* Statistics Cards - 2 in a row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           {/* Completion Time Card */}
-          {/* <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4">
+          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4">
             <div className="flex items-center justify-center space-x-2 mb-2">
               <Clock className="w-5 h-5 text-blue-600" />
               <h3 className="text-base font-bold text-gray-800">Completion Time</h3>
@@ -127,16 +97,16 @@ export default function CheckoutPage() {
             
             <div className="text-center">
               <div className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent mb-1">
-                {completionTime}
+                {formattedDuration || 'N/A'}
               </div>
               <div className="text-xs text-gray-600">
                 Time to assemble your cart
               </div>
             </div>
-          </div> */}
+          </div>
 
           {/* Cart Score Card */}
-          {/* <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg p-4">
+          <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg p-4">
             <div className="flex items-center justify-center space-x-2 mb-2">
               <Trophy className="w-5 h-5 text-yellow-600" />
               <h3 className="text-base font-bold text-gray-800">Cart Quality</h3>
@@ -153,7 +123,7 @@ export default function CheckoutPage() {
                 {cartScore.percentage}% accuracy
               </div>
             </div>
-          </div> */}
+          </div>
         </div>
 
         {/* Details Section - Collapsible */}
