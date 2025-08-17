@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingCart, CreditCard } from 'lucide-react';
 import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
 import CartIcon from './CartIcon';
@@ -259,8 +259,8 @@ export default function Chat() {
           <Image 
             src="/cook-2.png" 
             alt="Chef" 
-            width={240} 
-            height={240}
+            width={200} 
+            height={200}
             className="rounded-lg"
           />
         </div>
@@ -319,10 +319,9 @@ export default function Chat() {
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              {/* Timer - visible on all screen sizes */}
-              <Timer />
-              {/* Show cart icon only on small screens */}
-              <div className="md:hidden">
+
+              {/* Show cart icon and checkout button only on small screens */}
+              <div className="md:hidden flex items-center space-x-2">
                 <CartIcon onClick={() => setIsCartOpen(true)} />
               </div>
             </div>

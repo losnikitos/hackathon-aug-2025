@@ -37,7 +37,7 @@ export default function IntroModal() {
       }`}>
         {/* Header */}
         <div className="flex items-center justify-between p-6">
-          <h2 className="text-xl text-gray-900 dark:text-white">
+          <h2 className="text-lg text-gray-900 dark:text-white">
             Please buy all ingredients for an apple pie. Here&apos;s a shopping list:
           </h2>
           <button
@@ -56,8 +56,8 @@ export default function IntroModal() {
               <Image
                 src="/shopping-list.png"
                 alt="Apple Pie Shopping List"
-                width={300}
-                height={300}
+                width={200}
+                height={200}
                 className="rounded-lg shadow-lg"
               />
             </div>

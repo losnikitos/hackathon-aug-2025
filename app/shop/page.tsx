@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Search, Filter } from 'lucide-react';
 import CartIcon from '../components/CartIcon';
 import CartPopup from '../components/CartPopup';
@@ -19,6 +20,7 @@ export default function ShopPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchTerm, setSearchTerm] = useState('');
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const pathname = usePathname();
 
   // Set session start time when user opens /shop page (same as chat page)
   useEffect(() => {
@@ -65,8 +67,6 @@ export default function ShopPage() {
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              {/* Timer - visible on all screen sizes */}
-              <Timer />
               {/* Show cart icon only on small screens */}
               <div className="md:hidden">
                 <CartIcon onClick={() => setIsCartOpen(true)} />
