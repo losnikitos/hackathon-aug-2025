@@ -86,51 +86,13 @@ export default function CheckoutPage() {
           </div>
         </div>
 
-        {/* Statistics Cards - 2 in a row */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          {/* Completion Time Card */}
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4">
-            <div className="flex items-center justify-center space-x-2 mb-2">
-              <Clock className="w-5 h-5 text-blue-600" />
-              <h3 className="text-base font-bold text-gray-800">Completion Time</h3>
-            </div>
-            
-            <div className="text-center">
-              <div className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent mb-1">
-                {formattedDuration || 'N/A'}
-              </div>
-              <div className="text-xs text-gray-600">
-                Time to assemble your cart
-              </div>
-            </div>
-          </div>
 
-          {/* Cart Score Card */}
-          <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg p-4">
-            <div className="flex items-center justify-center space-x-2 mb-2">
-              <Trophy className="w-5 h-5 text-yellow-600" />
-              <h3 className="text-base font-bold text-gray-800">Cart Quality</h3>
-            </div>
-            
-            <div className="text-center">
-              <div className="text-3xl font-bold bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent mb-1">
-                {cartScore.grade}
-              </div>
-              <div className="text-xs font-semibold text-gray-700 mb-0.5">
-                {cartScore.score}/{cartScore.maxScore} items
-              </div>
-              <div className="text-xs text-gray-600">
-                {cartScore.percentage}% accuracy
-              </div>
-            </div>
-          </div>
-        </div>
 
         {/* Details Section - Collapsible */}
         <details className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl p-6 mb-8">
           <summary className="flex items-center space-x-2 cursor-pointer list-none">
-            <ShoppingBag className="w-6 h-6 text-gray-600" />
-            <h2 className="text-xl font-semibold text-gray-800">View Details</h2>
+            <ShoppingBag className="size-5 text-gray-600" />
+            <h2 className="text-gray-800">View Details</h2>
             <div className="ml-auto text-gray-600">
               <svg className="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -140,7 +102,7 @@ export default function CheckoutPage() {
           
           <div className="space-y-6">
             {/* Progress bar */}
-            <div className="bg-white rounded-lg p-4 shadow-sm">
+            <div className="bg-white rounded-lg p-4 shadow-sm mt-8">
               <h3 className="text-lg font-semibold text-gray-800 mb-3">Progress Overview</h3>
               <div className="w-full bg-gray-200 rounded-full h-3 mb-2">
                 <div 
@@ -151,6 +113,46 @@ export default function CheckoutPage() {
               <p className="text-sm text-gray-600">
                 Perfect cart contains: Apples, Sugar, Salt, Butter, Flour, Cinnamon
               </p>
+            </div>
+
+            {/* Statistics Cards - 2 in a row */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Completion Time Card */}
+              <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4">
+                <div className="flex items-center justify-center space-x-2 mb-2">
+                  <Clock className="w-5 h-5 text-blue-600" />
+                  <h3 className="text-base font-bold text-gray-800">Completion Time</h3>
+                </div>
+                
+                <div className="text-center">
+                  <div className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent mb-1">
+                    {formattedDuration || 'N/A'}
+                  </div>
+                  <div className="text-xs text-gray-600">
+                    Time to assemble your cart
+                  </div>
+                </div>
+              </div>
+
+              {/* Cart Score Card */}
+              <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg p-4">
+                <div className="flex items-center justify-center space-x-2 mb-2">
+                  <Trophy className="w-5 h-5 text-yellow-600" />
+                  <h3 className="text-base font-bold text-gray-800">Cart Quality</h3>
+                </div>
+                
+                <div className="text-center">
+                  <div className="text-3xl font-bold bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent mb-1">
+                    {cartScore.grade}
+                  </div>
+                  <div className="text-xs font-semibold text-gray-700 mb-0.5">
+                    {cartScore.score}/{cartScore.maxScore} items
+                  </div>
+                  <div className="text-xs text-gray-600">
+                    {cartScore.percentage}% accuracy
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Cart Comparison */}
