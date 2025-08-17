@@ -9,10 +9,10 @@ export default function Home() {
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 min-h-screen flex flex-col">
+      <div className="relative z-10 min-h-screen flex flex-col pb-20">
         
         {/* Logo */}
-        <div className="p-8 -mb-20">
+        <div className="p-8 md:-mb-20">
           <img src="/logo.svg" alt="shop&cook" className="h-30 w-30 flex-shrink-0" />
         </div>
 
