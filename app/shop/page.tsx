@@ -8,7 +8,6 @@ import CartIcon from '../components/CartIcon';
 import CartPopup from '../components/CartPopup';
 import CartSidebar from '../components/CartSidebar';
 import ProductDisplay from '../components/ProductDisplay';
-import Timer from '../components/Timer';
 import ShoppingList from '../components/ShoppingList';
 import IntroModal from '../components/IntroModal';
 import catalogData from '../data/catalog.json';
