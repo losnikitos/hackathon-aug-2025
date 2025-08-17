@@ -94,9 +94,9 @@ export default function CheckoutPage() {
         </div>
 
         {/* Feedback Form Link - Prominent */}
-        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6 mb-8 border-2 border-purple-200">
+        <div className="bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl p-6 mb-8">
           <div className="text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-300 to-pink-300 rounded-full mb-4">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-emerald-300 to-green-300 rounded-full mb-4">
               <MessageSquare className="w-8 h-8 text-white" />
             </div>
             <h2 className="text-2xl font-bold text-gray-800 mb-3">
@@ -109,7 +109,7 @@ export default function CheckoutPage() {
               href="https://tally.so/r/mRNL0l"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
+              className="inline-flex items-center justify-center bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white font-semibold py-5 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
             >
               Share your feedback
             </a>
@@ -117,36 +117,36 @@ export default function CheckoutPage() {
         </div>
 
         {/* Statistics Cards - 2 in a row */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           {/* Completion Time Card */}
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 border-2 border-blue-200">
-            <div className="flex items-center justify-center space-x-2 mb-4">
-              <Clock className="w-6 h-6 text-blue-600" />
-              <h3 className="text-lg font-bold text-gray-800">Completion Time</h3>
+          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4">
+            <div className="flex items-center justify-center space-x-2 mb-2">
+              <Clock className="w-5 h-5 text-blue-600" />
+              <h3 className="text-base font-bold text-gray-800">Completion Time</h3>
             </div>
             
             <div className="text-center">
-              <div className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent mb-2">
+              <div className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent mb-1">
                 {completionTime}
               </div>
-              <div className="text-sm text-gray-600">
+              <div className="text-xs text-gray-600">
                 Time to assemble your cart
               </div>
             </div>
           </div>
 
           {/* Cart Score Card */}
-          <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-6 border-2 border-yellow-200">
-            <div className="flex items-center justify-center space-x-2 mb-4">
-              <Trophy className="w-6 h-6 text-yellow-600" />
-              <h3 className="text-lg font-bold text-gray-800">Cart Quality</h3>
+          <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg p-4">
+            <div className="flex items-center justify-center space-x-2 mb-2">
+              <Trophy className="w-5 h-5 text-yellow-600" />
+              <h3 className="text-base font-bold text-gray-800">Cart Quality</h3>
             </div>
             
             <div className="text-center">
-              <div className="text-4xl font-bold bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent mb-2">
+              <div className="text-3xl font-bold bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent mb-1">
                 {cartScore.grade}
               </div>
-              <div className="text-sm font-semibold text-gray-700 mb-1">
+              <div className="text-xs font-semibold text-gray-700 mb-0.5">
                 {cartScore.score}/{cartScore.maxScore} items
               </div>
               <div className="text-xs text-gray-600">
@@ -157,8 +157,8 @@ export default function CheckoutPage() {
         </div>
 
         {/* Details Section - Collapsible */}
-        <details className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl p-6 mb-8 border border-gray-200">
-          <summary className="flex items-center space-x-2 mb-6 cursor-pointer list-none">
+        <details className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl p-6 mb-8">
+          <summary className="flex items-center space-x-2 cursor-pointer list-none">
             <ShoppingBag className="w-6 h-6 text-gray-600" />
             <h2 className="text-xl font-semibold text-gray-800">View Details</h2>
             <div className="ml-auto text-gray-600">
