@@ -36,26 +36,23 @@ export default function IntroModal() {
         isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-30'
       }`}>
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-            Welcome to the Shop!
+        <div className="flex items-center justify-between p-6">
+          <h2 className="text-xl text-gray-900 dark:text-white">
+            Please buy all ingredients for an apple pie. Here&apos;s a shopping list:
           </h2>
           <button
             onClick={() => setIsOpen(false)}
             className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
           >
-            <X className="w-5 h-5" />
+            <X className="size-8" />
           </button>
         </div>
         
         {/* Content */}
-        <div className="p-6">
+        <div className="p-6 pt-0">
           <div className="mb-6">
-            <p className="text-gray-700 dark:text-gray-300 mb-4">
-              Please buy all ingredients for an apple pie. Here&apos;s a shopping list:
-            </p>
             
-            <div className="my-10 flex justify-center">
+            <div className="mb-10 flex justify-center">
               <Image
                 src="/shopping-list.png"
                 alt="Apple Pie Shopping List"

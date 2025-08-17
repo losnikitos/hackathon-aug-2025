@@ -230,16 +230,6 @@ export default function Chat() {
   // Intro messages component
   const IntroMessages = () => (
     <div className="space-y-4">
-      {/* Cook icon above messages */}
-      <div className="flex justify-center mb-6">
-        <Image 
-          src="/cook-2.png" 
-          alt="Chef" 
-          width={240} 
-          height={240}
-        />
-      </div>
-      
       {/* First intro message */}
       <div className="flex justify-start mb-4">
         <div className="max-w-[70%] px-4 py-2 rounded-lg bg-white shadow-md dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-bl-none">
@@ -263,7 +253,20 @@ export default function Chat() {
         </div>
       </div>
       
-      {/* Third intro message - Combined text and instant reply buttons */}
+      {/* Third intro message - Cook image in bubble */}
+      <div className="flex justify-start mb-4">
+        <div className="max-w-[70%] px-4 py-2 rounded-lg">
+          <Image 
+            src="/cook-2.png" 
+            alt="Chef" 
+            width={240} 
+            height={240}
+            className="rounded-lg"
+          />
+        </div>
+      </div>
+      
+      {/* Fourth intro message - Combined text and instant reply buttons */}
       <div className="flex justify-start mb-4">
         <div className="max-w-[70%] px-6 py-4 rounded-lg bg-white shadow-md dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-bl-none">
           <p className="text-sm mb-4">
@@ -271,9 +274,9 @@ export default function Chat() {
           </p>
           <div className="flex flex-wrap gap-4">
             {[
-              "What fruit do you have?",
-              "Please add sugar to cart",
-              "Remove butter",
+              // "What fruit do you have?",
+              // "Please add sugar to cart",
+              // "Remove butter",
               "Add everything for an apple pie",
             ].map((option, index) => (
               <button
@@ -308,7 +311,7 @@ export default function Chat() {
               </Link>
               <div>
                 <h1 className="text-lg font-semibold text-gray-900 dark:text-white">
-                  Chat Assistant
+                  AI Chat Assistant
                 </h1>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   Ask me anything!
