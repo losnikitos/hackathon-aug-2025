@@ -34,11 +34,11 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([
-    { itemId: 1, quantity: 2 },  // Fresh Eggs (12 pcs)
-    { itemId: 2, quantity: 1 },  // All-Purpose Flour
-    { itemId: 3, quantity: 1 },  // White Sugar
-    { itemId: 4, quantity: 1 },  // Apples Gala
-    { itemId: 5, quantity: 1 }   // Cinnamon Powder
+    // { itemId: 1, quantity: 2 },  // Fresh Eggs (12 pcs)
+    // { itemId: 2, quantity: 1 },  // All-Purpose Flour
+    // { itemId: 3, quantity: 1 },  // White Sugar
+    // { itemId: 4, quantity: 1 },  // Apples Gala
+    // { itemId: 5, quantity: 1 }   // Cinnamon Powder
   ]);
 
   const addToCart = (itemId: number, quantity = 1) => {

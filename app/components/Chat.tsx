@@ -240,8 +240,7 @@ export default function Chat() {
           src="/cook-2.png" 
           alt="Chef" 
           width={240} 
-          height={240} 
-          className="rounded-full"
+          height={240}
         />
       </div>
       
@@ -277,9 +276,9 @@ export default function Chat() {
           <div className="flex flex-wrap gap-4">
             {[
               "What fruit do you have?",
-              "How much are eggs",
               "Please add sugar to cart",
-              "Remove butter"
+              "Remove butter",
+              "Add everything for an apple pie",
             ].map((option, index) => (
               <button
                 key={index}
@@ -321,12 +320,6 @@ export default function Chat() {
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <Link 
-                href="/shop"
-                className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors duration-200"
-              >
-                <span className="text-sm font-medium">Shop Mode</span>
-              </Link>
               {/* Timer - visible on all screen sizes */}
               <Timer />
               {/* Show cart icon only on small screens */}

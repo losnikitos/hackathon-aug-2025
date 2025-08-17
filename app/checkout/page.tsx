@@ -7,7 +7,7 @@ import { sendGAEvent } from '@next/third-parties/google';
 import { CheckCircle, Clock, ShoppingBag, ArrowLeft, Star, Trophy } from 'lucide-react';
 
 // Perfect cart items (apples, sugar, salt, butter, flour, cinnamon)
-const PERFECT_CART_IDS = [1, 4, 3, 6, 7, 2, 5];
+const PERFECT_CART_IDS = [1, 4, 3, 8, 7, 2, 5];
 
 // Calculate cart score based on matching items
 function calculateCartScore(cartItemIds: number[]): { score: number; maxScore: number; percentage: number; grade: string } {
@@ -170,11 +170,16 @@ export default function CheckoutPage() {
         </div>
 
         {/* Cart Comparison */}
-        <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 mb-8">
-          <div className="flex items-center space-x-2 mb-6">
+        <details className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 mb-8">
+          <summary className="flex items-center space-x-2 mb-6 cursor-pointer list-none">
             <ShoppingBag className="w-6 h-6 text-blue-600" />
             <h2 className="text-2xl font-semibold text-gray-800">Cart Comparison</h2>
-          </div>
+            <div className="ml-auto text-blue-600">
+              <svg className="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </summary>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Assembled Cart */}
@@ -283,7 +288,7 @@ export default function CheckoutPage() {
               </div>
             </div>
           </div>
-        </div>
+        </details>
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">

@@ -2,14 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ShoppingCart, Search, Filter } from 'lucide-react';
+import { Search, Filter } from 'lucide-react';
 import CartIcon from '../components/CartIcon';
 import CartPopup from '../components/CartPopup';
 import CartSidebar from '../components/CartSidebar';
 import ProductDisplay from '../components/ProductDisplay';
 import Timer from '../components/Timer';
 import ShoppingList from '../components/ShoppingList';
-import { useCart } from '../contexts/CartContext';
+import IntroModal from '../components/IntroModal';
 import catalogData from '../data/catalog.json';
 
 // Extract unique categories from catalog data
@@ -19,7 +19,6 @@ export default function ShopPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchTerm, setSearchTerm] = useState('');
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const { items, uniqueItems, addToCart } = useCart();
 
   // Set session start time when user opens /shop page (same as chat page)
   useEffect(() => {
@@ -66,12 +65,6 @@ export default function ShopPage() {
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <Link 
-                href="/chat"
-                className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors duration-200"
-              >
-                <span className="text-sm font-medium">Chat Mode</span>
-              </Link>
               {/* Timer - visible on all screen sizes */}
               <Timer />
               {/* Show cart icon only on small screens */}
@@ -205,6 +198,9 @@ export default function ShopPage() {
       
       {/* Shopping List Component */}
       <ShoppingList />
+      
+      {/* Intro Modal */}
+      <IntroModal />
     </div>
   );
 }
