@@ -94,7 +94,11 @@ export default function Home() {
               Your new way<br/>to shop is here ❤️
               </h1>
               <p className="text-xl md:text-2xl max-w-3xl mx-auto tracking-tight">
-              Be the first to try it and help us turn this early version into something great.
+              Grab all ingredients for today’s special: apple pie!
+              <br/> <br/>
+              Be the first to try our pilot AI Conversational Shopping Assistant and help us shape this early version into something great.
+              <br/> <br/>
+              Start with the traditional online shopping experience ⬇️
               </p>
             </div>
 
