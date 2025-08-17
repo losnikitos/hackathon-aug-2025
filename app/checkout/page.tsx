@@ -53,8 +53,8 @@ export default function CheckoutPage() {
       console.log('Checkout: Calculated completion time:', calculatedTime);
       setCompletionTime(calculatedTime);
       
-      // Track checkout event
-      trackCheckout(calculatedTime, cartScore.score, cartScore.maxScore, cartScore.percentage, cartScore.grade, items.length, totalPrice);
+      // Track checkout event with duration in milliseconds
+      trackCheckout(calculatedTime, timeDiff, cartScore.score, cartScore.maxScore, cartScore.percentage, cartScore.grade, items.length, totalPrice);
       
       // Clear the stored start time
       localStorage.removeItem('chatSessionStartTime');
@@ -64,8 +64,8 @@ export default function CheckoutPage() {
       console.log('Checkout: No start time found, using fallback');
       setCompletionTime('0min 0s');
       
-      // Track checkout event with fallback time
-      trackCheckout('0min 0s', cartScore.score, cartScore.maxScore, cartScore.percentage, cartScore.grade, items.length, totalPrice);
+      // Track checkout event with fallback time and 0ms duration
+      trackCheckout('0min 0s', 0, cartScore.score, cartScore.maxScore, cartScore.percentage, cartScore.grade, items.length, totalPrice);
     }
 
     // Add a small delay for animation effect

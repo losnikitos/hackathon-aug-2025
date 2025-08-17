@@ -65,9 +65,10 @@ export const trackUpdateCartQuantity = (itemId: number, itemName: string, oldQua
   trackEvent('update_cart_quantity', parameters);
 };
 
-export const trackCheckout = (timeTaken: string, cartScore: number, cartMaxScore: number, cartPercentage: number, cartGrade: string, totalItems: number, totalPrice: number) => {
+export const trackCheckout = (timeTaken: string, durationMs: number, cartScore: number, cartMaxScore: number, cartPercentage: number, cartGrade: string, totalItems: number, totalPrice: number) => {
   const parameters = {
     time_taken: timeTaken,
+    duration_ms: durationMs,
     cart_score: cartScore,
     cart_max_score: cartMaxScore,
     cart_percentage: cartPercentage,
