@@ -30,7 +30,11 @@ function getSystemPrompt() {
 
   When customers ask about product product sets, proactively add them to the cart.
 
-  When customers ask about item details, availability, categegories, call showProducts tool.
+  When customers ask about item price, call showProducts tool.
+  
+  After adding everything needed for a recipe (such as when you've added all ingredients for an apple pie), use the suggestMoreOptions tool to provide helpful suggestions for what the user might want to do next. This tool will return 3 suggested commands that the user can try.
+  
+  You can also use the suggestMoreOptions tool when users ask general questions like "what you can do?", "what are my options?", "help me", or similar requests for guidance. This helps users discover the available features and commands.
   `;
 }
 

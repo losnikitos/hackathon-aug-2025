@@ -20,6 +20,8 @@ import {
   UpdateCartQuantityInput, 
   ShowProductsInput,
   ShowProductsResult,
+  SuggestMoreOptionsInput,
+  SuggestMoreOptionsResult,
   CartSummary,
   CartItemInfo
 } from '../types/tools';
@@ -206,6 +208,28 @@ export default function Chat() {
           });
           break;
         }
+        
+        case 'suggestMoreOptions': {
+          const input = toolCall.input as SuggestMoreOptionsInput;
+          
+          const suggestions = [
+            "How much are oranges?",
+            "Please add sugar to cart",
+            "Remove butter"
+          ];
+          
+          const result: SuggestMoreOptionsResult = {
+            suggestions,
+            message: "Here are a few things you can to try:"
+          };
+          
+          addToolResult({
+            tool: 'suggestMoreOptions',
+            toolCallId: toolCall.toolCallId,
+            output: result,
+          });
+          break;
+        }
       }
     },
   });
@@ -335,7 +359,11 @@ export default function Chat() {
           
           {/* Show actual chat messages */}
           {messages.map((message) => (
-            <ChatMessage key={message.id} message={message} />
+            <ChatMessage 
+              key={message.id} 
+              message={message} 
+              onSuggestionClick={sendUserMessage}
+            />
           ))}
           <div ref={messagesEndRef} />
         </div>

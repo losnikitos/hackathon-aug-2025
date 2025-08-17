@@ -23,12 +23,15 @@ export const showProductsSchema = z.object({
   limit: z.number().optional().describe('Maximum number of products to show (defaults to 10)')
 });
 
+export const suggestMoreOptionsSchema = z.object({});
+
 // Tool input types
 export type AddToCartInput = z.infer<typeof addToCartSchema>;
 export type RemoveFromCartInput = z.infer<typeof removeFromCartSchema>;
 export type UpdateCartQuantityInput = z.infer<typeof updateCartQuantitySchema>;
 export type GetCartInfoInput = z.infer<typeof getCartInfoSchema>;
 export type ShowProductsInput = z.infer<typeof showProductsSchema>;
+export type SuggestMoreOptionsInput = z.infer<typeof suggestMoreOptionsSchema>;
 
 // Cart item type for getCartInfo output
 export interface CartItemInfo {
@@ -63,6 +66,11 @@ export interface ShowProductsResult {
   searchTerm?: string;
 }
 
+export interface SuggestMoreOptionsResult {
+  suggestions: string[];
+  message: string;
+}
+
 // Structured output types for cart operations
 export interface CartOperationResult {
   itemId: number;
@@ -79,6 +87,7 @@ export type RemoveFromCartOutput = CartOperationResult;
 export type UpdateCartQuantityOutput = CartOperationResult;
 export type GetCartInfoOutput = CartSummary; // No longer stringified
 export type ShowProductsOutput = ShowProductsResult;
+export type SuggestMoreOptionsOutput = SuggestMoreOptionsResult;
 
 // Tool definitions for the AI SDK
 export const cartTools = {
@@ -105,6 +114,11 @@ export const cartTools = {
   showProducts: {
     description: 'Show product options without adding them to cart. Use when user asks about options, alternatives, or wants to browse products without committing to purchase.',
     inputSchema: showProductsSchema
+  },
+
+  suggestMoreOptions: {
+    description: 'Suggest additional options or next steps when the cart has 3 or more items. Use this to provide helpful suggestions for what the user might want to do next.',
+    inputSchema: suggestMoreOptionsSchema
   }
 } as const;
 

@@ -11,9 +11,6 @@ export default function ProductOptionsDisplay({ result }: ProductOptionsDisplayP
     if (result.category) {
       parts.push(`Category: ${result.category}`);
     }
-    if (result.searchTerm) {
-      parts.push(`Search: &ldquo;${result.searchTerm}&rdquo;`);
-    }
     parts.push(`Found ${result.totalFound} product${result.totalFound !== 1 ? 's' : ''}`);
     return parts.join(' • ');
   };

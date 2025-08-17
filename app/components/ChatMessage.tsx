@@ -1,17 +1,19 @@
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Components } from 'react-markdown';
-import { CartToolName, CartOperationResult, ShowProductsResult } from '../types/tools';
+import { CartToolName, CartOperationResult, ShowProductsResult, SuggestMoreOptionsResult } from '../types/tools';
 import { UIMessage } from 'ai';
 import CartOperationResultComponent from './CartOperationResult';
 import CartInfoDisplay from './CartInfoDisplay';
 import ProductOptionsDisplay from './ProductOptionsDisplay';
+import SuggestionsDisplay from './SuggestionsDisplay';
 
 interface ChatMessageProps {
   message: UIMessage;
+  onSuggestionClick?: (suggestion: string) => void;
 }
 
-export default function ChatMessage({ message }: ChatMessageProps) {
+export default function ChatMessage({ message, onSuggestionClick }: ChatMessageProps) {
   const isUser = message.role === 'user';
   
   const renderPart = (part: UIMessage['parts'][0], index: number) => {
@@ -36,7 +38,8 @@ export default function ChatMessage({ message }: ChatMessageProps) {
       case 'tool-removeFromCart':
       case 'tool-updateCartQuantity':
       case 'tool-getCartInfo':
-      case 'tool-showProducts': {
+      case 'tool-showProducts':
+      case 'tool-suggestMoreOptions': {
         const toolName = part.type.replace('tool-', '') as CartToolName;
         const callId = part.toolCallId;
         
@@ -62,6 +65,11 @@ export default function ChatMessage({ message }: ChatMessageProps) {
                   <CartInfoDisplay />
                 ) : toolName === 'showProducts' ? (
                   <ProductOptionsDisplay result={part.output as ShowProductsResult} />
+                ) : toolName === 'suggestMoreOptions' ? (
+                  <SuggestionsDisplay 
+                    result={part.output as SuggestMoreOptionsResult} 
+                    onSuggestionClick={onSuggestionClick}
+                  />
                 ) : (
                   <CartOperationResultComponent 
                     result={part.output as CartOperationResult}
