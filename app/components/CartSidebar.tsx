@@ -75,7 +75,7 @@ export default function CartSidebar() {
           </div>
           <Link
             href="/checkout"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors text-center block"
+            className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-medium py-2 px-4 rounded-lg transition-colors text-center block"
           >
             Checkout
           </Link>

@@ -29,6 +29,8 @@ function getSystemPrompt() {
   Don't answer questions that are not related to the catalog or the shopping cart.
 
   When customers ask about product product sets, proactively add them to the cart.
+
+  When customers ask about item details, availability, categegories, call showProducts tool.
   `;
 }
 

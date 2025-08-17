@@ -247,19 +247,49 @@ export default function Chat() {
       
       {/* First intro message */}
       <div className="flex justify-start mb-4">
-        <div className="max-w-[70%] px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-bl-none">
+        <div className="max-w-[70%] px-4 py-2 rounded-lg bg-white shadow-md dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-bl-none">
           <p className="text-sm">
-            Tell me what you want and I&apos;ll make it for you! I can add and remove items in cart, suggest items from catalog, and help you find the perfect ingredients for any recipe.
+            Hi there!<br />
+            Today&apos;s special is your next apple pie.
           </p>
         </div>
       </div>
       
-      {/* Second intro message */}
+      {/* Second intro message - Shopping list image */}
       <div className="flex justify-start mb-4">
-        <div className="max-w-[70%] px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-bl-none">
-          <p className="text-sm">
-            How about we start with an apple pie? You&apos;ll need apples, flour, sugar, butter, cinnamon, and eggs. I can help you add these ingredients to your cart!
+        <div className="max-w-[70%] px-4 py-2 rounded-lg bg-white shadow-md dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-bl-none">
+          <Image
+            src="/shopping-list.png"
+            alt="Shopping List"
+            width={200}
+            height={200}
+            className="rounded-lg"
+          />
+        </div>
+      </div>
+      
+      {/* Third intro message - Combined text and instant reply buttons */}
+      <div className="flex justify-start mb-4">
+        <div className="max-w-[70%] px-6 py-4 rounded-lg bg-white shadow-md dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-bl-none">
+          <p className="text-sm mb-4">
+            Try asking me things like...
           </p>
+          <div className="flex flex-wrap gap-4">
+            {[
+              "What fruit do you have?",
+              "How much are eggs",
+              "Please add sugar to cart",
+              "Remove butter"
+            ].map((option, index) => (
+              <button
+                key={index}
+                onClick={() => sendUserMessage(option)}
+                className="px-6 py-3 text-sm bg-blue-500 hover:bg-blue-600 text-white rounded-full transition-colors duration-200"
+              >
+                {option}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -309,13 +339,13 @@ export default function Chat() {
 
         {/* Messages */}
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
-          {messages.length === 0 ? (
-            <IntroMessages />
-          ) : (
-            messages.map((message) => (
-              <ChatMessage key={message.id} message={message} />
-            ))
-          )}
+          {/* Always show intro messages at the top */}
+          <IntroMessages />
+          
+          {/* Show actual chat messages */}
+          {messages.map((message) => (
+            <ChatMessage key={message.id} message={message} />
+          ))}
           <div ref={messagesEndRef} />
         </div>
 

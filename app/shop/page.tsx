@@ -38,7 +38,7 @@ export default function ShopPage() {
       product.description.toLowerCase().includes(searchTerm.toLowerCase());
     
     return matchesCategory && matchesSearch;
-  });
+  }).sort((a, b) => a.name.localeCompare(b.name)); // Sort alphabetically by name
 
   return (
     <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
