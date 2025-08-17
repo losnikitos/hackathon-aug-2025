@@ -2,13 +2,11 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { ShoppingCart, CreditCard } from 'lucide-react';
 import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
 import CartIcon from './CartIcon';
 import CartPopup from './CartPopup';
 import CartSidebar from './CartSidebar';
-import Timer from './Timer';
 import { useChat } from '@ai-sdk/react';
 import { lastAssistantMessageIsCompleteWithToolCalls } from 'ai';
 import { useCart } from '../contexts/CartContext';
@@ -220,7 +218,7 @@ export default function Chat() {
           
           const result: SuggestMoreOptionsResult = {
             suggestions,
-            message: "Here are a few things you can to try:"
+            message: "Here are a few things you can try:"
           };
           
           addToolResult({
