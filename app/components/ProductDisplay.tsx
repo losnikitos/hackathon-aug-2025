@@ -2,6 +2,7 @@ import { ProductDisplay as ProductDisplayType } from "../types/tools";
 import { Check, X } from "lucide-react";
 import CartItemControls from "./CartItemControls";
 import { useCart } from "../contexts/CartContext";
+import Image from "next/image";
 
 interface ProductDisplayProps {
   product: ProductDisplayType;
@@ -36,10 +37,12 @@ export default function ProductDisplay({
         </div>
       )}
 
-      <img
+      <Image
         src={product.image}
         alt={product.name}
         className="square object-cover w-32 h-32 rounded-lg"
+        width={128}
+        height={128}
         onError={(e) => {
           const target = e.target as HTMLImageElement;
           target.style.display = 'none';

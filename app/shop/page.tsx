@@ -8,6 +8,7 @@ import CartPopup from '../components/CartPopup';
 import CartSidebar from '../components/CartSidebar';
 import ProductDisplay from '../components/ProductDisplay';
 import Timer from '../components/Timer';
+import ShoppingList from '../components/ShoppingList';
 import { useCart } from '../contexts/CartContext';
 import catalogData from '../data/catalog.json';
 
@@ -201,6 +202,9 @@ export default function ShopPage() {
         isOpen={isCartOpen}
         onClose={() => setIsCartOpen(false)}
       />
+      
+      {/* Shopping List Component */}
+      <ShoppingList />
     </div>
   );
 }
