@@ -119,7 +119,7 @@ export default function CheckoutPage() {
         {/* Statistics Cards - 2 in a row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           {/* Completion Time Card */}
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4">
+          {/* <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4">
             <div className="flex items-center justify-center space-x-2 mb-2">
               <Clock className="w-5 h-5 text-blue-600" />
               <h3 className="text-base font-bold text-gray-800">Completion Time</h3>
@@ -133,10 +133,10 @@ export default function CheckoutPage() {
                 Time to assemble your cart
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Cart Score Card */}
-          <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg p-4">
+          {/* <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg p-4">
             <div className="flex items-center justify-center space-x-2 mb-2">
               <Trophy className="w-5 h-5 text-yellow-600" />
               <h3 className="text-base font-bold text-gray-800">Cart Quality</h3>
@@ -153,7 +153,7 @@ export default function CheckoutPage() {
                 {cartScore.percentage}% accuracy
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Details Section - Collapsible */}
