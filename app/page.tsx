@@ -1,25 +1,18 @@
 import Link from 'next/link';
 import { ArrowRight, MessageCircle, ShoppingCart } from 'lucide-react';
-import Cook from './components/Cook';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white relative overflow-hidden">
-      {/* Background wavy shapes */}
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 relative overflow-hidden">
+      {/* Background decorative elements */}
       <div className="absolute top-0 left-0 w-full h-full">
         {/* Top-left light blue wavy shape */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-blue-300 rounded-full opacity-80 blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute top-20 left-20 w-80 h-80 bg-blue-400 rounded-full opacity-60 blur-3xl transform -translate-x-1/3 -translate-y-1/3"></div>
-        <div className="absolute top-40 left-40 w-64 h-64 bg-blue-500 rounded-full opacity-40 blur-3xl transform -translate-x-1/4 -translate-y-1/4"></div>
+        <div className="absolute top-0 left-0 w-96 h-96 bg-blue-300 rounded-full opacity-60 blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute top-20 left-20 w-80 h-80 bg-blue-400 rounded-full opacity-40 blur-3xl transform -translate-x-1/3 -translate-y-1/3"></div>
         
-        {/* Bottom darker blue wavy shape */}
-        <div className="absolute bottom-0 right-0 w-full h-96 bg-blue-200 opacity-80 blur-3xl transform translate-x-1/4 translate-y-1/4 rounded-tl-full"></div>
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-blue-300 opacity-60 blur-3xl rounded-full"></div>
-        <div className="absolute bottom-20 right-20 w-80 h-80 bg-blue-400 opacity-50 blur-3xl rounded-full"></div>
-        
-        {/* Additional depth layers */}
-        <div className="absolute top-1/2 left-1/4 w-72 h-72 bg-blue-200 opacity-70 blur-3xl rounded-full transform -translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute top-1/3 right-1/3 w-64 h-64 bg-blue-300 opacity-60 blur-3xl rounded-full"></div>
+        {/* Bottom right decorative elements */}
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-200 opacity-50 blur-3xl transform translate-x-1/4 translate-y-1/4 rounded-tl-full"></div>
+        <div className="absolute bottom-10 right-10 w-80 h-80 bg-indigo-300 opacity-40 blur-3xl rounded-full"></div>
       </div>
 
       {/* Main content */}
@@ -32,75 +25,83 @@ export default function Home() {
               <img src="/logo.svg" alt="shop&cook" className="h-30 w-30 flex-shrink-0" />
             </div>
             <div className="ml-6">
-              <p className="text-sm leading-relaxed">
+              <p className="text-sm leading-relaxed text-gray-700">
                 Your new way to shop is here ❤️
               </p>
-              <p className="text-sm leading-relaxed">
+              <p className="text-sm leading-relaxed text-gray-600">
                 Be the first to try it and help us turn this early version into something great.
               </p>
             </div>
           </div>
         </header>
 
-        {/* Main content area */}
-        <main className="flex-1 flex items-center justify-center px-8">
-          <div className="max-w-6xl w-full grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left side - Orange figure and call to action */}
-            <div className="relative">
-              <Cook />
+        {/* Main content area with blue blob */}
+        <main className="flex-1 flex items-center justify-center px-8 relative">
+          {/* Blue blob SVG background */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <svg width="1203" height="862" viewBox="0 0 1203 862" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-4xl h-auto opacity-90">
+              <path d="M1202.44 396.851C1202.44 469.658 1191.13 532.557 1168.52 587.646C1145.98 642.704 1116.55 689.935 1080.25 728.791C1043.9 767.582 1002.01 798.338 954.424 819.638C906.838 840.89 858.122 853.347 808.261 856.026C665.454 863.723 522.309 863.448 379.519 855.17C261.756 848.296 169.214 804.567 101.7 735.778C34.1373 666.44 0.541527 576.69 0.525391 461.751C0.525391 388.992 11.8047 326.383 34.3955 271.956C57.0025 217.657 86.4512 170.959 122.726 132.49C159.048 94.0528 200.954 63.4907 248.557 42.1907C296.11 20.9554 344.487 8.53038 393.606 5.86789C536.412 -1.87754 679.574 -1.63547 822.364 6.59405C941.547 13.5327 1034.59 57.1975 1101.8 125.567C1168.97 194.518 1202.44 283.332 1202.44 396.851Z" fill="url(#blueGradient)"/>
+              <defs>
+                <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.9"/>
+                  <stop offset="50%" stopColor="#1D4ED8" stopOpacity="0.8"/>
+                  <stop offset="100%" stopColor="#1E40AF" stopOpacity="0.7"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+
+          {/* Content overlay on the blob */}
+          <div className="relative z-20 max-w-4xl w-full text-center">
+            {/* Main heading and description */}
+            <div className="mb-12 text-white">
+              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                All the best spots in town are in Le Off
+              </h1>
+              <p className="text-xl md:text-2xl leading-relaxed max-w-3xl mx-auto opacity-95">
+                Across every corner of the capital, enthusiasts of fine bottles will find unique spots to suit every taste and budget, leaving with a smile on their face and the certainty of having experienced the very best that Paris has to offer.
+              </p>
             </div>
 
-            {/* Right side - Shopping options */}
-            <div className="space-y-8">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-light text-gray-900">Choose Your Shopping Experience</h2>
-                <p className="text-gray-400 text-lg leading-relaxed">
-                  Discover products your way - browse traditionally or chat with AI
-                </p>
-              </div>
-              
-              {/* Shopping options */}
-              <div className="space-y-6 relative z-2 mb-10">
-                {/* Traditional Shop Button */}
-                <Link 
-                  href="/shop"
-                  className="block w-full bg-white hover:border-blue-300 rounded-2xl p-6 transition-all duration-300 shadow-lg group relative overflow-hidden"
-                >
-                  {/* Blue shine animation */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:animate-shine-blue"></div>
-                  <div className="flex items-center space-x-4 relative z-10">
-                    <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-blue-200 transition-colors">
-                      <ShoppingCart className="w-6 h-6 text-blue-600" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-medium text-gray-900">Traditional Shop</h3>
-                      <p className="text-gray-400 text-sm">Browse our catalog with familiar e-commerce interface</p>
-                    </div>
-                    <div className="text-blue-500 group-hover:translate-x-1 transition-transform">
-                      <ArrowRight className="w-5 h-5" />
-                    </div>
+            {/* Shopping options */}
+            <div className="space-y-6 max-w-2xl mx-auto">
+              {/* Traditional Shop Button */}
+              <Link 
+                href="/shop"
+                className="block w-full bg-white/95 backdrop-blur-sm hover:bg-white rounded-2xl p-6 transition-all duration-300 shadow-xl group relative overflow-hidden border border-white/20"
+              >
+                <div className="flex items-center space-x-4 relative z-10">
+                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                    <ShoppingCart className="w-6 h-6 text-blue-600" />
                   </div>
-                </Link>
+                  <div className="flex-1 text-left">
+                    <h3 className="text-xl font-medium text-gray-900">Traditional Shop</h3>
+                    <p className="text-gray-600 text-sm">Browse our catalog with familiar e-commerce interface</p>
+                  </div>
+                  <div className="text-blue-500 group-hover:translate-x-1 transition-transform">
+                    <ArrowRight className="w-5 h-5" />
+                  </div>
+                </div>
+              </Link>
 
-                {/* AI Chat Button */}
-                <Link 
-                  href="/chat"
-                  className="block w-full bg-white hover:border-orange-300 rounded-2xl p-6 transition-all duration-300 shadow-lg group relative overflow-hidden"
-                >
-                  <div className="flex items-center space-x-4 relative z-10">
-                    <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center group-hover:bg-orange-200 transition-colors">
-                      <MessageCircle className="w-6 h-6 text-orange-600" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-medium text-gray-900">AI Chat Assistant</h3>
-                      <p className="text-gray-400 text-sm">Chat with AI to discover products and get recommendations</p>
-                    </div>
-                    <div className="text-orange-500 group-hover:translate-x-1 transition-transform">
-                      <ArrowRight className="w-5 h-5" />
-                    </div>
+              {/* AI Chat Button */}
+              <Link 
+                href="/chat"
+                className="block w-full bg-white/95 backdrop-blur-sm hover:bg-white rounded-2xl p-6 transition-all duration-300 shadow-xl group relative overflow-hidden border border-white/20"
+              >
+                <div className="flex items-center space-x-4 relative z-10">
+                  <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center group-hover:bg-orange-200 transition-colors">
+                    <MessageCircle className="w-6 h-6 text-orange-600" />
                   </div>
-                </Link>
-              </div>
+                  <div className="flex-1 text-left">
+                    <h3 className="text-xl font-medium text-gray-900">AI Chat Assistant</h3>
+                    <p className="text-gray-600 text-sm">Chat with AI to discover products and get recommendations</p>
+                  </div>
+                  <div className="text-orange-500 group-hover:translate-x-1 transition-transform">
+                    <ArrowRight className="w-5 h-5" />
+                  </div>
+                </div>
+              </Link>
             </div>
           </div>
         </main>
@@ -116,7 +117,7 @@ export default function Home() {
 
         {/* Footer */}
         <footer className="absolute bottom-4 left-8">
-          <p className="text-gray-400 text-xs">© All rights reserved</p>
+          <p className="text-gray-500 text-xs">© All rights reserved</p>
         </footer>
       </div>
     </div>

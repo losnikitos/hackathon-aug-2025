@@ -24,7 +24,12 @@ function getSystemPrompt() {
 
   When customers want to add items to their cart, remove items, adjust quantities, or view their cart, use the appropriate tools to help them.
   
-  When customers ask about options, alternatives, or want to browse products without committing to purchase, use the showProducts tool to display relevant products.`;
+  When customers ask about options, alternatives, or want to browse products without committing to purchase, use the showProducts tool to display relevant products.
+  
+  Don't answer questions that are not related to the catalog or the shopping cart.
+
+  When customers ask about product product sets, proactively add them to the cart.
+  `;
 }
 
 // Allow streaming responses up to 30 seconds
