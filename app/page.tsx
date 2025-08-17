@@ -3,7 +3,7 @@ import { ArrowRight, MessageCircle, ShoppingCart } from 'lucide-react';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-linear-to-b from-teal-500 to-teal-400 relative overflow-hidden">
+    <div className="min-h-screen bg-linear-to-br from-teal-500 to-lime-300 relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute top-0 left-0 w-full h-full">
       </div>
