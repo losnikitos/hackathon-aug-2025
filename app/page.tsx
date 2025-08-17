@@ -3,51 +3,86 @@ import { ArrowRight, MessageCircle, ShoppingCart } from 'lucide-react';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 relative overflow-hidden">
+    <div className="min-h-screen bg-linear-to-b from-teal-500 to-teal-400 relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute top-0 left-0 w-full h-full">
-        {/* Top-left light blue wavy shape */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-blue-300 rounded-full opacity-60 blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute top-20 left-20 w-80 h-80 bg-blue-400 rounded-full opacity-40 blur-3xl transform -translate-x-1/3 -translate-y-1/3"></div>
-        
-        {/* Bottom right decorative elements */}
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-200 opacity-50 blur-3xl transform translate-x-1/4 translate-y-1/4 rounded-tl-full"></div>
-        <div className="absolute bottom-10 right-10 w-80 h-80 bg-indigo-300 opacity-40 blur-3xl rounded-full"></div>
       </div>
 
       {/* Main content */}
       <div className="relative z-10 min-h-screen flex flex-col">
-        {/* Header */}
-        <header className="flex justify-between items-start p-8">
-          {/* Logo and slogan */}
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center">
-              <img src="/logo.svg" alt="shop&cook" className="h-30 w-30 flex-shrink-0" />
-            </div>
-            <div className="ml-6">
-              <p className="text-sm leading-relaxed text-gray-700">
-                Your new way to shop is here ❤️
-              </p>
-              <p className="text-sm leading-relaxed text-gray-600">
-                Be the first to try it and help us turn this early version into something great.
-              </p>
-            </div>
-          </div>
-        </header>
+        
+        {/* Logo */}
+        <div className="p-8 -mb-20">
+          <img src="/logo.svg" alt="shop&cook" className="h-30 w-30 flex-shrink-0" />
+        </div>
 
         {/* Main content area with blue blob */}
         <main className="flex-1 flex items-center justify-center px-8 relative">
-          {/* Blue blob SVG background */}
+          {/* Decorative images around the blob */}
           <div className="absolute inset-0 flex items-center justify-center">
+            {/* Top left - Apple */}
+            <div className="absolute top-15 left-10 w-24 h-24 transform -rotate-12">
+              <img src="/decor/apple.png" alt="Apple" className="w-full h-full object-contain" />
+            </div>
+            
+            {/* Top right - Grape */}
+            <div className="absolute top-8 right-16 w-32 h-32 transform rotate-6">
+              <img src="/decor/grape.png" alt="Grape" className="w-full h-full object-contain" />
+            </div>
+            
+            {/* Bottom left - Avocado */}
+            <div className="absolute bottom-12 left-8 w-28 h-28 transform -rotate-8">
+              <img src="/decor/avocado.png" alt="Avocado" className="w-full h-full object-contain" />
+            </div>
+            
+            {/* Bottom right - Broccoli */}
+            <div className="absolute bottom-8 right-12 w-30 h-30 transform rotate-12">
+              <img src="/decor/brocoli.png" alt="Broccoli" className="w-full h-full object-contain" />
+            </div>
+            
+            {/* Left middle - Carrot */}
+            <div className="absolute left-4 top-1/2 transform -translate-y-1/2 -rotate-15 w-20 h-20">
+              <img src="/decor/carrot.png" alt="Carrot" className="w-full h-full object-contain" />
+            </div>
+            
+            {/* Right middle - Lemon */}
+            <div className="absolute right-6 top-1/2 transform -translate-y-1/2 rotate-15 w-18 h-18">
+              <img src="/decor/lemon.png" alt="Lemon" className="w-full h-full object-contain" />
+            </div>
+            
+            {/* Top middle - Pear */}
+            <div className="absolute top-4 left-1/2 transform -translate-x-1/2 -rotate-6 w-26 h-26">
+              <img src="/decor/pear.png" alt="Pear" className="w-full h-full object-contain" />
+            </div>
+            
+            {/* Bottom middle - Plum */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 rotate-8 w-24 h-24">
+              <img src="/decor/plum.png" alt="Plum" className="w-full h-full object-contain" />
+            </div>
+            
+            {/* Additional smaller items */}
+            <div className="absolute top-1/4 left-1/4 w-16 h-16 transform rotate-45">
+              <img src="/decor/milkbottle.png" alt="Milk bottle" className="w-full h-full object-contain" />
+            </div>
+            
+            <div className="absolute top-1/4 right-1/4 w-14 h-14 transform -rotate-30">
+              <img src="/decor/bottle.png" alt="Bottle" className="w-full h-full object-contain" />
+            </div>
+            
+            <div className="absolute bottom-1/4 left-1/3 w-12 h-12 transform rotate-20">
+              <img src="/decor/bottle water.png" alt="Water bottle" className="w-full h-full object-contain" />
+            </div>
+            
+            <div className="absolute bottom-1/4 right-1/3 w-16 h-16 transform -rotate-25">
+              <img src="/decor/cold drink.png" alt="Cold drink" className="w-full h-full object-contain" />
+            </div>
+          </div>
+
+          {/* Blue blob SVG background */}
+          <div className="absolute inset-0 flex items-center justify-center -rotate-20">
             <svg width="1203" height="862" viewBox="0 0 1203 862" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-4xl h-auto opacity-90">
-              <path d="M1202.44 396.851C1202.44 469.658 1191.13 532.557 1168.52 587.646C1145.98 642.704 1116.55 689.935 1080.25 728.791C1043.9 767.582 1002.01 798.338 954.424 819.638C906.838 840.89 858.122 853.347 808.261 856.026C665.454 863.723 522.309 863.448 379.519 855.17C261.756 848.296 169.214 804.567 101.7 735.778C34.1373 666.44 0.541527 576.69 0.525391 461.751C0.525391 388.992 11.8047 326.383 34.3955 271.956C57.0025 217.657 86.4512 170.959 122.726 132.49C159.048 94.0528 200.954 63.4907 248.557 42.1907C296.11 20.9554 344.487 8.53038 393.606 5.86789C536.412 -1.87754 679.574 -1.63547 822.364 6.59405C941.547 13.5327 1034.59 57.1975 1101.8 125.567C1168.97 194.518 1202.44 283.332 1202.44 396.851Z" fill="url(#blueGradient)"/>
-              <defs>
-                <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.9"/>
-                  <stop offset="50%" stopColor="#1D4ED8" stopOpacity="0.8"/>
-                  <stop offset="100%" stopColor="#1E40AF" stopOpacity="0.7"/>
-                </linearGradient>
-              </defs>
+              <path d="M1202.44 396.851C1202.44 469.658 1191.13 532.557 1168.52 587.646C1145.98 642.704 1116.55 689.935 1080.25 728.791C1043.9 767.582 1002.01 798.338 954.424 819.638C906.838 840.89 858.122 853.347 808.261 856.026C665.454 863.723 522.309 863.448 379.519 855.17C261.756 848.296 169.214 804.567 101.7 735.778C34.1373 666.44 0.541527 576.69 0.525391 461.751C0.525391 388.992 11.8047 326.383 34.3955 271.956C57.0025 217.657 86.4512 170.959 122.726 132.49C159.048 94.0528 200.954 63.4907 248.557 42.1907C296.11 20.9554 344.487 8.53038 393.606 5.86789C536.412 -1.87754 679.574 -1.63547 822.364 6.59405C941.547 13.5327 1034.59 57.1975 1101.8 125.567C1168.97 194.518 1202.44 283.332 1202.44 396.851Z"
+                className="fill-sky-600"/>
             </svg>
           </div>
 
@@ -55,11 +90,11 @@ export default function Home() {
           <div className="relative z-20 max-w-4xl w-full text-center">
             {/* Main heading and description */}
             <div className="mb-12 text-white">
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                All the best spots in town are in Le Off
+              <h1 className="text-5xl md:text-6xl font-black mb-6 tracking-tighter text-shadow-lg">
+              Your new way<br/>to shop is here ❤️
               </h1>
-              <p className="text-xl md:text-2xl leading-relaxed max-w-3xl mx-auto opacity-95">
-                Across every corner of the capital, enthusiasts of fine bottles will find unique spots to suit every taste and budget, leaving with a smile on their face and the certainty of having experienced the very best that Paris has to offer.
+              <p className="text-xl md:text-2xl max-w-3xl mx-auto tracking-tight">
+              Be the first to try it and help us turn this early version into something great.
               </p>
             </div>
 
@@ -105,15 +140,6 @@ export default function Home() {
             </div>
           </div>
         </main>
-
-        {/* Shopping basket illustration */}
-        <div className="absolute bottom-8 right-8 w-40 h-40">
-          <img 
-            src="/basket.png" 
-            alt="Shopping basket with fruits" 
-            className="w-full h-full object-contain"
-          />
-        </div>
 
         {/* Footer */}
         <footer className="absolute bottom-4 left-8">
