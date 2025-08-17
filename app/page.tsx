@@ -21,59 +21,59 @@ export default function Home() {
           {/* Decorative images around the blob */}
           <div className="absolute inset-0 flex items-center justify-center">
             {/* Top left - Apple */}
-            <div className="absolute top-15 left-10 w-24 h-24 transform -rotate-12">
+            <div className="absolute top-15 left-10 w-24 h-24 md:w-48 md:h-48 transform -rotate-12">
               <img src="/decor/apple.png" alt="Apple" className="w-full h-full object-contain" />
             </div>
             
             {/* Top right - Grape */}
-            <div className="absolute top-8 right-16 w-32 h-32 transform rotate-6">
+            <div className="absolute top-8 right-16 w-32 h-32 md:w-64 md:h-64 transform rotate-6">
               <img src="/decor/grape.png" alt="Grape" className="w-full h-full object-contain" />
             </div>
             
             {/* Bottom left - Avocado */}
-            <div className="absolute bottom-12 left-8 w-28 h-28 transform -rotate-8">
+            <div className="absolute bottom-12 left-8 w-28 h-28 md:w-56 md:h-56 transform -rotate-8">
               <img src="/decor/avocado.png" alt="Avocado" className="w-full h-full object-contain" />
             </div>
             
             {/* Bottom right - Broccoli */}
-            <div className="absolute bottom-8 right-12 w-30 h-30 transform rotate-12">
+            <div className="absolute bottom-8 right-12 w-30 h-30 md:w-60 md:h-60 transform rotate-12">
               <img src="/decor/brocoli.png" alt="Broccoli" className="w-full h-full object-contain" />
             </div>
             
             {/* Left middle - Carrot */}
-            <div className="absolute left-4 top-1/2 transform -translate-y-1/2 -rotate-15 w-20 h-20">
+            <div className="absolute left-4 top-1/2 transform -translate-y-1/2 -rotate-15 w-20 h-20 md:w-40 md:h-40">
               <img src="/decor/carrot.png" alt="Carrot" className="w-full h-full object-contain" />
             </div>
             
             {/* Right middle - Lemon */}
-            <div className="absolute right-6 top-1/2 transform -translate-y-1/2 rotate-15 w-18 h-18">
+            <div className="absolute right-6 top-1/2 transform -translate-y-1/2 rotate-15 w-18 h-18 md:w-36 md:h-36">
               <img src="/decor/lemon.png" alt="Lemon" className="w-full h-full object-contain" />
             </div>
             
             {/* Top middle - Pear */}
-            <div className="absolute top-4 left-1/2 transform -translate-x-1/2 -rotate-6 w-26 h-26">
+            <div className="absolute top-4 left-1/2 transform -translate-x-1/2 -rotate-6 w-26 h-26 md:w-52 md:h-52">
               <img src="/decor/pear.png" alt="Pear" className="w-full h-full object-contain" />
             </div>
             
             {/* Bottom middle - Plum */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 rotate-8 w-24 h-24">
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 rotate-8 w-24 h-24 md:w-48 md:h-48">
               <img src="/decor/plum.png" alt="Plum" className="w-full h-full object-contain" />
             </div>
             
             {/* Additional smaller items */}
-            <div className="absolute top-1/4 left-1/4 w-16 h-16 transform rotate-45">
+            <div className="absolute top-1/4 left-1/4 w-16 h-16 md:w-32 md:h-32 transform rotate-45">
               <img src="/decor/milkbottle.png" alt="Milk bottle" className="w-full h-full object-contain" />
             </div>
             
-            <div className="absolute top-1/4 right-1/4 w-14 h-14 transform -rotate-30">
+            <div className="absolute top-1/4 right-1/4 w-14 h-14 md:w-28 md:h-28 transform -rotate-30">
               <img src="/decor/bottle.png" alt="Bottle" className="w-full h-full object-contain" />
             </div>
             
-            <div className="absolute bottom-1/4 left-1/3 w-12 h-12 transform rotate-20">
+            <div className="absolute bottom-1/4 left-1/3 w-12 h-12 md:w-24 md:h-24 transform rotate-20">
               <img src="/decor/bottle water.png" alt="Water bottle" className="w-full h-full object-contain" />
             </div>
             
-            <div className="absolute bottom-1/4 right-1/3 w-16 h-16 transform -rotate-25">
+            <div className="absolute bottom-1/4 right-1/3 w-16 h-16 md:w-32 md:h-32 transform -rotate-25">
               <img src="/decor/cold drink.png" alt="Cold drink" className="w-full h-full object-contain" />
             </div>
           </div>
@@ -106,15 +106,15 @@ export default function Home() {
                 className="block w-full bg-white/95 backdrop-blur-sm hover:bg-white rounded-2xl p-6 transition-all duration-300 shadow-xl group relative overflow-hidden border border-white/20"
               >
                 <div className="flex items-center space-x-4 relative z-10">
-                  <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-blue-200 transition-colors">
-                    <ShoppingCart className="w-6 h-6 text-blue-600" />
+                  <div className="size-16 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                    <ShoppingCart className="size-8 text-blue-600" />
                   </div>
                   <div className="flex-1 text-left">
-                    <h3 className="text-xl font-medium text-gray-900">Traditional Shop</h3>
+                    <h3 className="text-2xl font-medium text-gray-900">Traditional Shop</h3>
                     <p className="text-gray-600 text-sm">Browse our catalog with familiar e-commerce interface</p>
                   </div>
                   <div className="text-blue-500 group-hover:translate-x-1 transition-transform">
-                    <ArrowRight className="w-5 h-5" />
+                    <ArrowRight className="w-10 h-10" />
                   </div>
                 </div>
               </Link>
@@ -125,15 +125,15 @@ export default function Home() {
                 className="block w-full bg-white/95 backdrop-blur-sm hover:bg-white rounded-2xl p-6 transition-all duration-300 shadow-xl group relative overflow-hidden border border-white/20"
               >
                 <div className="flex items-center space-x-4 relative z-10">
-                  <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center group-hover:bg-orange-200 transition-colors">
-                    <MessageCircle className="w-6 h-6 text-orange-600" />
+                  <div className="size-16 bg-orange-100 rounded-xl flex items-center justify-center group-hover:bg-orange-200 transition-colors">
+                    <MessageCircle className="size-8 text-orange-600" />
                   </div>
                   <div className="flex-1 text-left">
-                    <h3 className="text-xl font-medium text-gray-900">AI Chat Assistant</h3>
+                    <h3 className="text-2xl font-medium text-gray-900">AI Chat Assistant</h3>
                     <p className="text-gray-600 text-sm">Chat with AI to discover products and get recommendations</p>
                   </div>
                   <div className="text-orange-500 group-hover:translate-x-1 transition-transform">
-                    <ArrowRight className="w-5 h-5" />
+                    <ArrowRight className="w-10 h-10" />
                   </div>
                 </div>
               </Link>
