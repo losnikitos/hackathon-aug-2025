@@ -13,14 +13,15 @@ export default function CartIcon({ onClick }: CartIconProps) {
   return (
     <button
       onClick={onClick}
-      className={`relative p-2 transition-all duration-200 ${
+      className={`relative flex items-center space-x-2 px-3 py-2 transition-all duration-200 rounded-lg ${
         uniqueItems > 0
-          ? 'bg-green-600 text-white hover:bg-green-700 rounded-lg'
-          : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+          ? 'bg-green-600 text-white hover:bg-green-700'
+          : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700'
       }`}
       aria-label="Shopping cart"
     >
-      <ShoppingCart className="w-6 h-6" />
+      <ShoppingCart className="w-5 h-5" />
+      <span className="text-sm font-medium">Checkout</span>
       
       {uniqueItems > 0 && (
         <span className="absolute -top-1 -right-1 bg-white text-green-600 text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium border border-green-600">

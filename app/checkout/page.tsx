@@ -85,9 +85,6 @@ export default function CheckoutPage() {
       }`}>
         {/* Success Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-green-400 to-blue-500 rounded-full mb-6">
-            <CheckCircle className="w-12 h-12 text-white" />
-          </div>
           <h1 className="text-4xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent mb-4">
             Congratulations! 🎉
           </h1>
@@ -99,7 +96,7 @@ export default function CheckoutPage() {
         {/* Feedback Form Link - Prominent */}
         <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6 mb-8 border-2 border-purple-200">
           <div className="text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full mb-4">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-300 to-pink-300 rounded-full mb-4">
               <MessageSquare className="w-8 h-8 text-white" />
             </div>
             <h2 className="text-2xl font-bold text-gray-800 mb-3">
