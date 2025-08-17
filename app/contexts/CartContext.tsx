@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, ReactNode, useMemo } from 'react';
 import catalogData from '../data/catalog.json';
-import { sendGAEvent } from '@next/third-parties/google';
+import { trackAddToCart, trackRemoveFromCart, trackUpdateCartQuantity } from '../utils/analytics';
 
 export interface CatalogItem {
   id: number;
@@ -59,14 +59,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
     
     // Track the add to cart event
-    sendGAEvent('event', 'add_to_cart', {
-      item_id: itemId,
-      item_name: itemName,
-      quantity: quantity,
-      price: price,
-      currency: 'EUR',
-      value: price * quantity
-    });
+    trackAddToCart(itemId, itemName, quantity, price);
   };
 
   const removeFromCart = (itemId: number) => {
@@ -79,14 +72,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       const quantity = itemToRemove?.quantity || 0;
       
       // Track the remove from cart event
-      sendGAEvent('event', 'remove_from_cart', {
-        item_id: itemId,
-        item_name: itemName,
-        quantity: quantity,
-        price: price,
-        currency: 'EUR',
-        value: price * quantity
-      });
+      trackRemoveFromCart(itemId, itemName, quantity, price);
       
       return prevItems.filter(item => item.itemId !== itemId);
     });
@@ -108,30 +94,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
         const oldQuantity = existingItem.quantity;
         
         // Track the update quantity event
-        sendGAEvent('event', 'update_cart_quantity', {
-          item_id: itemId,
-          item_name: itemName,
-          old_quantity: oldQuantity,
-          new_quantity: quantity,
-          quantity_change: quantity - oldQuantity,
-          price: price,
-          currency: 'EUR',
-          value: price * Math.abs(quantity - oldQuantity)
-        });
+        trackUpdateCartQuantity(itemId, itemName, oldQuantity, quantity, price);
         
         return prevItems.map(item => 
           item.itemId === itemId ? { ...item, quantity } : item
         );
       } else {
         // Add the item to cart if it doesn't exist
-        sendGAEvent('event', 'add_to_cart', {
-          item_id: itemId,
-          item_name: itemName,
-          quantity: quantity,
-          price: price,
-          currency: 'EUR',
-          value: price * quantity
-        });
+        trackAddToCart(itemId, itemName, quantity, price);
         return [...prevItems, { itemId, quantity }];
       }
     });

@@ -13,7 +13,7 @@ import { useChat } from '@ai-sdk/react';
 import { lastAssistantMessageIsCompleteWithToolCalls } from 'ai';
 import { useCart } from '../contexts/CartContext';
 import catalogData from '../data/catalog.json';
-import { sendGAEvent } from '@next/third-parties/google';
+import { trackToolCall, trackEvent } from '../utils/analytics';
 import { 
   AddToCartInput, 
   RemoveFromCartInput, 
@@ -55,11 +55,7 @@ export default function Chat() {
     // Handle client-side tool calls
     async onToolCall({ toolCall }) {
       // Track tool call event
-      sendGAEvent('event', 'tool_call', {
-        tool_name: toolCall.toolName,
-        tool_data: JSON.stringify(toolCall.input),
-        timestamp: Date.now()
-      });
+      trackToolCall(toolCall.toolName, toolCall.input);
       
       switch (toolCall.toolName) {
         case 'addToCart': {
@@ -220,7 +216,7 @@ export default function Chat() {
 
   const sendUserMessage = async (message: string) => {
     // Track message sending event
-    sendGAEvent('event', 'send_message', {
+    trackEvent('send_message', {
       message_length: message.length,
       timestamp: Date.now()
     });

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useCart } from '../contexts/CartContext';
-import { sendGAEvent } from '@next/third-parties/google';
+import { trackCheckout } from '../utils/analytics';
 import { CheckCircle, Clock, ShoppingBag, ArrowLeft, Star, Trophy } from 'lucide-react';
 
 // Perfect cart items (apples, sugar, salt, butter, flour, cinnamon)
@@ -54,18 +54,7 @@ export default function CheckoutPage() {
       setCompletionTime(calculatedTime);
       
       // Track checkout event
-      sendGAEvent('event', 'checkout', {
-        time_taken: calculatedTime,
-        cart_score: cartScore.score,
-        cart_max_score: cartScore.maxScore,
-        cart_percentage: cartScore.percentage,
-        cart_grade: cartScore.grade,
-        total_items: items.length,
-        total_price: totalPrice,
-        currency: 'EUR',
-        value: totalPrice,
-        timestamp: Date.now()
-      });
+      trackCheckout(calculatedTime, cartScore.score, cartScore.maxScore, cartScore.percentage, cartScore.grade, items.length, totalPrice);
       
       // Clear the stored start time
       localStorage.removeItem('chatSessionStartTime');
@@ -76,18 +65,7 @@ export default function CheckoutPage() {
       setCompletionTime('0min 0s');
       
       // Track checkout event with fallback time
-      sendGAEvent('event', 'checkout', {
-        time_taken: '0min 0s',
-        cart_score: cartScore.score,
-        cart_max_score: cartScore.maxScore,
-        cart_percentage: cartScore.percentage,
-        cart_grade: cartScore.grade,
-        total_items: items.length,
-        total_price: totalPrice,
-        currency: 'EUR',
-        value: totalPrice,
-        timestamp: Date.now()
-      });
+      trackCheckout('0min 0s', cartScore.score, cartScore.maxScore, cartScore.percentage, cartScore.grade, items.length, totalPrice);
     }
 
     // Add a small delay for animation effect
