@@ -41,7 +41,7 @@ export default function CheckoutPage() {
   useEffect(() => {
     // Read start time from localStorage and calculate completion time
     const storedStartTime = localStorage.getItem('chatSessionStartTime');
-    console.log('Checkout: Retrieved chatSessionStartTime:', storedStartTime);
+    console.log('[timer] Checkout: Retrieved chatSessionStartTime:', storedStartTime);
     
     if (storedStartTime) {
       const startTime = parseInt(storedStartTime);
@@ -50,7 +50,7 @@ export default function CheckoutPage() {
       const minutes = Math.floor(timeDiff / 60000);
       const seconds = Math.floor((timeDiff % 60000) / 1000);
       const calculatedTime = `${minutes}min ${seconds}s`;
-      console.log('Checkout: Calculated completion time:', calculatedTime);
+      console.log('[timer] Checkout: Calculated completion time:', calculatedTime);
       setCompletionTime(calculatedTime);
       
       // Track checkout event with duration in milliseconds
@@ -58,10 +58,10 @@ export default function CheckoutPage() {
       
       // Clear the stored start time
       localStorage.removeItem('chatSessionStartTime');
-      console.log('Checkout: Cleared chatSessionStartTime');
+      console.log('[timer] Checkout: Cleared chatSessionStartTime');
     } else {
       // Fallback if no start time found
-      console.log('Checkout: No start time found, using fallback');
+      console.log('[timer] Checkout: No start time found, using fallback');
       setCompletionTime('0min 0s');
       
       // Track checkout event with fallback time and 0ms duration

@@ -129,7 +129,7 @@ export default function Home() {
                     <MessageCircle className="size-8 text-orange-600" />
                   </div>
                   <div className="flex-1 text-left">
-                    <h3 className="text-2xl font-medium text-gray-900">AI Chat Assistant</h3>
+                    <h3 className="text-2xl font-medium text-gray-900">AI Chat Assistant (new)</h3>
                     <p className="text-gray-600 text-sm">Chat with AI to discover products and get recommendations</p>
                   </div>
                   <div className="text-orange-500 group-hover:translate-x-1 transition-transform">
